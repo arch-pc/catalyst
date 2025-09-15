@@ -1,0 +1,374 @@
+[
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Tree Patch"
+    },
+    "where": {
+      "x": 3229,
+      "y": 3244,
+      "level": 0
+    },
+    "how": "generic",
+    "description": "Rake any farming patch"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Farming patch"
+    },
+    "where": {
+      "x": 2890,
+      "y": 3467,
+      "level": 0
+    },
+    "how": "generic",
+    "description": "Plant seeds in any farming patch"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Compost bin "
+    },
+    "where": {
+      "x": 3056,
+      "y": 3312,
+      "level": 0
+    },
+    "how": "generic",
+    "description": "Add compostable items to a compost bin"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Tool Leprechaun"
+    },
+    "where": {
+      "x": 3052,
+      "y": 3303,
+      "level": 0
+    },
+    "how": "use",
+    "description": "Have a tool leprechaun note any produce"
+  },
+  {
+    "type": "powerburst",
+    "where": {
+      "x": 3052,
+      "y": 3298,
+      "level": 0
+    },
+    "description": "Home teleport to Lumbridge"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Cabbage"
+    },
+    "where": {
+      "x": 3052,
+      "y": 3295,
+      "level": 0
+    },
+    "how": "loot",
+    "description": "Eat a cabbage"
+  },
+  {
+    "type": "powerburst",
+    "where": {
+      "x": 3056,
+      "y": 3298,
+      "level": 0
+    },
+    "description": "Eat a baked potato"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "item",
+      "name": "Onion"
+    },
+    "where": {
+      "x": 3205,
+      "y": 3296,
+      "level": 0
+    },
+    "how": "loot",
+    "description": "Eat an onion"
+  },
+  {
+    "type": "powerburst",
+    "where": {
+      "x": 3184,
+      "y": 3274,
+      "level": 0
+    },
+    "description": "Kill an imp"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Chicken"
+    },
+    "where": {
+      "x": 3234,
+      "y": 3294,
+      "level": 0
+    },
+    "how": "attack",
+    "description": "Kill a chicken"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Shopkeeper"
+    },
+    "where": {
+      "x": 3215,
+      "y": 3242,
+      "level": 0
+    },
+    "how": "trade",
+    "description": "Claim a free item"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Shopkeeper"
+    },
+    "where": {
+      "x": 3214,
+      "y": 3242,
+      "level": 0
+    },
+    "how": "trade",
+    "description": "Return a free item to any store"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Shopkeeper"
+    },
+    "where": {
+      "x": 3213,
+      "y": 3242,
+      "level": 0
+    },
+    "how": "trade",
+    "description": "Sell an item to any store"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Musician"
+    },
+    "where": {
+      "x": 3225,
+      "y": 3245,
+      "level": 0
+    },
+    "how": "talk",
+    "description": "Listen to any musician"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "item",
+      "name": "Item"
+    },
+    "where": {
+      "x": 3163,
+      "y": 3294,
+      "level": 0
+    },
+    "how": "loot",
+    "description": "Pick wheat from a field"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Any rock"
+    },
+    "where": {
+      "x": 3233,
+      "y": 3150,
+      "level": 0
+    },
+    "how": "generic",
+    "description": "Prospect any rock"
+  },
+  {
+    "type": "powerburst",
+    "where": {
+      "x": 3233,
+      "y": 3156,
+      "level": 0
+    },
+    "description": "View the skillguide"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Agility course"
+    },
+    "where": {
+      "x": 2921,
+      "y": 3578,
+      "level": 0
+    },
+    "how": "agility",
+    "description": "Complete a lap in Burthorpe"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Monster"
+    },
+    "where": {
+      "x": 2956,
+      "y": 3501,
+      "level": 0
+    },
+    "how": "attack",
+    "description": "Goblin Boss"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Child"
+    },
+    "where": {
+      "x": 2922,
+      "y": 3356,
+      "level": 0
+    },
+    "how": "talk",
+    "description": "Complete Witch's House"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Bench"
+    },
+    "where": {
+      "x": 2997,
+      "y": 3373,
+      "level": 0
+    },
+    "how": "generic",
+    "description": "Sit with Sir Tiffy Cashien"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Bandos' remains"
+    },
+    "where": {
+      "x": 2970,
+      "y": 3484,
+      "level": 0
+    },
+    "how": "pray",
+    "description": "Pray at Bandos' remains"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Dance"
+    },
+    "where": {
+      "x": 3046,
+      "y": 3376,
+      "level": 0
+    },
+    "how": "spellonentity",
+    "description": "Dance in the Falador party room"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "npc",
+      "name": "Thurgo"
+    },
+    "where": {
+      "x": 2998,
+      "y": 3145,
+      "level": 0
+    },
+    "how": "use",
+    "description": "Use a Redberry pie on Thurgo "
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Statue"
+    },
+    "where": {
+      "x": 2929,
+      "y": 3457,
+      "level": 0
+    },
+    "how": "craft",
+    "description": "Build a God statue in Taverley"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Menaphos"
+    },
+    "where": {
+      "x": 3207,
+      "y": 2820,
+      "level": 0
+    },
+    "how": "enter",
+    "description": "Enter Menaphos"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Whirligig"
+    },
+    "where": {
+      "x": 3342,
+      "y": 3256,
+      "level": 0
+    },
+    "how": "hunt",
+    "description": "Catch a Whirligig"
+  },
+  {
+    "type": "redclick",
+    "target": {
+      "kind": "static",
+      "name": "Fort Debris"
+    },
+    "where": {
+      "x": 3375,
+      "y": 3180,
+      "level": 0
+    },
+    "how": "mine",
+    "description": "Clear Fort debris"
+  }
+]
