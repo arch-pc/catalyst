@@ -1,0 +1,2762 @@
+[
+  {
+    "Area": "https://runescape.wiki/images/thumb/Draynor_lodestone_icon.png/20px-Draynor_lodestone_icon.png?90767",
+    "Task": "Siphon from a death esswraith in the RuneSpan.",
+    "Information": "Siphon from a death esswraith in the RuneSpan .",
+    "Requirements": {
+      "text": "66 Runecrafting",
+      "img": "https://runescape.wiki/images/thumb/Runecrafting-icon.png/21px-Runecrafting-icon.png?efa59"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Draynor_lodestone_icon.png/20px-Draynor_lodestone_icon.png?90767",
+    "Task": "Obtain the Massive Pouch from the RuneSpan.",
+    "Information": "Obtain the massive pouch from the RuneSpan .",
+    "Requirements": {
+      "text": "90 Runecrafting 1,000 Runespan points",
+      "img": "https://runescape.wiki/images/thumb/Runecrafting-icon.png/21px-Runecrafting-icon.png?efa59"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Draynor_lodestone_icon.png/20px-Draynor_lodestone_icon.png?90767",
+    "Task": "Equip the full Master Runecrafter skilling outfit.",
+    "Information": "Equip the full master runecrafter robes set.",
+    "Requirements": {
+      "text": "50 Runecrafting 60,000 Runecrafting guild tokens , 16,000 Runespan points , or 2,000 thaler",
+      "img": "https://runescape.wiki/images/thumb/Runecrafting-icon.png/21px-Runecrafting-icon.png?efa59"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Edgeville_lodestone_icon.png/20px-Edgeville_lodestone_icon.png?4cf6d",
+    "Task": "Given by Vannaka in Edgeville for completing all Hard Tasks in Varrock.",
+    "Information": "Complete all of the Hard Varrock achievements and claim rewards from Vannaka in Edgeville .",
+    "Requirements": {
+      "text": "See Hard Varrock achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Edgeville_lodestone_icon.png/20px-Edgeville_lodestone_icon.png?4cf6d",
+    "Task": "Make a waka canoe near Edgeville.",
+    "Information": "Make a waka canoe near Edgeville .",
+    "Requirements": {
+      "text": "57 Woodcutting",
+      "img": "https://runescape.wiki/images/thumb/Woodcutting-icon.png/21px-Woodcutting-icon.png?e8049"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Edgeville_lodestone_icon.png/20px-Edgeville_lodestone_icon.png?4cf6d",
+    "Task": "Chop down the Edgeville elder tree.",
+    "Information": "Chop down the Edgeville elder tree .",
+    "Requirements": {
+      "text": "90 Woodcutting",
+      "img": "https://runescape.wiki/images/thumb/Woodcutting-icon.png/21px-Woodcutting-icon.png?e8049"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fort_Forinthry_lodestone_icon.png/20px-Fort_Forinthry_lodestone_icon.png?872ba",
+    "Task": "Upgrade the workshop in Fort Forinthry to Tier 3.",
+    "Information": "Upgrade the workshop in Fort Forinthry to Tier 3.",
+    "Requirements": {
+      "text": "75 Construction Partial completion of New Foundations",
+      "img": "https://runescape.wiki/images/thumb/Construction-icon.png/21px-Construction-icon.png?d6534"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Lumbridge_lodestone_icon.png/20px-Lumbridge_lodestone_icon.png?5a9a5",
+    "Task": "Enter Zanaris via Lumbridge Swamp.",
+    "Information": "Enter Zanaris via Lumbridge Swamp .",
+    "Requirements": {
+      "text": "Partial completion of A Fairy Tale II - Cure a Queen",
+      "img": "https://runescape.wiki/images/thumb/A_Fairy_Tale_II_-_Cure_a_Queen_icon.png/25px-A_Fairy_Tale_II_-_Cure_a_Queen_icon.png?dc999"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Lumbridge_lodestone_icon.png/20px-Lumbridge_lodestone_icon.png?5a9a5",
+    "Task": "Given by Ned in Draynor Village for completing all Hard Tasks in Lumbridge.",
+    "Information": "Complete all Hard Tasks in Lumbridge and claim rewards from Ned in Draynor Village .",
+    "Requirements": {
+      "text": "See Hard Lumbridge achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Lumbridge_lodestone_icon.png/20px-Lumbridge_lodestone_icon.png?5a9a5",
+    "Task": "Unlock the Bladed Dive ability from Shattered Worlds.",
+    "Information": "Unlock the Bladed Dive ability from Shattered Worlds .",
+    "Requirements": {
+      "text": "63,000,000 shattered anima",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Lumbridge_lodestone_icon.png/20px-Lumbridge_lodestone_icon.png?5a9a5",
+    "Task": "Smith a mithril platebody on the anvil in the jailhouse sewers.",
+    "Information": "Smith a mithril platebody on the anvil in the jailhouse sewers .",
+    "Requirements": {
+      "text": "30 Smithing",
+      "img": "https://runescape.wiki/images/thumb/Smithing-icon.png/21px-Smithing-icon.png?caf94"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Lumbridge_lodestone_icon.png/20px-Lumbridge_lodestone_icon.png?5a9a5",
+    "Task": "Fully grow a magic tree in Lumbridge.",
+    "Information": "Fully grow a magic tree in Lumbridge .",
+    "Requirements": {
+      "text": "75 Farming",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Defeat Hermod, the Spirit of War.",
+    "Information": "Defeat Hermod, the Spirit of War once.",
+    "Requirements": {
+      "text": "Completion of The Spirit of War",
+      "img": "https://runescape.wiki/images/thumb/The_Spirit_of_War_icon.png/25px-The_Spirit_of_War_icon.png?ad5ba"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Defeat Hermod, the Spirit of War.",
+    "Information": "Defeat Hermod, the Spirit of War 100 times.",
+    "Requirements": {
+      "text": "Completion of The Spirit of War",
+      "img": "https://runescape.wiki/images/thumb/The_Spirit_of_War_icon.png/25px-The_Spirit_of_War_icon.png?ad5ba"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Rest whilst listening to the Dead Beats in the City of Um.",
+    "Information": "Rest whilst listening to the Dead Beats in the City of Um .",
+    "Requirements": {
+      "text": "Completion of That Old Black Magic",
+      "img": "https://runescape.wiki/images/thumb/That_Old_Black_Magic_icon.png/25px-That_Old_Black_Magic_icon.png?6682f"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Smith a necronium bar at the smithy in the City of Um.",
+    "Information": "Smith a necronium bar at the smithy in the City of Um .",
+    "Requirements": {
+      "text": "70 Smithing Partial completion of Necromancy!",
+      "img": "https://runescape.wiki/images/thumb/Smithing-icon.png/21px-Smithing-icon.png?caf94"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Create a passing bracelet, performing each step in the City of Um.",
+    "Information": "Create a passing bracelet , performing each step in the City of Um .",
+    "Requirements": {
+      "text": "60 Necromancy for bar, 79 Crafting , 68 Magic Ensouled bar , moonstone , runes for Lvl-5 Enchant . The moonstone is most easily obtained from completing Housing of Parliament , which requires 54 Necromancy .",
+      "img": "https://runescape.wiki/images/thumb/Necromancy-icon.png/21px-Necromancy-icon.png?f826b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Catch a ghostly impling while wearing a full set of ghostly robes.",
+    "Information": "Catch a ghostly impling while wearing a full set of ghostly robes .",
+    "Requirements": {
+      "text": "68 Hunter Completion of The Curse of Zaros (miniquest)",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Upgrade a set of Death Skull equipment to tier 70.",
+    "Information": "Upgrade a set of Death Skull equipment to tier 70.",
+    "Requirements": {
+      "text": "70 Necromancy Completion of The Spirit of War . See also Kili's Knowledge V .",
+      "img": "https://runescape.wiki/images/thumb/Necromancy-icon.png/21px-Necromancy-icon.png?f826b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Complete a Powerful Communion ritual.",
+    "Information": "Complete a powerful communion ritual.",
+    "Requirements": {
+      "text": "90 Necromancy",
+      "img": "https://runescape.wiki/images/thumb/Necromancy-icon.png/21px-Necromancy-icon.png?f826b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Conjure an undead army at the City of Um ritual site.",
+    "Information": "Conjure an undead army at the City of Um ritual site .",
+    "Requirements": {
+      "text": "99 Necromancy Conjure Undead Army unlocked in the Well of Souls",
+      "img": "https://runescape.wiki/images/thumb/Necromancy-icon.png/21px-Necromancy-icon.png?f826b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Obtain a new set of Family Crest gauntlets from Dimintheis.",
+    "Information": "Obtain a new set of Family Crest gauntlets from Dimintheis .",
+    "Requirements": {
+      "text": "Completion of Family Crest",
+      "img": "https://runescape.wiki/images/thumb/Family_Crest_icon.png/25px-Family_Crest_icon.png?d2bd5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Talk to Romily Weaklax and give him a wild pie.",
+    "Information": "Talk to Romily Weaklax and give him a wild pie .",
+    "Requirements": {
+      "text": "85 Cooking to make it from scratch, or 50 Hunter to get it as a rare drop from eclectic implings",
+      "img": "https://runescape.wiki/images/thumb/Cooking-icon.png/21px-Cooking-icon.png?00812"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Activate 3 Archaeoligy relics at once",
+    "Information": "Activate 3 Archaeology relics at once",
+    "Requirements": {
+      "text": "25 Archaeology A Ring of Luck to unlock the Hand of Glory relic.",
+      "img": "https://runescape.wiki/images/thumb/Archaeology-icon.png/21px-Archaeology-icon.png?48b2f"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Mine 50 Dark Animica from the Empty Throne Room.",
+    "Information": "Mine 50 dark animica from the Empty Throne Room mine .",
+    "Requirements": {
+      "text": "90 Mining",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Defeat Kerapac, the bound 1.",
+    "Information": "Defeat Kerapac, the bound once.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Defeat the Arch-Glacor in hard mode.",
+    "Information": "Defeat the Arch-Glacor in hard mode.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach at least level 50 in all non-elite skills.",
+    "Information": "Reach at least level 50 in all non-elite skills .",
+    "Requirements": {
+      "text": "All skills except Invention at level 50",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach combat level 100.",
+    "Information": "Reach combat level 100.",
+    "Requirements": {
+      "text": "100 Combat",
+      "img": "https://runescape.wiki/images/thumb/Multicombat.png/21px-Multicombat.png?27400"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach total level 1000.",
+    "Information": "Reach total level 1000.",
+    "Requirements": {
+      "text": "1000 Total level",
+      "img": "https://runescape.wiki/images/thumb/Statistics.png/21px-Statistics.png?72ca5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Mine any ore 1000 times.",
+    "Information": "Mine any ore 1000 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Chop any tree 1000 times.",
+    "Information": "Chop any tree 1000 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Burn any logs 1000 times.",
+    "Information": "Burn any logs 1000 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Catch any fish 1000 times.",
+    "Information": "Catch any fish 1000 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Harvest any memory from a wisp 1000 times.",
+    "Information": "Harvest any memory from a wisp 1000 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Pickpocket anyone 1000 times.",
+    "Information": "Pickpocket anyone 1000 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Unlock all of the Lodestones.",
+    "Information": "Unlock all of the Lodestones .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Falador_lodestone_icon.png/20px-Falador_lodestone_icon.png?3315a",
+    "Task": "Reach 100% respect at the Artisans' Workshop.",
+    "Information": "Reach 100% respect at the Artisans' Workshop .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Falador_lodestone_icon.png/20px-Falador_lodestone_icon.png?3315a",
+    "Task": "Hard achievement diary",
+    "Information": "Complete the Hard Falador achievements .",
+    "Requirements": {
+      "text": "See Hard Falador achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat any God Wars Dungeon boss 100 times.",
+    "Information": "Defeat any God Wars Dungeon boss 100 times.",
+    "Requirements": {
+      "text": "Partial completion of Troll Stronghold",
+      "img": "https://runescape.wiki/images/thumb/Troll_Stronghold_icon.png/25px-Troll_Stronghold_icon.png?af37e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat any God Wars Dungeon boss 250 times.",
+    "Information": "Defeat any God Wars Dungeon boss 250 times.",
+    "Requirements": {
+      "text": "Partial completion of Troll Stronghold",
+      "img": "https://runescape.wiki/images/thumb/Troll_Stronghold_icon.png/25px-Troll_Stronghold_icon.png?af37e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Commander Zilyana",
+    "Information": "Defeat Commander Zilyana",
+    "Requirements": {
+      "text": "70 Agility Partial completion of Troll Stronghold",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat General Graardor",
+    "Information": "Defeat General Graardor",
+    "Requirements": {
+      "text": "70 Strength Partial completion of Troll Stronghold",
+      "img": "https://runescape.wiki/images/thumb/Strength-icon.png/21px-Strength-icon.png?4b0ac"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat K'ril Tsutsaroth",
+    "Information": "Defeat K'ril Tsutsaroth",
+    "Requirements": {
+      "text": "70 Constitution Partial completion of Troll Stronghold",
+      "img": "https://runescape.wiki/images/thumb/Constitution-icon.png/21px-Constitution-icon.png?bbf9a"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Kree'arra",
+    "Information": "Defeat Kree'arra",
+    "Requirements": {
+      "text": "70 Ranged Partial completion of Troll Stronghold",
+      "img": "https://runescape.wiki/images/thumb/Ranged-icon.png/21px-Ranged-icon.png?310aa"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Nex",
+    "Information": "Defeat Nex",
+    "Requirements": {
+      "text": "70 Agility , 70 Strength , 70 Constitution , 70 Ranged Partial completion of Troll Stronghold , completion of The Dig Site , frozen key",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Nex 100 times.",
+    "Information": "Defeat Nex 100 times.",
+    "Requirements": {
+      "text": "70 Agility , 70 Strength , 70 Constitution , 70 Ranged Partial completion of Troll Stronghold , completion of The Dig Site , frozen key",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Assemble any godsword from the God Wars Dungeon.",
+    "Information": "Assemble any godsword from the God Wars Dungeon .",
+    "Requirements": {
+      "text": "80 Smithing and one of 70 Agility , 70 Strength , 70 Constitution , or 70 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Smithing-icon.png/21px-Smithing-icon.png?caf94"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Port_Sarim_lodestone_icon.png/20px-Port_Sarim_lodestone_icon.png?811bd",
+    "Task": "Defeat the Queen Black Dragon.",
+    "Information": "Defeat the Queen Black Dragon .",
+    "Requirements": {
+      "text": "60 Summoning",
+      "img": "https://runescape.wiki/images/thumb/Summoning-icon.png/21px-Summoning-icon.png?4e07d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Port_Sarim_lodestone_icon.png/20px-Port_Sarim_lodestone_icon.png?811bd",
+    "Task": "Defeat the Queen Black Dragon 100 times.",
+    "Information": "Defeat the Queen Black Dragon 100 times.",
+    "Requirements": {
+      "text": "60 Summoning",
+      "img": "https://runescape.wiki/images/thumb/Summoning-icon.png/21px-Summoning-icon.png?4e07d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Port_Sarim_lodestone_icon.png/20px-Port_Sarim_lodestone_icon.png?811bd",
+    "Task": "Bury some frost dragon bones.",
+    "Information": "Bury some frost dragon bones .",
+    "Requirements": {
+      "text": "85 Dungeoneering",
+      "img": "https://runescape.wiki/images/thumb/Dungeoneering-icon.png/21px-Dungeoneering-icon.png?ed8da"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Defeat the Kalphite King.",
+    "Information": "Defeat the Kalphite King .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Defeat the Kalphite King 100 times.",
+    "Information": "Defeat the Kalphite King 100 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Equip a drygore weapon.",
+    "Information": "Equip a drygore weapon .",
+    "Requirements": {
+      "text": "90 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Become an honorary druid at the Garden of Kharid.",
+    "Information": "Purchase the Druid/Druidess title for 50,000 Crux Eqal favour",
+    "Requirements": {
+      "text": "50 Farming",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Deploy a dreadnip.",
+    "Information": "Deploy a dreadnip .",
+    "Requirements": {
+      "text": "20 of a collection of quests (see Dominion Tower#Requirements ), 450 Dominion Tower kills",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Hard desert tasks.",
+    "Information": "Complete the Hard Desert achievements .",
+    "Requirements": {
+      "text": "See Hard Desert achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat the Twin Furies.",
+    "Information": "Defeat the Twin Furies .",
+    "Requirements": {
+      "text": "80 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Ranged-icon.png/21px-Ranged-icon.png?310aa"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Gregorivic.",
+    "Information": "Defeat Gregorivic .",
+    "Requirements": {
+      "text": "80 Prayer",
+      "img": "https://runescape.wiki/images/thumb/Prayer-icon.png/21px-Prayer-icon.png?933f9"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Vindicta.",
+    "Information": "Defeat Vindicta .",
+    "Requirements": {
+      "text": "80 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Helwyr.",
+    "Information": "Defeat Helwyr .",
+    "Requirements": {
+      "text": "80 Magic",
+      "img": "https://runescape.wiki/images/thumb/Magic-icon.png/21px-Magic-icon.png?60d6d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat the Twin Furies 100 times.",
+    "Information": "Defeat the Twin Furies 100 times.",
+    "Requirements": {
+      "text": "80 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Ranged-icon.png/21px-Ranged-icon.png?310aa"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Gregorivic 100 times.",
+    "Information": "Defeat Gregorivic 100 times.",
+    "Requirements": {
+      "text": "80 Prayer",
+      "img": "https://runescape.wiki/images/thumb/Prayer-icon.png/21px-Prayer-icon.png?933f9"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Vindicta 100 times.",
+    "Information": "Defeat Vindicta 100 times.",
+    "Requirements": {
+      "text": "80 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Helwyr 100 times.",
+    "Information": "Defeat Helwyr 100 times.",
+    "Requirements": {
+      "text": "80 Magic",
+      "img": "https://runescape.wiki/images/thumb/Magic-icon.png/21px-Magic-icon.png?60d6d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a Dragon Rider lance.",
+    "Information": "Equip a Dragon Rider lance .",
+    "Requirements": {
+      "text": "85 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a wand or orb of the Cywir elders.",
+    "Information": "Equip a wand or orb of the Cywir elders .",
+    "Requirements": {
+      "text": "85 Magic",
+      "img": "https://runescape.wiki/images/thumb/Magic-icon.png/21px-Magic-icon.png?60d6d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a shadow glaive.",
+    "Information": "Equip a shadow glaive .",
+    "Requirements": {
+      "text": "85 Ranged other=",
+      "img": "https://runescape.wiki/images/thumb/Ranged-icon.png/21px-Ranged-icon.png?310aa"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a blade of Nymora or Avaryss.",
+    "Information": "Equip a blade of Nymora or Avaryss .",
+    "Requirements": {
+      "text": "85 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Menaphos_lodestone_icon.png/20px-Menaphos_lodestone_icon.png?69fa6",
+    "Task": "Slay a combination of 500 corrupted or devourer creatures.",
+    "Information": "Slay a combination of 500 corrupted creatures or soul devourers .",
+    "Requirements": {
+      "text": "88 Slayer Completion of Icthlarin's Little Helper",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Defeat the Magister.",
+    "Information": "Defeat the Magister .",
+    "Requirements": {
+      "text": "115 Slayer Key to the Crossing",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Defeat the Magister 50 times.",
+    "Information": "Defeat the Magister 50 times.",
+    "Requirements": {
+      "text": "115 Slayer Key to the Crossing",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Menaphos_lodestone_icon.png/20px-Menaphos_lodestone_icon.png?69fa6",
+    "Task": "Find an Off-hand khopesh of the Kharidian in Shifting Tombs.",
+    "Information": "Find an Off-hand khopesh of the Kharidian in Shifting Tombs .",
+    "Requirements": {
+      "text": "At least one of 50 Dungeoneering , 50 Agility , 50 Thieving , or 50 Construction",
+      "img": "https://runescape.wiki/images/thumb/Dungeoneering-icon.png/21px-Dungeoneering-icon.png?ed8da"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Search the Grand Gold Chest in room 7 of Pyramid Plunder in Sophanem.",
+    "Information": "Search the Grand Gold Chest in room 7 of Pyramid Plunder in Sophanem .",
+    "Requirements": {
+      "text": "81 Thieving Partial completion of Icthlarin's Little Helper",
+      "img": "https://runescape.wiki/images/thumb/Thieving-icon.png/21px-Thieving-icon.png?1fcf2"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Search the Grand Gold Chest in room 8 of Pyramid Plunder in Sophanem.",
+    "Information": "Search the Grand Gold Chest in room 8 of Pyramid Plunder in Sophanem .",
+    "Requirements": {
+      "text": "91 Thieving Partial completion of Icthlarin's Little Helper",
+      "img": "https://runescape.wiki/images/thumb/Thieving-icon.png/21px-Thieving-icon.png?1fcf2"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Menaphos_lodestone_icon.png/20px-Menaphos_lodestone_icon.png?69fa6",
+    "Task": "Complete this quest.",
+    "Information": "Complete Dealing With Scabaras",
+    "Requirements": {
+      "text": "See quest page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Al_Kharid_lodestone_icon.png/20px-Al_Kharid_lodestone_icon.png?5c436",
+    "Task": "Kill a desert strykewyrm wearing a Full Slayer Helm and wielding an ancient staff.",
+    "Information": "Kill a desert strykewyrm wearing a Full Slayer Helm and wielding an ancient staff .",
+    "Requirements": {
+      "text": "77 Slayer , 50 Magic , 20 Defence , 55 Crafting Completion of Desert Treasure and Smoking Kills , 400 slayer points to unlock crafting slayer helmets. See also Staff on Stryke .",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Telos.",
+    "Information": "Defeat Telos .",
+    "Requirements": {
+      "text": "80 Attack , 80 Prayer , 80 Magic , 80 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Lunar_Isle_lodestone_icon.png/20px-Lunar_Isle_lodestone_icon.png?6df58",
+    "Task": "Cast Fertile Soil.",
+    "Information": "Cast Fertile Soil .",
+    "Requirements": {
+      "text": "83 Magic Completion of Lunar Diplomacy unless tier 6 reached",
+      "img": "https://runescape.wiki/images/thumb/Magic-icon.png/21px-Magic-icon.png?60d6d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Build a Gilded Altar.",
+    "Information": "Build a Gilded Altar .",
+    "Requirements": {
+      "text": "75 Construction",
+      "img": "https://runescape.wiki/images/thumb/Construction-icon.png/21px-Construction-icon.png?d6534"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Trap a Sabre-Toothed Kyatt.",
+    "Information": "Trap a sabre-toothed kyatt .",
+    "Requirements": {
+      "text": "55 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Defeat all the Dagannoth Kings without leaving a solo boss instance.",
+    "Information": "Defeat all the Dagannoth Kings without leaving a solo boss instance .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Equip a Berserker, Warrior, Seers, or Archers Ring.",
+    "Information": "Equip a Berserker , Warrior , Seers , or Archers Ring .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Use the Special Attack of a Dragon Axe.",
+    "Information": "Use the Special Attack of a Dragon hatchet .",
+    "Requirements": {
+      "text": "60 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Defeat a Dagannoth King solo whilst wearing full yak-hide armour and a Fremennik round shield.",
+    "Information": "Defeat a Dagannoth King solo whilst wearing full yak-hide armour and a Fremennik round shield .",
+    "Requirements": {
+      "text": "25 Defence Partial completion of The Fremennik Isles",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Equip a Full Skeletal, Spined, or Rockshell Armour Set.",
+    "Information": "Equip a full skeletal , spined , or rock-shell armour set.",
+    "Requirements": {
+      "text": "50 Defence Completion of The Fremennik Trials",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Collect Miscellania Resources at Full Approval.",
+    "Information": "Collect Miscellania Resources at Full Approval .",
+    "Requirements": {
+      "text": "Completion of Throne of Miscellania",
+      "img": "https://runescape.wiki/images/thumb/Throne_of_Miscellania_icon.png/25px-Throne_of_Miscellania_icon.png?37ad6"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Travel to the island of Ungael.",
+    "Information": "Travel to the island of Ungael .",
+    "Requirements": {
+      "text": "Partial completion of Ancient Awakening",
+      "img": "https://runescape.wiki/images/thumb/Ancient_Awakening_icon.png/25px-Ancient_Awakening_icon.png?71d66"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Obtain an unchecked/baby Fremennik Yak.",
+    "Information": "Obtain an unchecked/baby Fremennik yak .",
+    "Requirements": {
+      "text": "71 Farming Partial completion of The Fremennik Isles",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Catch 50 Azure Skillchompas.",
+    "Information": "Catch 50 Azure Skillchompas .",
+    "Requirements": {
+      "text": "68 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Mine 10 Banite Ore north of Rellekka.",
+    "Information": "Mine 10 Banite ore north of Rellekka .",
+    "Requirements": {
+      "text": "80 Mining",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Smith a piece of Bane equipment to +4 in Rellekka.",
+    "Information": "Upgrade a piece of Bane equipment to +4 in Rellekka .",
+    "Requirements": {
+      "text": "80 Smithing Requires a total of 16 bane bars",
+      "img": "https://runescape.wiki/images/thumb/Smithing-icon.png/21px-Smithing-icon.png?caf94"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Use a Crystal triskelion key to obtain some treasures.",
+    "Information": "Use a Crystal triskelion to obtain some treasures .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Create a Catherby Teleport Tablet.",
+    "Information": "Create a Catherby Teleport Tablet .",
+    "Requirements": {
+      "text": "87 Magic , 67 Construction Completion of Lunar Diplomacy unless tier 6 reached",
+      "img": "https://runescape.wiki/images/thumb/Magic-icon.png/21px-Magic-icon.png?60d6d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Gather a seed from an Aquanite using Seedicide.",
+    "Information": "Gather a seed from an Aquanite using Seedicide .",
+    "Requirements": {
+      "text": "78 Slayer 2,200 renown , 10,000 beans , 360 thaler , or tier 4 reached",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Complete the Hard Fremennik Diary.",
+    "Information": "Complete the Hard Fremennik achievements .",
+    "Requirements": {
+      "text": "See Hard Fremennik achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Throw some gold coins into the Whirlpool at the Deep Sea Fishing platform.",
+    "Information": "Throw some gold coins into the Whirlpool at the Deep Sea Fishing platform .",
+    "Requirements": {
+      "text": "68 Fishing",
+      "img": "https://runescape.wiki/images/thumb/Fishing-icon.png/21px-Fishing-icon.png?bcc7c"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Solve the Leap of Faith Archaeology mystery.",
+    "Information": "Solve the Leap of Faith Archaeology mystery .",
+    "Requirements": {
+      "text": "70 Archaeology",
+      "img": "https://runescape.wiki/images/thumb/Archaeology-icon.png/21px-Archaeology-icon.png?48b2f"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Breed all types of Chinchompas.",
+    "Information": "Breed all types of Chinchompas .",
+    "Requirements": {
+      "text": "54 Farming , 20 Construction 97 Hunter to catch crystal chinchompas .",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Equip one piece of the Fishing outfit.",
+    "Information": "Equip one piece of the Fishing outfit .",
+    "Requirements": {
+      "text": "140 fishing tokens",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Defeat the Penance Queen.",
+    "Information": "Defeat the Penance Queen .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Pickpocket a Hero.",
+    "Information": "Pickpocket a Hero .",
+    "Requirements": {
+      "text": "80 Thieving",
+      "img": "https://runescape.wiki/images/thumb/Thieving-icon.png/21px-Thieving-icon.png?1fcf2"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Catch 50 Red Chinchompas in Kandarin.",
+    "Information": "Catch 50 carnivorous chinchompas in Kandarin.",
+    "Requirements": {
+      "text": "63 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip an Ogre Expert hat.",
+    "Information": "Equip an Ogre Expert hat .",
+    "Requirements": {
+      "text": "1,000 chompy bird kills",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Catch a Monkfish.",
+    "Information": "Catch a Monkfish .",
+    "Requirements": {
+      "text": "62 Fishing Completion of Swan Song",
+      "img": "https://runescape.wiki/images/thumb/Fishing-icon.png/21px-Fishing-icon.png?bcc7c"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Recover all data for one memory-storage bot in the Hall of Memories.",
+    "Information": "Recover all data for memory-storage bot (Aagi) in the Hall of Memories .",
+    "Requirements": {
+      "text": "70 Divination",
+      "img": "https://runescape.wiki/images/thumb/Divination-icon.png/21px-Divination-icon.png?c19b9"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Seers%27_Village_lodestone_icon.png/20px-Seers%27_Village_lodestone_icon.png?41fd9",
+    "Task": "Use the Piety Prayer.",
+    "Information": "Use the Piety Prayer.",
+    "Requirements": {
+      "text": "70 Prayer , 70 Defence Completion of Knight Waves training ground",
+      "img": "https://runescape.wiki/images/thumb/Prayer-icon.png/21px-Prayer-icon.png?933f9"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Complete the Hard Ardougne Diary.",
+    "Information": "Complete the Hard Ardougne Diary .",
+    "Requirements": {
+      "text": "See Hard Ardougne achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Harvest produce from 25 animals on Anachronia farm.",
+    "Information": "Harvest produce from 25 animals on Anachronia farm .",
+    "Requirements": {
+      "text": "42 Farming , 45 Construction",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete the ritual to activate a totem on Anachronia.",
+    "Information": "Complete the ritual to activate a totem on Anachronia .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete the Anachronia agility course in under 7 minutes.",
+    "Information": "Complete the Anachronia agility course in under 7 minutes.",
+    "Requirements": {
+      "text": "85 Agility",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete all frog breeds.",
+    "Information": "Complete all frog breeds .",
+    "Requirements": {
+      "text": "42 Farming , 45 Construction",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Purchase the Quick Traps upgrade from Irwinsson's Hunter Mark shop.",
+    "Information": "Purchase the Quick Traps upgrade from Irwinsson's Hunter Mark shop .",
+    "Requirements": {
+      "text": "50 hunter marks",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete the Osseous Rex quest.",
+    "Information": "Complete the Osseous Rex quest.",
+    "Requirements": {
+      "text": "See quest page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Clear an Overgrown idol on Anachronia.",
+    "Information": "Clear an Overgrown idol on Anachronia .",
+    "Requirements": {
+      "text": "81 Woodcutting",
+      "img": "https://runescape.wiki/images/thumb/Woodcutting-icon.png/21px-Woodcutting-icon.png?e8049"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Defeat any of the Rex Matriarchs.",
+    "Information": "Defeat any of the Rex Matriarchs once.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Defeat any of the Rex Matriarchs.",
+    "Information": "Defeat any of the Rex Matriarchs 100 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete the Desperate Times quest.",
+    "Information": "Complete the Desperate Times quest.",
+    "Requirements": {
+      "text": "See quest page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Find all the hidden Zygomites on Anachronia.",
+    "Information": "Find all the hidden Zygomites on Anachronia .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Equip Laniakea's spear.",
+    "Information": "Equip Laniakea's spear .",
+    "Requirements": {
+      "text": "82 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Harvest an Arbuck herb.",
+    "Information": "Harvest an Arbuck herb .",
+    "Requirements": {
+      "text": "77 Farming",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete the advanced sections of the Anachronia agility course.",
+    "Information": "Complete the advanced sections of the Anachronia agility course .",
+    "Requirements": {
+      "text": "70 Agility",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Equip a Dragon Mattock.",
+    "Information": "Equip a Dragon Mattock .",
+    "Requirements": {
+      "text": "60 Archaeology , (optional) 75 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Archaeology-icon.png/21px-Archaeology-icon.png?48b2f"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Take down each dinosaur in Big Game Hunter.",
+    "Information": "Take down each dinosaur in Big Game Hunter .",
+    "Requirements": {
+      "text": "96 Hunter , 76 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Get caught by each of the big game creatures once.",
+    "Information": "Get caught by each of the big game creatures once.",
+    "Requirements": {
+      "text": "96 Hunter , 76 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete a big game encounter without using movement abilities.",
+    "Information": "Complete a big game encounter without using movement abilities .",
+    "Requirements": {
+      "text": "75 Hunter , 55 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Defeat Raksha, the Shadow Colossus.",
+    "Information": "Defeat Raksha, the Shadow Colossus once.",
+    "Requirements": {
+      "text": "Completion of Raksha, the Shadow Colossus",
+      "img": "https://runescape.wiki/images/thumb/Raksha%2C_the_Shadow_Colossus_%28quest%29_icon.png/25px-Raksha%2C_the_Shadow_Colossus_%28quest%29_icon.png?ee767"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Plant a mushroom seed in the mushroom patch in Isafdar.",
+    "Information": "Plant a mushroom seed in the mushroom patch in Isafdar .",
+    "Requirements": {
+      "text": "53 Farming Completion of the medium Tirannwn achievements .",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Defeat 30 Cadarn warriors in Prifddinas.",
+    "Information": "Defeat 30 Cadarn warriors in Prifddinas .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Harvest some harmony moss from a harmony pillar.",
+    "Information": "Harvest some harmony moss from a harmony pillar .",
+    "Requirements": {
+      "text": "75 Farming",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Complete the Hefin Agility course with a light creature familiar summoned.",
+    "Information": "Complete the Hefin Agility course with a light creature familiar summoned.",
+    "Requirements": {
+      "text": "77 Agility , 88 Summoning , 71 Divination",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Cleanse the Corrupted Seren stone with 5 cleansing crystals.",
+    "Information": "Cleanse the Corrupted Seren stone with 5 cleansing crystals .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Complete 10 laps of the Hefin agility course.",
+    "Information": "Complete 10 laps of the Hefin agility course .",
+    "Requirements": {
+      "text": "77 Agility",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Harvest 100 Incandescent energy from Incandescent Wisps.",
+    "Information": "Harvest 100 Incandescent energy from [Incandescent wisp",
+    "Requirements": {
+      "text": "95 Divination",
+      "img": "https://runescape.wiki/images/thumb/Divination-icon.png/21px-Divination-icon.png?c19b9"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Equip a Dark bow.",
+    "Information": "Equip a Dark bow.",
+    "Requirements": {
+      "text": "90 Slayer , 70 Ranged , 70 Defence",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Defeat 30 Dark beasts in Tirannwn.",
+    "Information": "Defeat 30 Dark beasts in Tirannwn .",
+    "Requirements": {
+      "text": "90 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Equip a Crystal halberd.",
+    "Information": "Equip a Crystal halberd .",
+    "Requirements": {
+      "text": "50 Agility , 70 Attack",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Equip a Crystal shield.",
+    "Information": "Equip a Crystal shield .",
+    "Requirements": {
+      "text": "50 Agility , 70 Defence",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Equip a Crystal bow.",
+    "Information": "Equip a Crystal bow .",
+    "Requirements": {
+      "text": "50 Agility , 70 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Catch 25 Grenwalls in Isafdar.",
+    "Information": "Catch 25 Grenwalls in Isafdar .",
+    "Requirements": {
+      "text": "77 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Defeat 10 Elf warriors in Lletya.",
+    "Information": "Defeat 10 Elf warriors in Lletya .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Chop 50 Magic logs in Tirannwn.",
+    "Information": "Chop 50 Magic logs in Tirannwn .",
+    "Requirements": {
+      "text": "80 Woodcutting",
+      "img": "https://runescape.wiki/images/thumb/Woodcutting-icon.png/21px-Woodcutting-icon.png?e8049"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Open the crystal chest in Prifddinas 10 times.",
+    "Information": "Open the crystal chest in Prifddinas 10 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Charge a piece of Dragonstone jewellery using the Tears of Seren.",
+    "Information": "Charge a piece of Dragonstone jewellery using the Tears of Seren .",
+    "Requirements": {
+      "text": "Completion of Legends' Quest",
+      "img": "https://runescape.wiki/images/thumb/Legends%27_Quest_icon.png/25px-Legends%27_Quest_icon.png?7b9b3"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Complete the hard Tirannwn Diary.",
+    "Information": "Complete the hard Tirannwn Diary .",
+    "Requirements": {
+      "text": "See Hard Tirannwn achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Use the Stepping Stones Agility Shortcut in Shilo Village.",
+    "Information": "Use the Stepping Stones Agility Shortcut in Shilo Village .",
+    "Requirements": {
+      "text": "74 Agility Completion of Shilo Village",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Equip a full set of Obsidian armour.",
+    "Information": "Equip a full set of Obsidian armour .",
+    "Requirements": {
+      "text": "60 Defence Completion of The Brink of Extinction , 80 Smithing",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Equip a Red Topaz Machete.",
+    "Information": "Equip a Red Topaz Machete .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Find a Gout Tuber.",
+    "Information": "Find a Gout Tuber .",
+    "Requirements": {
+      "text": "10 Woodcutting Completion of Jungle Potion",
+      "img": "https://runescape.wiki/images/thumb/Woodcutting-icon.png/21px-Woodcutting-icon.png?e8049"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Defeat TzTok-Jad.",
+    "Information": "Defeat TzTok-Jad once.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Defeat TzTok-Jad.",
+    "Information": "Defeat TzTok-Jad 25 times.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Use your fire cape on TzTok-Jad before defeating them.",
+    "Information": "Use your fire cape on TzTok-Jad before defeating them.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Equip a Fire Cape.",
+    "Information": "Equip a Fire Cape .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Defeat TokHaar-Hok in the Fight Cauldron minigame using only obsidian equipment.",
+    "Information": "Defeat TokHaar-Hok in the Fight Cauldron minigame using only obsidian equipment .",
+    "Requirements": {
+      "text": "60 Defence and one of 60 Attack , 60 Strength , 60 Magic , or 60 Ranged Completion of The Brink of Extinction",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Repair the fairy ring inside the Kharazi jungle.",
+    "Information": "Repair the fairy ring inside the Kharazi jungle .",
+    "Requirements": {
+      "text": "Partial completion of Legends' Quest , 5 bittercap mushrooms",
+      "img": "https://runescape.wiki/images/thumb/Legends%27_Quest_icon.png/25px-Legends%27_Quest_icon.png?7b9b3"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Access the Gemstone cavern.",
+    "Information": "Access the Gemstone cavern .",
+    "Requirements": {
+      "text": "Hard Karamja achievements and either an uncut dragonstone or a gemstone dragon Slayer task (requires 95 Slayer )",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Catch a Draconic jadinko at Herblore Habitat.",
+    "Information": "Catch a Draconic jadinko at Herblore Habitat .",
+    "Requirements": {
+      "text": "80 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Craft a Bolas.",
+    "Information": "Craft a Bolas .",
+    "Requirements": {
+      "text": "87 Fletching , 80 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Complete the hard Karamja Diary.",
+    "Information": "Complete the hard Karamja Diary .",
+    "Requirements": {
+      "text": "See Hard Karamja achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Defeat TzTok-Jad in less than 45:00.",
+    "Information": "Defeat TzTok-Jad in less than 45:00.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Complete the Fight Kiln.",
+    "Information": "Complete the Fight Kiln .",
+    "Requirements": {
+      "text": "Completion of The Elder Kiln , hand in a fire cape",
+      "img": "https://runescape.wiki/images/thumb/The_Elder_Kiln_icon.png/25px-The_Elder_Kiln_icon.png?24e05"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Equip a TokHaar-Kal-Ket.",
+    "Information": "Equip a TokHaar-Kal-Ket .",
+    "Requirements": {
+      "text": "Completion of The Elder Kiln , hand in a fire cape (once)",
+      "img": "https://runescape.wiki/images/thumb/The_Elder_Kiln_icon.png/25px-The_Elder_Kiln_icon.png?24e05"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Equip a TokHaar-Kal-Xil.",
+    "Information": "Equip a TokHaar-Kal-Xil .",
+    "Requirements": {
+      "text": "Completion of The Elder Kiln , hand in a fire cape (once)",
+      "img": "https://runescape.wiki/images/thumb/The_Elder_Kiln_icon.png/25px-The_Elder_Kiln_icon.png?24e05"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Equip a TokHaar-Kal-Mej.",
+    "Information": "Equip a TokHaar-Kal-Mej .",
+    "Requirements": {
+      "text": "Completion of The Elder Kiln , hand in a fire cape (once)",
+      "img": "https://runescape.wiki/images/thumb/The_Elder_Kiln_icon.png/25px-The_Elder_Kiln_icon.png?24e05"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Equip a TokHaar-Kal-Mor.",
+    "Information": "Equip a TokHaar-Kal-Mor .",
+    "Requirements": {
+      "text": "Completion of The Elder Kiln , hand in a fire cape (once)",
+      "img": "https://runescape.wiki/images/thumb/The_Elder_Kiln_icon.png/25px-The_Elder_Kiln_icon.png?24e05"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Complete the Fight Kiln and collect an uncut onyx.",
+    "Information": "Complete the Fight Kiln and collect an uncut onyx .",
+    "Requirements": {
+      "text": "Completion of The Elder Kiln , hand in a fire cape (once)",
+      "img": "https://runescape.wiki/images/thumb/The_Elder_Kiln_icon.png/25px-The_Elder_Kiln_icon.png?24e05"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Karamja_lodestone_icon.png/20px-Karamja_lodestone_icon.png?98499",
+    "Task": "Complete all TzTok-Jad combat achievements.",
+    "Information": "Complete all TzTok-Jad combat achievements .",
+    "Requirements": {
+      "text": "See TzTok-Jad achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Defeat the King Black Dragon while wearing black dragonhide in six equipment slots.",
+    "Information": "Defeat the King Black Dragon while wearing black dragonhide in six equipment slots.",
+    "Requirements": {
+      "text": "60 Defence",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Defeat one of each revenant creature in the Forinthry dungeon.",
+    "Information": "Defeat one of each revenant creature in the Forinthry dungeon .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Equip a Statius's warhammer.",
+    "Information": "Equip a Statius's warhammer .",
+    "Requirements": {
+      "text": "78 Attack",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Catch 25 Black Salamanders.",
+    "Information": "Catch 25 Black Salamanders .",
+    "Requirements": {
+      "text": "67 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Restore an artefact from the Daemonheim digsite.",
+    "Information": "Restore an artefact from the Daemonheim digsite .",
+    "Requirements": {
+      "text": "73 Archaeology",
+      "img": "https://runescape.wiki/images/thumb/Archaeology-icon.png/21px-Archaeology-icon.png?48b2f"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Defeat the Corporeal Beast.",
+    "Information": "Defeat the Corporeal Beast once.",
+    "Requirements": {
+      "text": "Completion of Summer's End",
+      "img": "https://runescape.wiki/images/thumb/Summer%27s_End_icon.png/25px-Summer%27s_End_icon.png?8c729"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Defeat the Corporeal Beast.",
+    "Information": "Defeat the Corporeal Beast 100 times.",
+    "Requirements": {
+      "text": "Completion of Summer's End",
+      "img": "https://runescape.wiki/images/thumb/Summer%27s_End_icon.png/25px-Summer%27s_End_icon.png?8c729"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat the Skeletal Trio.",
+    "Information": "Defeat the Skeletal Trio .",
+    "Requirements": {
+      "text": "71 Dungeoneering",
+      "img": "https://runescape.wiki/images/thumb/Dungeoneering-icon.png/21px-Dungeoneering-icon.png?ed8da"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Upgrade your Gem bag.",
+    "Information": "Upgrade your Gem bag .",
+    "Requirements": {
+      "text": "40 Dungeoneering , 45 Crafting 20,000 dungeoneering tokens",
+      "img": "https://runescape.wiki/images/thumb/Dungeoneering-icon.png/21px-Dungeoneering-icon.png?ed8da"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Equip a pair of Steadfast boots.",
+    "Information": "Equip a pair of Steadfast boots .",
+    "Requirements": {
+      "text": "85 Defence",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Equip a pair of Glaiven boots.",
+    "Information": "Equip a pair of Glaiven boots .",
+    "Requirements": {
+      "text": "85 Defence",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Equip a pair of Ragefire boots.",
+    "Information": "Equip a pair of Ragefire boots .",
+    "Requirements": {
+      "text": "85 Defence",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Complete the hard Wilderness Diary.",
+    "Information": "Complete the hard Wilderness Diary .",
+    "Requirements": {
+      "text": "See Hard Wilderness achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a Chaotic weapon or kiteshield.",
+    "Information": "Equip a Chaotic weapon or kiteshield.",
+    "Requirements": {
+      "text": "80 Dungeoneering , 80 Attack OR 80 Ranged OR 80 Magic OR 80 Defence",
+      "img": "https://runescape.wiki/images/thumb/Dungeoneering-icon.png/21px-Dungeoneering-icon.png?ed8da"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Take a hard companion through a hard route of Temple Trekking.",
+    "Information": "Take a hard companion through a hard route of Temple Trekking .",
+    "Requirements": {
+      "text": "Completion of In Aid of the Myreque",
+      "img": "https://runescape.wiki/images/thumb/In_Aid_of_the_Myreque_icon.png/25px-In_Aid_of_the_Myreque_icon.png?e23b3"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Mine 30 Phasmatite.",
+    "Information": "Mine 30 phasmatite .",
+    "Requirements": {
+      "text": "70 Mining",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Defeat 25 Gargoyles.",
+    "Information": "Defeat 25 Gargoyles .",
+    "Requirements": {
+      "text": "75 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Defeat 35 Aberrant Spectres.",
+    "Information": "Defeat 35 Aberrant Spectres .",
+    "Requirements": {
+      "text": "60 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Slayer-icon.png/21px-Slayer-icon.png?ecab5"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Equip a full set of Ahrim's equipment, including the staff.",
+    "Information": "Equip a full set of Ahrim's equipment , including the staff .",
+    "Requirements": {
+      "text": "70 Defence , 70 Magic",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Equip a full set of Dharok's equipment, including the greataxe.",
+    "Information": "Equip a full set of Dharok's equipment , including the greataxe .",
+    "Requirements": {
+      "text": "70 Defence , 70 Attack",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Equip a full set of Guthan's equipment, including the warspear.",
+    "Information": "Equip a full set of Guthan's equipment , including the Guthan's warspear .",
+    "Requirements": {
+      "text": "70 Defence , 70 Attack",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Equip a full set of Torag's equipment, including the hammer.",
+    "Information": "Equip a full set of Torag's equipment , including the hammer .",
+    "Requirements": {
+      "text": "70 Defence , 70 Attack",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Equip a full set of Verac's equipment, including the flail.",
+    "Information": "Equip a full set of Verac's equipment , including the flail .",
+    "Requirements": {
+      "text": "70 Defence , 70 Attack",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Equip a full set of Karil's equipment, including the 2h crossbow.",
+    "Information": "Equip a full set of Karil's equipment , including the 2h crossbow .",
+    "Requirements": {
+      "text": "70 Defence , 70 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Complete The Branches of Darkmeyer.",
+    "Information": "Complete The Branches of Darkmeyer .",
+    "Requirements": {
+      "text": "See quest page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Burn 20 Blisterwood logs.",
+    "Information": "Burn 20 Blisterwood logs .",
+    "Requirements": {
+      "text": "76 Woodcutting , 76 Firemaking Partial completion of The Branches of Darkmeyer",
+      "img": "https://runescape.wiki/images/thumb/Woodcutting-icon.png/21px-Woodcutting-icon.png?e8049"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Fully level up all Temple Trekking companions.",
+    "Information": "Fully level up all Temple Trekking companions .",
+    "Requirements": {
+      "text": "Completion of In Aid of the Myreque",
+      "img": "https://runescape.wiki/images/thumb/In_Aid_of_the_Myreque_icon.png/25px-In_Aid_of_the_Myreque_icon.png?e23b3"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Catch 5 sharks in Burgh de Rott.",
+    "Information": "Catch 5 sharks in Burgh de Rott .",
+    "Requirements": {
+      "text": "76 Fishing Partial completion of In Aid of the Myreque",
+      "img": "https://runescape.wiki/images/thumb/Fishing-icon.png/21px-Fishing-icon.png?bcc7c"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Complete the hard Morytania Diary.",
+    "Information": "Complete the hard Morytania Diary .",
+    "Requirements": {
+      "text": "See Hard Morytania achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Defeat Nakatra, Devourer Eternal.",
+    "Information": "Defeat Nakatra, Devourer Eternal .",
+    "Requirements": {
+      "text": "Completion of Necromancy! , completion of Soul Searching",
+      "img": "https://runescape.wiki/images/thumb/Necromancy%21_icon.png/25px-Necromancy%21_icon.png?8d3e4"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Cleanse the Gate of Elidinis.",
+    "Information": "Cleanse the Gate of Elidinis .",
+    "Requirements": {
+      "text": "Completion of Ode of the Devourer (or Soul Searching if tier 4 reached)",
+      "img": "https://runescape.wiki/images/thumb/Ode_of_the_Devourer_icon.png/25px-Ode_of_the_Devourer_icon.png?71fb9"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Complete the hard City of Um Diary.",
+    "Information": "Complete the [ Underworld achievements ].",
+    "Requirements": {
+      "text": "See Hard Underworld achievements page",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Make 1,000 potions of any kind.",
+    "Information": "Make 1,000 potions of any kind.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Clean 1,000 of any herb.",
+    "Information": "Clean 1,000 of any herb .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 50 laps of any Agility course.",
+    "Information": "Complete 50 laps of any Agility course .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 100 laps of any Agility course.",
+    "Information": "Complete 100 laps of any Agility course .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Smith 50 of any metal weapon or armour piece.",
+    "Information": "Smith 50 of any metal weapon or armour piece.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Smith 100 of any metal weapon or armour piece.",
+    "Information": "Smith 100 of any metal weapon or armour piece.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Cook 1,000 fish.",
+    "Information": "Cook 1,000 fish .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Catch 1,000 Hunter creatures.",
+    "Information": "Catch 1,000 Hunter creatures .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 15 Slayer tasks.",
+    "Information": "Complete 15 Slayer tasks .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 150 Easy clue scrolls.",
+    "Information": "Complete 150 Easy clue scrolls .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 50 unique items for the General clue rewards collection log.",
+    "Information": "Collect 50 unique items for the General clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Craft 10,000 runes.",
+    "Information": "Craft 10,000 runes .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Craft 20,000 runes.",
+    "Information": "Craft 20,000 runes .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Obtain 75 Quest Points.",
+    "Information": "Obtain 75 Quest Points .",
+    "Requirements": {
+      "text": "75 Quest points",
+      "img": "https://runescape.wiki/images/thumb/Quest.png/21px-Quest.png?d403d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Obtain 100 Quest Points.",
+    "Information": "Obtain 100 Quest Points .",
+    "Requirements": {
+      "text": "100 Quest points",
+      "img": "https://runescape.wiki/images/thumb/Quest.png/21px-Quest.png?d403d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 150 Medium clue scrolls.",
+    "Information": "Complete 150 Medium clue scrolls .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 75 Hard clue scrolls.",
+    "Information": "Complete 75 Hard clue scrolls .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 150 Hard clue scrolls.",
+    "Information": "Complete 150 Hard clue scrolls .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 25 unique items for the Easy clue rewards collection log.",
+    "Information": "Collect 25 unique items for the Easy clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 50 unique items for the Easy clue rewards collection log.",
+    "Information": "Collect 50 unique items for the Easy clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 25 unique items for the Medium clue rewards collection log.",
+    "Information": "Collect 25 unique items for the Medium clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 50 unique items for the Medium clue rewards collection log.",
+    "Information": "Collect 50 unique items for the Medium clue rewards collection log .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 10 unique items for the Hard clue rewards collection log.",
+    "Information": "Collect 10 unique items for the Hard clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 25 unique items for the Hard clue rewards collection log.",
+    "Information": "Collect 25 unique items for the Hard clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip any Dragon mask.",
+    "Information": "Equip any Dragon mask .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Make any Perfect Juju Potion.",
+    "Information": "Make any Perfect Juju Potion .",
+    "Requirements": {
+      "text": "75 Herblore",
+      "img": "https://runescape.wiki/images/thumb/Herblore-icon.png/21px-Herblore-icon.png?43135"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Make 15 Antifire Potions.",
+    "Information": "Make 15 Antifire Potions .",
+    "Requirements": {
+      "text": "69 Herblore",
+      "img": "https://runescape.wiki/images/thumb/Herblore-icon.png/21px-Herblore-icon.png?43135"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Clean 50 Grimy Cadantine.",
+    "Information": "Clean 50 Grimy Cadantine .",
+    "Requirements": {
+      "text": "65 Herblore",
+      "img": "https://runescape.wiki/images/thumb/Herblore-icon.png/21px-Herblore-icon.png?43135"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Clean 100 Grimy Lantadyme.",
+    "Information": "Clean 100 Grimy Lantadyme .",
+    "Requirements": {
+      "text": "67 Herblore",
+      "img": "https://runescape.wiki/images/thumb/Herblore-icon.png/21px-Herblore-icon.png?43135"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Clean 100 Dwarf Weed.",
+    "Information": "Clean 100 Dwarf Weed .",
+    "Requirements": {
+      "text": "70 Herblore",
+      "img": "https://runescape.wiki/images/thumb/Herblore-icon.png/21px-Herblore-icon.png?43135"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Clean 100 Arbuck.",
+    "Information": "Clean 100 Arbuck .",
+    "Requirements": {
+      "text": "77 Herblore , 77 Farming",
+      "img": "https://runescape.wiki/images/thumb/Herblore-icon.png/21px-Herblore-icon.png?43135"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a Yew shortbow.",
+    "Information": "Equip a Yew shortbow .",
+    "Requirements": {
+      "text": "40 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Ranged-icon.png/21px-Ranged-icon.png?310aa"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a Magic shortbow.",
+    "Information": "Equip a Magic shortbow .",
+    "Requirements": {
+      "text": "50 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Ranged-icon.png/21px-Ranged-icon.png?310aa"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch some Broad Arrows or Bolts.",
+    "Information": "Fletch some Broad Arrows or Bolts .",
+    "Requirements": {
+      "text": "52 Fletching Completion of Smoking Kills , 300 slayer points",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch 100 Yew shortbows (unstrung).",
+    "Information": "Fletch 100 Yew shortbows (unstrung) .",
+    "Requirements": {
+      "text": "65 Fletching",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch 100 Yew stocks.",
+    "Information": "Fletch 100 Yew stocks .",
+    "Requirements": {
+      "text": "69 Fletching",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch a Rune Crossbow.",
+    "Information": "Fletch a Rune Crossbow .",
+    "Requirements": {
+      "text": "69 Fletching",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch 35 or more Arrow shafts from a single log.",
+    "Information": "Fletch 35 or more Arrow shafts from a single log.",
+    "Requirements": {
+      "text": "60 Fletching Yew logs or higher",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch 500 Adamant arrows.",
+    "Information": "Fletch 500 Adamant arrows .",
+    "Requirements": {
+      "text": "60 Fletching",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch 750 Rune arrows.",
+    "Information": "Fletch 750 Rune arrows .",
+    "Requirements": {
+      "text": "75 Fletching",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fletch 75 Onyx bolts.",
+    "Information": "Fletch 75 Onyx bolts .",
+    "Requirements": {
+      "text": "73 Fletching",
+      "img": "https://runescape.wiki/images/thumb/Fletching-icon.png/21px-Fletching-icon.png?00a4d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a Rune Ceremonial Sword.",
+    "Information": "Equip a Rune ceremonial sword .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a full set of the Blacksmith's outfit.",
+    "Information": "Equip a full set of the Blacksmith's outfit .",
+    "Requirements": {
+      "text": "Total of 250% Artisans' Workshop respect , unless gained from ceremonial swords",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Power up the Artisan's Workshop with a Luminite Injector.",
+    "Information": "Power up the Artisan's Workshop with a Luminite Injector .",
+    "Requirements": {
+      "text": "100% Artisans' Workshop respect",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Mine 50 Orichalcite Ore.",
+    "Information": "Mine 50 Orichalcite Ore .",
+    "Requirements": {
+      "text": "60 Mining",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Mine 50 Drakolith.",
+    "Information": "Mine 50 Drakolith",
+    "Requirements": {
+      "text": "60 Mining",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Mine 60 Necrite Ore.",
+    "Information": "Mine 60 Necrite Ore .",
+    "Requirements": {
+      "text": "70 Mining",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Mine 60 Phasmatite.",
+    "Information": "Mine 60 Phasmatite .",
+    "Requirements": {
+      "text": "70 Mining",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Harvest 20 Grimy Kwuarm.",
+    "Information": "Harvest 20 Grimy Kwuarm .",
+    "Requirements": {
+      "text": "56 Farming",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Catch 100 Shark.",
+    "Information": "Catch 100 Shark .",
+    "Requirements": {
+      "text": "76 Fishing",
+      "img": "https://runescape.wiki/images/thumb/Fishing-icon.png/21px-Fishing-icon.png?bcc7c"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Catch 100 Green Blubber Jellyfish.",
+    "Information": "Catch 100 Green Blubber Jellyfish .",
+    "Requirements": {
+      "text": "68 Fishing",
+      "img": "https://runescape.wiki/images/thumb/Fishing-icon.png/21px-Fishing-icon.png?bcc7c"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Catch a Spirit Impling.",
+    "Information": "Catch a Spirit Impling .",
+    "Requirements": {
+      "text": "54 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a Slayer helmet.",
+    "Information": "Equip a Slayer helmet .",
+    "Requirements": {
+      "text": "55 Crafting , 35 Slayer Completion of Smoking Kills , 400 slayer points",
+      "img": "https://runescape.wiki/images/thumb/Crafting-icon.png/21px-Crafting-icon.png?f224a"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete a Soul Reaper task.",
+    "Information": "Complete a Soul Reaper task.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 5 Soul Reaper tasks.",
+    "Information": "Complete 5 Soul Reaper tasks.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a full set of Orikalkum armour.",
+    "Information": "Equip a full set of Orikalkum armour .",
+    "Requirements": {
+      "text": "60 Smithing , 60 Defence",
+      "img": "https://runescape.wiki/images/thumb/Smithing-icon.png/21px-Smithing-icon.png?caf94"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a full set of Necronium armour.",
+    "Information": "Equip a full set of Necronium armour .",
+    "Requirements": {
+      "text": "70 Smithing , 70 Defence",
+      "img": "https://runescape.wiki/images/thumb/Smithing-icon.png/21px-Smithing-icon.png?caf94"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a full set of Black Dragonhide armour.",
+    "Information": "Equip a full set of Black Dragonhide armour .",
+    "Requirements": {
+      "text": "60 Defence 60 Crafting unless getting the pieces as a drop",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a full set of Royal Dragonhide armour.",
+    "Information": "Equip a full set of Royal Dragonhide armour .",
+    "Requirements": {
+      "text": "65 Defence , 65 Crafting",
+      "img": "https://runescape.wiki/images/thumb/Defence-icon.png/21px-Defence-icon.png?8d986"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Cast a Wave spell.",
+    "Information": "Cast a Wave spell .",
+    "Requirements": {
+      "text": "62 Magic",
+      "img": "https://runescape.wiki/images/thumb/Magic-icon.png/21px-Magic-icon.png?60d6d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Burn 75 Yew logs.",
+    "Information": "Burn 75 Yew logs .",
+    "Requirements": {
+      "text": "60 Firemaking",
+      "img": "https://runescape.wiki/images/thumb/Firemaking-icon.png/21px-Firemaking-icon.png?31d80"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Unlock the Ring of Quests from May's Quest Caravan.",
+    "Information": "Unlock the Ring of Quests from May's Quest Caravan .",
+    "Requirements": {
+      "text": "75 Quest points",
+      "img": "https://runescape.wiki/images/thumb/Quest.png/21px-Quest.png?d403d"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 250 clues of any tier.",
+    "Information": "Complete 250 clues of any tier.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 500 clues of any tier.",
+    "Information": "Complete 500 clues of any tier.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete an Elite clue scroll.",
+    "Information": "Complete an Elite clue scroll .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 25 Elite clue scrolls.",
+    "Information": "Complete 25 Elite clue scrolls .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete a Master clue scroll.",
+    "Information": "Complete a Master clue scroll .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 5 unique items for the Elite clue rewards collection log.",
+    "Information": "Collect 5 unique items for the Elite clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 10 unique items for the Elite clue rewards collection log.",
+    "Information": "Collect 10 unique items for the Elite clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 20 unique items for the Elite clue rewards collection log.",
+    "Information": "Collect 20 unique items for the Elite clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Collect 5 unique items for the Master clue rewards collection log.",
+    "Information": "Collect 5 unique items for the Master clue rewards collection log.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Catch a Manta ray.",
+    "Information": "Catch a raw manta ray .",
+    "Requirements": {
+      "text": "81 Fishing (or 68 Fishing via swarm fishing )",
+      "img": "https://runescape.wiki/images/thumb/Fishing-icon.png/21px-Fishing-icon.png?bcc7c"
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach level 70 in any skill.",
+    "Information": "Reach level 70 in any skill .",
+    "Requirements": {
+      "text": "Any skill at level 70",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach level 80 in any skill.",
+    "Information": "Reach level 80 in any skill .",
+    "Requirements": {
+      "text": "Any skill at level 80",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach at least level 40 in all non-elite skills.",
+    "Information": "Reach at least level 40 in all non-elite skills .",
+    "Requirements": {
+      "text": "All skills except Invention at level 40",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach at least level 60 in all non-elite skills.",
+    "Information": "Reach at least level 60 in all non-elite skills .",
+    "Requirements": {
+      "text": "All skills except Invention at level 60",
+      "img": ""
+    },
+    "Pts": "80"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach at least level 70 in all non-elite skills.",
+    "Information": "Reach at least level 70 in all non-elite skills .",
+    "Requirements": {
+      "text": "All skills except Invention at level 70",
+      "img": ""
+    },
+    "Pts": "80"
+  }
+]

@@ -1,0 +1,352 @@
+[
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Equip an Ek-ZekKil.",
+    "Information": "Equip an Ek-ZekKil .",
+    "Requirements": {
+      "text": "95 Strength , 95 Smithing",
+      "img": "https://runescape.wiki/images/thumb/Strength-icon.png/21px-Strength-icon.png?4b0ac"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Equip a Fractured Staff of Armadyl.",
+    "Information": "Equip a Fractured Staff of Armadyl .",
+    "Requirements": {
+      "text": "95 Magic , 95 Crafting",
+      "img": "https://runescape.wiki/images/thumb/Magic-icon.png/21px-Magic-icon.png?60d6d"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach maximum total level.",
+    "Information": "Reach maximum total level.",
+    "Requirements": {
+      "text": "3095 Total level",
+      "img": "https://runescape.wiki/images/thumb/Statistics.png/21px-Statistics.png?72ca5"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete all of the Combat Achievements for God Wars Dungeon bosses, including Nex.",
+    "Information": "Complete all of the Combat Achievements for God Wars Dungeon bosses , including Nex.",
+    "Requirements": {
+      "text": "70 Agility , 70 Strength , 70 Ranged , 70 Constitution , 87 Summoning Partial completion of Troll Stronghold , completion of The Slug Menace , completion of Fate of the Gods",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Unlock all the prayers from the Praesul Codex.",
+    "Information": "Unlock all the prayers from the Praesul Codex .",
+    "Requirements": {
+      "text": "70 Agility , 70 Strength , 70 Ranged , 70 Constitution Partial completion of Troll Stronghold",
+      "img": "https://runescape.wiki/images/thumb/Agility-icon.png/21px-Agility-icon.png?9a56e"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Defeat Telos at 1000% enrage.",
+    "Information": "Defeat Telos at 1000% enrage.",
+    "Requirements": {
+      "text": "80 Attack , 80 Prayer , 80 Magic , 80 Ranged",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete all of the Combat Achievements for the Heart of Gielinor bosses (excluding Telos).",
+    "Information": "Complete all of the Combat Achievements for the Heart of Gielinor bosses (excluding Telos).",
+    "Requirements": {
+      "text": "85 Attack , 80 Prayer , 80 Magic , 80 Ranged , 77 Agility",
+      "img": "https://runescape.wiki/images/thumb/Attack-icon.png/21px-Attack-icon.png?93d2b"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Fremennik_Province_lodestone_icon.png/20px-Fremennik_Province_lodestone_icon.png?64d7b",
+    "Task": "Equip every completed God Book.",
+    "Information": "Equip every completed God Book .",
+    "Requirements": {
+      "text": "30 Prayer Completion of Horror from the Deep",
+      "img": "https://runescape.wiki/images/thumb/Prayer-icon.png/21px-Prayer-icon.png?933f9"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip an Expert Dragon Archer hat.",
+    "Information": "Equip an Expert Dragon Archer hat .",
+    "Requirements": {
+      "text": "4,000 chompy bird kills",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Ardougne_lodestone_icon.png/20px-Ardougne_lodestone_icon.png?9b3e4",
+    "Task": "Throw 100,000,000 gold coins into the Whirlpool at the Deep Sea Fishing platform.",
+    "Information": "Throw 100,000,000 gold coins into the Whirlpool at the Deep Sea Fishing platform .",
+    "Requirements": {
+      "text": "68 Fishing",
+      "img": "https://runescape.wiki/images/thumb/Fishing-icon.png/21px-Fishing-icon.png?bcc7c"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Fully upgrade the Town Hall in the base camp on Anachronia.",
+    "Information": "Fully upgrade the Town Hall in the base camp on Anachronia .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete a big game encounter with 3 creatures active.",
+    "Information": "Complete a big game encounter with 3 creatures active.",
+    "Requirements": {
+      "text": "75 Hunter , 55 Slayer",
+      "img": "https://runescape.wiki/images/thumb/Hunter-icon.png/21px-Hunter-icon.png?53188"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Breed a shiny dinosaur.",
+    "Information": "Breed a shiny dinosaur .",
+    "Requirements": {
+      "text": "97 Farming",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Equip Skeka's hypnowand.",
+    "Information": "Equip Skeka's hypnowand .",
+    "Requirements": {
+      "text": "103 Archaeology , 95 Dungeoneering , 80 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Archaeology-icon.png/21px-Archaeology-icon.png?48b2f"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Anachronia_Teleport_icon.png/20px-Anachronia_Teleport_icon.png?076cd",
+    "Task": "Complete the Extinction quest.",
+    "Information": "Complete the Extinction quest.",
+    "Requirements": {
+      "text": "See quest page",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Prifddinas_lodestone_icon.png/20px-Prifddinas_lodestone_icon.png?ec895",
+    "Task": "Obtain the Dark Lord title.",
+    "Information": "Obtain the Dark Lord title by completing the Sort of Crystally achievement.",
+    "Requirements": {
+      "text": "89 Mining , 90 Slayer , 94 Farming , 77 Agility , 89 Crafting , 88 Summoning , 90 Prayer , 50 Thieving Completion of all quests",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Wilderness_Crater_lodestone_icon.png/20px-Wilderness_Crater_lodestone_icon.png?81ae3",
+    "Task": "Equip an Eldritch Crossbow.",
+    "Information": "Equip an Eldritch Crossbow .",
+    "Requirements": {
+      "text": "92 Ranged , 96 Fletching",
+      "img": "https://runescape.wiki/images/thumb/Ranged-icon.png/21px-Ranged-icon.png?310aa"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Master the Everlight digsite.",
+    "Information": "Complete the Mastery - Everlight achievements.",
+    "Requirements": {
+      "text": "105 Archaeology , 40 Construction , 6 Hunter",
+      "img": "https://runescape.wiki/images/thumb/Archaeology-icon.png/21px-Archaeology-icon.png?48b2f"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Complete all Araxxor and Araxxi combat achievements.",
+    "Information": "Complete all Araxxor and Araxxi combat achievements .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Canifis_lodestone_icon.png/20px-Canifis_lodestone_icon.png?659b2",
+    "Task": "Complete River of Blood.",
+    "Information": "Complete River of Blood .",
+    "Requirements": {
+      "text": "See quest page",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Complete all Sanctum of Rebirth combat achievements.",
+    "Information": "Complete all Sanctum of Rebirth combat achievements .",
+    "Requirements": {
+      "text": "Completion of Soul Searching",
+      "img": "https://runescape.wiki/images/thumb/Soul_Searching_icon.png/25px-Soul_Searching_icon.png?9d127"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/City_of_Um_lodestone_icon.png/20px-City_of_Um_lodestone_icon.png?c0a03",
+    "Task": "Complete all of Rasial, the First Necromancer's combat achievements.",
+    "Information": "Complete all of Rasial, the First Necromancer's combat achievements .",
+    "Requirements": {
+      "text": "Completion of Alpha vs Omega",
+      "img": "https://runescape.wiki/images/thumb/Alpha_vs_Omega_icon.png/25px-Alpha_vs_Omega_icon.png?1d43f"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Complete 150 Master clue scrolls.",
+    "Information": "Complete 150 Master clue scrolls .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Create a Pickaxe of Life and Death.",
+    "Information": "Create a Pickaxe of Life and Death .",
+    "Requirements": {
+      "text": "100 Mining , 100 Smithing , 90 Necromancy Completion of Birthright of the Dwarves , While Guthix Sleeps , Defender of Varrock , Kili Row , and Cabin Fever",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Have something planted and living in every farming patch.",
+    "Information": "Have something planted and living in every farming patch .",
+    "Requirements": {
+      "text": "119 Farming , 70 Magic , 60 Agility , 60 Crafting , 50 Construction Completion of The Great Brain Robbery , Lunar Diplomacy , My Arm's Big Adventure , The Fremennik Trials , Unwelcome Guests , Necromancy! , and Back to my Roots",
+      "img": "https://runescape.wiki/images/thumb/Farming-icon.png/21px-Farming-icon.png?a1230"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Create a Hatchet of Bloom and Blight.",
+    "Information": "Create a Hatchet of Bloom and Blight .",
+    "Requirements": {
+      "text": "100 Smithing , 100 Woodcutting , 100 Fletching , 90 Necromancy Completion of Kili Row and Pieces of Hate",
+      "img": "https://runescape.wiki/images/thumb/Smithing-icon.png/21px-Smithing-icon.png?caf94"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip any Masterwork weapon.",
+    "Information": "Equip any Masterwork weapon .",
+    "Requirements": {
+      "text": "See Masterwork bow#Full process , Masterwork 2h sword#Full process , Masterwork staff#Full process , or Masterwork Spear of Annihilation#Raw materials required for full requirements.",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Equip a full set of Masterwork armour.",
+    "Information": "Equip a full set of Masterwork armour .",
+    "Requirements": {
+      "text": "Either of the following combinations: 90 Mining , 99 Smithing , and 90 Defence ; OR 110 Crafting , 104 Smithing , 100 Farming , 90 Defence , 90 Runecrafting , and 90 Magic",
+      "img": "https://runescape.wiki/images/thumb/Mining-icon.png/21px-Mining-icon.png?8cefb"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Donate 100,000,000 GP to Richie.",
+    "Information": "Donate 100,000,000 GP to Richie .",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Obtain 200 Million XP in any single skill.",
+    "Information": "Obtain 200 Million XP in any single skill.",
+    "Requirements": {
+      "text": "N/A",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Fill all of the Treasure Trail hidey-holes.",
+    "Information": "Fill all of the Treasure Trail hidey-holes .",
+    "Requirements": {
+      "text": "88 Construction Numerous other requirements; see Fill Them All! for a complete list",
+      "img": "https://runescape.wiki/images/thumb/Construction-icon.png/21px-Construction-icon.png?d6534"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Obtain a dye, or a piece of Third-age or Second-age gear from a clue scroll.",
+    "Information": "Obtain a dye , or a piece of Third-age or Second-age gear from a clue scroll.",
+    "Requirements": {
+      "text": "Good luck!",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/World_Map_icon.png/20px-World_Map_icon.png?c0437",
+    "Task": "Reach at least level 95 in all non-elite skills.",
+    "Information": "Reach at least level 95 in all non-elite skills .",
+    "Requirements": {
+      "text": "All skills except Invention at level 95",
+      "img": ""
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Menaphos_lodestone_icon.png/20px-Menaphos_lodestone_icon.png?69fa6",
+    "Task": "Defeat Amascut, the Devourer 100 times.",
+    "Information": "Defeat Amascut, the Devourer 100 times.",
+    "Requirements": {
+      "text": "Completion of Eclipse of the Heart unless tier 5 reached",
+      "img": "https://runescape.wiki/images/thumb/Eclipse_of_the_Heart_icon.png/25px-Eclipse_of_the_Heart_icon.png?557be"
+    },
+    "Pts": "400"
+  },
+  {
+    "Area": "https://runescape.wiki/images/thumb/Varrock_lodestone_icon.png/20px-Varrock_lodestone_icon.png?c25d5",
+    "Task": "Equip an igneous Kal-Zuk cape.",
+    "Information": "Equip an igneous Kal-Zuk cape.",
+    "Requirements": {
+      "text": "90 Crafting Completion of the Excuse Me, That's My Seat achievement",
+      "img": "https://runescape.wiki/images/thumb/Crafting-icon.png/21px-Crafting-icon.png?f224a"
+    },
+    "Pts": "400"
+  }
+]
