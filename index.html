@@ -62,6 +62,39 @@
             top: var(--spacing-md);
         }
 
+        .category-tabs {
+            display: flex;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: var(--spacing-sm);
+        }
+
+        .category-tab {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-sm) var(--spacing-md);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .category-tab:hover {
+            background: var(--hover-bg);
+        }
+
+        .category-tab.active {
+            background: var(--focus-outline);
+            color: white;
+            border-color: var(--focus-outline);
+        }
+
+        .category-tab.all {
+            font-weight: 600;
+        }
+
         .loading {
             text-align: center;
             color: var(--text-secondary);
@@ -81,8 +114,9 @@
             margin-bottom: var(--spacing-sm);
             padding: var(--spacing-md);
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.1s ease;
             position: relative;
+            will-change: transform, opacity;
         }
 
         .task-item:hover, .note-item:hover {
@@ -350,7 +384,18 @@
         }
 
         .dragging {
-            opacity: 0.5;
+            opacity: 0.8;
+            transform: rotate(2deg);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        .drag-placeholder {
+            border: 2px dashed var(--focus-outline);
+            background: rgba(0, 102, 204, 0.1);
+            height: 60px;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-sm);
         }
 
         .reset-btn {
@@ -366,6 +411,13 @@
             background: #c82333;
         }
 
+        .performance-info {
+            font-size: 0.625rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: var(--spacing-sm);
+        }
+
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -376,12 +428,21 @@
                 position: static;
                 order: -1;
             }
+
+            .category-tabs {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <main class="main-content">
+            <div class="category-tabs">
+                <button id="allTab" class="category-tab all active" data-category="all">
+                    All (<span id="allCount">0</span>)
+                </button>
+            </div>
             <div id="loading" class="loading">Loading tasks...</div>
             <ul id="taskList" class="task-list" style="display: none;"></ul>
         </main>
@@ -412,6 +473,11 @@
             </div>
             
             <button id="resetBtn" class="btn reset-btn">Reset All Data</button>
+            
+            <div class="performance-info">
+                <div>Visible tasks: <span id="visibleCount">0</span></div>
+                <div>Total tasks: <span id="totalCount">0</span></div>
+            </div>
         </aside>
     </div>
 
@@ -425,11 +491,14 @@
                     minimizedTasks: new Set(),
                     collapsedCategories: new Set(),
                     itemOrder: [],
-                    totalPoints: 0
+                    totalPoints: 0,
+                    activeCategory: 'all'
                 };
                 this.categories = ['easy', 'medium', 'hard', 'elite', 'master'];
                 this.dataStatus = {};
                 this.noteIdCounter = 0;
+                this.dragPlaceholder = null;
+                this.renderTimeouts = new Set();
                 
                 this.init();
             }
@@ -447,8 +516,66 @@
                 };
             }
             
+            // Probeer eerst een gecombineerd bestand, dan individuele bestanden
             async loadTasks() {
-                const loadPromises = this.categories.map(async (category) => {
+                try {
+                    // Probeer gecombineerd bestand eerst
+                    const response = await fetch('all-tasks.json');
+                    if (response.ok) {
+                        const data = await response.json();
+                        this.loadFromCombinedFile(data);
+                    } else {
+                        // Fallback naar individuele bestanden
+                        await this.loadFromIndividualFiles();
+                    }
+                } catch (error) {
+                    console.warn('Failed to load combined file, trying individual files');
+                    await this.loadFromIndividualFiles();
+                }
+                
+                this.optimizeTaskOrder();
+                this.updateDataStatus();
+                this.setupCategoryTabs();
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('taskList').style.display = 'block';
+            }
+
+            loadFromCombinedFile(data) {
+                this.tasks = [];
+                let globalIndex = 0;
+                
+                this.categories.forEach(category => {
+                    if (data[category] && Array.isArray(data[category])) {
+                        const categoryTasks = data[category].map((item, index) => ({
+                            id: `${category}::${index}`,
+                            category,
+                            originalIndex: index,
+                            globalIndex: globalIndex++,
+                            area: item.Area || '',
+                            task: item.Task || 'Untitled Task',
+                            information: item.Information || '',
+                            requirements: {
+                                text: item.Requirements?.text || '',
+                                img: item.Requirements?.img || ''
+                            },
+                            points: this.parsePoints(item.Pts)
+                        }));
+                        
+                        this.tasks.push(...categoryTasks);
+                        this.dataStatus[category] = { status: 'success', count: categoryTasks.length };
+                    } else {
+                        this.dataStatus[category] = { status: 'error', error: 'Category not found in combined file' };
+                    }
+                });
+                
+                // Initialize order if first load
+                if (this.state.itemOrder.length === 0) {
+                    this.state.itemOrder = this.tasks.map(task => ({ type: 'task', id: task.id }));
+                }
+            }
+            
+            async loadFromIndividualFiles() {
+                const loadPromises = this.categories.map(async (category, categoryIndex) => {
                     try {
                         const response = await fetch(`${category}.json`);
                         if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -460,6 +587,7 @@
                             id: `${category}::${index}`,
                             category,
                             originalIndex: index,
+                            globalIndex: categoryIndex * 1000 + index, // Voor sortering
                             area: item.Area || '',
                             task: item.Task || 'Untitled Task',
                             information: item.Information || '',
@@ -485,10 +613,19 @@
                 if (this.state.itemOrder.length === 0) {
                     this.state.itemOrder = this.tasks.map(task => ({ type: 'task', id: task.id }));
                 }
+            }
+
+            optimizeTaskOrder() {
+                // Sorteer taken op globalIndex voor consistente volgorde
+                this.tasks.sort((a, b) => a.globalIndex - b.globalIndex);
                 
-                this.updateDataStatus();
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('taskList').style.display = 'block';
+                // Update itemOrder met nieuwe taken
+                const existingIds = new Set(this.state.itemOrder.map(item => item.id));
+                const newTasks = this.tasks.filter(task => !existingIds.has(task.id));
+                
+                newTasks.forEach(task => {
+                    this.state.itemOrder.push({ type: 'task', id: task.id });
+                });
             }
             
             parsePoints(pts) {
@@ -502,7 +639,7 @@
             
             loadState() {
                 try {
-                    const saved = localStorage.getItem('rs3TasksState:v1');
+                    const saved = localStorage.getItem('rs3TasksState:v2');
                     if (saved) {
                         const state = JSON.parse(saved);
                         this.state = { ...this.state, ...state };
@@ -518,18 +655,66 @@
             }
             
             saveState() {
-                try {
-                    const state = {
-                        ...this.state,
-                        selectedTasks: Array.from(this.state.selectedTasks),
-                        minimizedTasks: Array.from(this.state.minimizedTasks),
-                        collapsedCategories: Array.from(this.state.collapsedCategories),
-                        notes: this.notes
-                    };
-                    localStorage.setItem('rs3TasksState:v1', JSON.stringify(state));
-                } catch (error) {
-                    console.warn('Failed to save state:', error);
-                }
+                // Debounce saving om performance te verbeteren
+                if (this.saveTimeout) clearTimeout(this.saveTimeout);
+                this.saveTimeout = setTimeout(() => {
+                    try {
+                        const state = {
+                            ...this.state,
+                            selectedTasks: Array.from(this.state.selectedTasks),
+                            minimizedTasks: Array.from(this.state.minimizedTasks),
+                            collapsedCategories: Array.from(this.state.collapsedCategories),
+                            notes: this.notes
+                        };
+                        localStorage.setItem('rs3TasksState:v2', JSON.stringify(state));
+                    } catch (error) {
+                        console.warn('Failed to save state:', error);
+                    }
+                }, 100);
+            }
+
+            setupCategoryTabs() {
+                const tabsContainer = document.querySelector('.category-tabs');
+                const allTab = document.getElementById('allTab');
+                const allCount = document.getElementById('allCount');
+                
+                // Update all count
+                allCount.textContent = this.tasks.length;
+                
+                // Add category tabs
+                this.categories.forEach(category => {
+                    const count = this.tasks.filter(t => t.category === category).length;
+                    if (count === 0) return;
+                    
+                    const tab = document.createElement('button');
+                    tab.className = 'category-tab';
+                    tab.dataset.category = category;
+                    tab.innerHTML = `${category} (${count})`;
+                    
+                    tab.addEventListener('click', () => {
+                        this.setActiveCategory(category);
+                    });
+                    
+                    tabsContainer.appendChild(tab);
+                });
+
+                // All tab event listener
+                allTab.addEventListener('click', () => {
+                    this.setActiveCategory('all');
+                });
+            }
+
+            setActiveCategory(category) {
+                this.state.activeCategory = category;
+                
+                // Update active tab
+                document.querySelectorAll('.category-tab').forEach(tab => {
+                    tab.classList.toggle('active', tab.dataset.category === category || 
+                        (category === 'all' && tab.id === 'allTab'));
+                });
+                
+                this.saveState();
+                this.renderTasks(); // Alleen tasks re-renderen, niet alles
             }
             
             setupEventListeners() {
@@ -542,7 +727,8 @@
                 // Reset button
                 document.getElementById('resetBtn').addEventListener('click', () => {
                     if (confirm('Reset all data? This cannot be undone.')) {
-                        localStorage.removeItem('rs3TasksState:v1');
+                        localStorage.removeItem('rs3TasksState:v2');
+                        localStorage.removeItem('rs3TasksState:v1'); // Ook oude versie
                         location.reload();
                     }
                 });
@@ -567,7 +753,7 @@
                 this.notes.push(note);
                 input.value = '';
                 this.saveState();
-                this.render();
+                this.renderNotes();
             }
             
             deleteNote(noteId) {
@@ -583,7 +769,7 @@
                 const note = this.notes.find(n => n.id === noteId);
                 if (note) {
                     note.editing = !note.editing;
-                    this.render();
+                    this.renderNotes();
                 }
             }
             
@@ -609,7 +795,13 @@
                 
                 this.saveState();
                 this.updatePointsDisplay();
-                this.render();
+                
+                // Update alleen de specifieke task element
+                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
+                if (taskElement) {
+                    taskElement.classList.toggle('selected', this.state.selectedTasks.has(taskId));
+                    taskElement.setAttribute('aria-pressed', this.state.selectedTasks.has(taskId));
+                }
             }
             
             toggleTaskMinimized(taskId) {
@@ -620,7 +812,16 @@
                 }
                 
                 this.saveState();
-                this.render();
+                
+                // Update alleen de specifieke task element
+                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
+                if (taskElement) {
+                    taskElement.classList.toggle('minimized', this.state.minimizedTasks.has(taskId));
+                    const btn = taskElement.querySelector('.minimize-btn');
+                    if (btn) {
+                        btn.textContent = this.state.minimizedTasks.has(taskId) ? 'Expand' : 'Minimize';
+                    }
+                }
             }
             
             toggleCategoryCollapsed(category) {
@@ -631,7 +832,8 @@
                 }
                 
                 this.saveState();
-                this.render();
+                this.renderTasks();
+                this.renderCategoryControls();
             }
             
             updatePointsDisplay() {
@@ -661,7 +863,10 @@
                 if (this.tasks.length === 0) {
                     const guidance = document.createElement('div');
                     guidance.className = 'status-item status-warning';
-                    guidance.textContent = 'Place JSON files in the site root.';
+                    guidance.innerHTML = `
+                        <span>No data loaded</span>
+                        <small>Place JSON files or all-tasks.json in site root</small>
+                    `;
                     statusEl.appendChild(guidance);
                 }
             }
@@ -692,7 +897,7 @@
                     [this.state.itemOrder[index], this.state.itemOrder[index - 1]] = 
                     [this.state.itemOrder[index - 1], this.state.itemOrder[index]];
                     this.saveState();
-                    this.render();
+                    this.renderTasks();
                 }
             }
             
@@ -702,64 +907,105 @@
                     [this.state.itemOrder[index], this.state.itemOrder[index + 1]] = 
                     [this.state.itemOrder[index + 1], this.state.itemOrder[index]];
                     this.saveState();
-                    this.render();
+                    this.renderTasks();
                 }
             }
             
             setupDragAndDrop() {
                 const taskList = document.getElementById('taskList');
                 let draggedElement = null;
+                let draggedData = null;
+                
+                taskList.addEventListener('dragstart', (e) => {
+                    if (e.target.classList.contains('task-item') || e.target.classList.contains('note-item')) {
+                        draggedElement = e.target;
+                        draggedData = {
+                            type: e.target.classList.contains('task-item') ? 'task' : 'note',
+                            id: e.target.dataset.taskId || e.target.dataset.noteId
+                        };
+                        e.target.classList.add('dragging');
+                        e.dataTransfer.effectAllowed = 'move';
+                        e.dataTransfer.setData('text/html', e.target.outerHTML);
+                    }
+                });
                 
                 taskList.addEventListener('dragover', (e) => {
                     e.preventDefault();
+                    if (!draggedElement) return;
+                    
                     const afterElement = this.getDragAfterElement(taskList, e.clientY);
-                    const dragging = document.querySelector('.dragging');
+                    
+                    // Verwijder oude placeholder
+                    this.removeDragPlaceholder();
+                    
+                    // Voeg nieuwe placeholder toe
+                    this.dragPlaceholder = document.createElement('div');
+                    this.dragPlaceholder.className = 'drag-placeholder';
                     
                     if (afterElement == null) {
-                        taskList.appendChild(dragging);
+                        taskList.appendChild(this.dragPlaceholder);
                     } else {
-                        taskList.insertBefore(dragging, afterElement);
+                        taskList.insertBefore(this.dragPlaceholder, afterElement);
                     }
                 });
                 
                 taskList.addEventListener('drop', (e) => {
                     e.preventDefault();
-                    this.updateOrderFromDOM();
-                    document.querySelectorAll('.dragging').forEach(el => el.classList.remove('dragging'));
+                    if (!draggedElement || !this.dragPlaceholder) return;
+                    
+                    // Bepaal nieuwe positie
+                    const placeholderIndex = Array.from(taskList.children).indexOf(this.dragPlaceholder);
+                    
+                    // Update order
+                    this.updateOrderAfterDrop(draggedData, placeholderIndex);
+                    
+                    // Cleanup
+                    this.removeDragPlaceholder();
+                    draggedElement.classList.remove('dragging');
+                    draggedElement = null;
+                    draggedData = null;
+                    
+                    // Re-render
+                    this.renderTasks();
+                });
+                
+                taskList.addEventListener('dragend', (e) => {
+                    this.removeDragPlaceholder();
+                    if (draggedElement) {
+                        draggedElement.classList.remove('dragging');
+                        draggedElement = null;
+                        draggedData = null;
+                    }
                 });
             }
             
-            getDragAfterElement(container, y) {
-                const draggableElements = [...container.querySelectorAll('.task-item:not(.dragging), .note-item:not(.dragging)')];
-                
-                let closestElement = null;
-                let closestOffset = Number.NEGATIVE_INFINITY;
-                
-                for (let i = 0; i < draggableElements.length; i++) {
-                    const child = draggableElements[i];
-                    const box = child.getBoundingClientRect();
-                    const offset = y - box.top - box.height / 2;
-                    
-                    if (offset < 0 && offset > closestOffset) {
-                        closestOffset = offset;
-                        closestElement = child;
-                    }
+            removeDragPlaceholder() {
+                if (this.dragPlaceholder && this.dragPlaceholder.parentNode) {
+                    this.dragPlaceholder.parentNode.removeChild(this.dragPlaceholder);
                 }
-                
-                return closestElement;
+                this.dragPlaceholder = null;
             }
             
-            updateOrderFromDOM() {
-                const items = document.querySelectorAll('#taskList .task-item, #taskList .note-item');
-                this.state.itemOrder = Array.from(items).map(item => ({
-                    type: item.classList.contains('task-item') ? 'task' : 'note',
-                    id: item.dataset.taskId || item.dataset.noteId
-                }));
+            updateOrderAfterDrop(draggedData, newIndex) {
+                // Verwijder item uit huidige positie
+                const currentIndex = this.state.itemOrder.findIndex(item => 
+                    item.type === draggedData.type && item.id === draggedData.id
+                );
+                
+                if (currentIndex === -1) return;
+                
+                const [item] = this.state.itemOrder.splice(currentIndex, 1);
+                
+                // Corrigeer index als we naar boven verplaatsen
+                const insertIndex = currentIndex < newIndex ? newIndex - 1 : newIndex;
+                
+                // Voeg toe op nieuwe positie
+                this.state.itemOrder.splice(insertIndex, 0, item);
                 
                 // Update note locations
                 this.notes.forEach(note => {
-                    const inMainList = this.state.itemOrder.some(item => 
-                        item.type === 'note' && item.id === note.id
+                    const inMainList = this.state.itemOrder.some(orderItem => 
+                        orderItem.type === 'note' && orderItem.id === note.id
                     );
                     note.location = inMainList ? 'list' : 'sidebar';
                 });
@@ -767,11 +1013,45 @@
                 this.saveState();
             }
             
+            getDragAfterElement(container, y) {
+                const draggableElements = [...container.querySelectorAll('.task-item:not(.dragging), .note-item:not(.dragging), .drag-placeholder')];
+                
+                return draggableElements.reduce((closest, child) => {
+                    const box = child.getBoundingClientRect();
+                    const offset = y - box.top - box.height / 2;
+                    
+                    if (offset < 0 && offset > closest.offset) {
+                        return { offset: offset, element: child };
+                    } else {
+                        return closest;
+                    }
+                }, { offset: Number.NEGATIVE_INFINITY }).element;
+            }
+            
+            getFilteredTasks() {
+                let filteredTasks = this.tasks;
+                
+                // Filter op actieve categorie
+                if (this.state.activeCategory !== 'all') {
+                    filteredTasks = filteredTasks.filter(task => task.category === this.state.activeCategory);
+                }
+                
+                // Filter op collapsed categories (alleen bij 'all' view)
+                if (this.state.activeCategory === 'all') {
+                    filteredTasks = filteredTasks.filter(task => 
+                        !this.state.collapsedCategories.has(task.category)
+                    );
+                }
+                
+                return filteredTasks;
+            }
+            
             render() {
                 this.renderTasks();
                 this.renderCategoryControls();
                 this.renderNotes();
                 this.updatePointsDisplay();
+                this.updatePerformanceInfo();
                 
                 // Delay drag setup to avoid interfering with rendering
                 requestAnimationFrame(() => this.setupDragAndDrop());
@@ -779,14 +1059,19 @@
             
             renderTasks() {
                 const taskList = document.getElementById('taskList');
-                taskList.innerHTML = '';
                 
-                // Create ordered items list
+                // Gebruik DocumentFragment voor betere performance
+                const fragment = document.createDocumentFragment();
+                
+                const filteredTasks = this.getFilteredTasks();
+                const filteredTaskIds = new Set(filteredTasks.map(t => t.id));
+                
+                // Create ordered items list (alleen voor gefilterde taken)
                 const orderedItems = [];
                 
                 this.state.itemOrder.forEach(orderItem => {
-                    if (orderItem.type === 'task') {
-                        const task = this.tasks.find(t => t.id === orderItem.id);
+                    if (orderItem.type === 'task' && filteredTaskIds.has(orderItem.id)) {
+                        const task = filteredTasks.find(t => t.id === orderItem.id);
                         if (task) orderedItems.push({ type: 'task', data: task });
                     } else if (orderItem.type === 'note') {
                         const note = this.notes.find(n => n.id === orderItem.id && n.location === 'list');
@@ -794,13 +1079,26 @@
                     }
                 });
                 
+                // Render items
                 orderedItems.forEach(item => {
                     if (item.type === 'task') {
-                        taskList.appendChild(this.createTaskElement(item.data));
+                        fragment.appendChild(this.createTaskElement(item.data));
                     } else {
-                        taskList.appendChild(this.createNoteElement(item.data, true));
+                        fragment.appendChild(this.createNoteElement(item.data, true));
                     }
                 });
+                
+                // Replace all content at once
+                taskList.innerHTML = '';
+                taskList.appendChild(fragment);
+            }
+            
+            updatePerformanceInfo() {
+                const visibleTasks = this.getFilteredTasks().length;
+                const totalTasks = this.tasks.length;
+                
+                document.getElementById('visibleCount').textContent = visibleTasks;
+                document.getElementById('totalCount').textContent = totalTasks;
             }
             
             createTaskElement(task) {
@@ -818,12 +1116,9 @@
                 if (this.state.minimizedTasks.has(task.id)) {
                     li.classList.add('minimized');
                 }
-                if (this.state.collapsedCategories.has(task.category)) {
-                    li.classList.add('collapsed');
-                }
                 
                 const iconHtml = task.area ? 
-                    `<img src="${task.area}" alt="" onerror="this.style.display='none'">` : 
+                    `<img src="${task.area}" alt="" onerror="this.style.display='none'" loading="lazy">` : 
                     '?';
                 
                 li.innerHTML = `
@@ -844,7 +1139,7 @@
                     <div class="task-requirements">
                         ${task.requirements.text ? `<span>${this.escapeHtml(task.requirements.text)}</span>` : ''}
                         ${task.requirements.img ? 
-                            `<img class="requirement-img" src="${task.requirements.img}" alt="" onerror="this.style.display='none'">` : 
+                            `<img class="requirement-img" src="${task.requirements.img}" alt="" onerror="this.style.display='none'" loading="lazy">` : 
                             ''}
                     </div>
                 `;
@@ -858,14 +1153,6 @@
                 li.querySelector('.minimize-btn').addEventListener('click', (e) => {
                     e.stopPropagation();
                     this.toggleTaskMinimized(task.id);
-                });
-                
-                li.addEventListener('dragstart', () => {
-                    li.classList.add('dragging');
-                });
-                
-                li.addEventListener('dragend', () => {
-                    li.classList.remove('dragging');
                 });
                 
                 return li;
@@ -894,13 +1181,6 @@
                             `<div class="note-body">${this.escapeHtml(note.body)}</div>`}
                     </div>
                 `;
-                
-                div.addEventListener('dragstart', (e) => {
-                    // Let the main drag handler deal with this
-                    e.dataTransfer.effectAllowed = 'move';
-                });
-                
-                // Remove dragend handler - now handled centrally
                 
                 return div;
             }
@@ -938,24 +1218,20 @@
                 });
                 
                 // Setup drag from sidebar to main list
-                notesList.addEventListener('dragstart', (e) => {
-                    if (e.target.classList.contains('note-item')) {
-                        e.target.classList.add('dragging');
-                    }
-                });
-                
-                notesList.addEventListener('dragend', (e) => {
-                    if (e.target.classList.contains('note-item')) {
-                        e.target.classList.remove('dragging');
-                    }
-                });
+                this.setupNoteDragFromSidebar(notesList);
+            }
+            
+            setupNoteDragFromSidebar(notesList) {
+                const taskList = document.getElementById('taskList');
                 
                 // Allow dropping notes into main list
-                const taskList = document.getElementById('taskList');
                 taskList.addEventListener('dragenter', (e) => {
                     if (e.target === taskList || taskList.contains(e.target)) {
-                        e.preventDefault();
-                        taskList.classList.add('drag-over');
+                        const draggedNote = document.querySelector('.note-item.dragging');
+                        if (draggedNote && draggedNote.closest('#notesList')) {
+                            e.preventDefault();
+                            taskList.classList.add('drag-over');
+                        }
                     }
                 });
                 
@@ -966,11 +1242,11 @@
                 });
                 
                 taskList.addEventListener('drop', (e) => {
-                    e.preventDefault();
-                    taskList.classList.remove('drag-over');
-                    
                     const draggedNote = document.querySelector('.note-item.dragging');
-                    if (draggedNote && draggedNote.parentElement.id === 'notesList') {
+                    if (draggedNote && draggedNote.closest('#notesList')) {
+                        e.preventDefault();
+                        taskList.classList.remove('drag-over');
+                        
                         const noteId = draggedNote.dataset.noteId;
                         const note = this.notes.find(n => n.id === noteId);
                         if (note) {
@@ -996,7 +1272,7 @@
                     minimizedTasks: Array.from(this.state.minimizedTasks),
                     collapsedCategories: Array.from(this.state.collapsedCategories),
                     notes: this.notes,
-                    version: 'v1'
+                    version: 'v2'
                 }, null, 2);
             }
             
@@ -1009,7 +1285,8 @@
                         minimizedTasks: new Set(imported.minimizedTasks || []),
                         collapsedCategories: new Set(imported.collapsedCategories || []),
                         itemOrder: imported.itemOrder || [],
-                        totalPoints: imported.totalPoints || 0
+                        totalPoints: imported.totalPoints || 0,
+                        activeCategory: imported.activeCategory || 'all'
                     };
                     
                     this.notes = imported.notes || [];
