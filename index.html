@@ -895,14 +895,12 @@
                     </div>
                 `;
                 
-                div.addEventListener('dragstart', () => {
-                    div.classList.add('dragging');
+                div.addEventListener('dragstart', (e) => {
+                    // Let the main drag handler deal with this
+                    e.dataTransfer.effectAllowed = 'move';
                 });
                 
-                div.addEventListener('dragend', () => {
-                    div.classList.remove('dragging');
-                    this.updateOrderFromDOM();
-                });
+                // Remove dragend handler - now handled centrally
                 
                 return div;
             }
