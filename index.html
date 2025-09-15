@@ -330,11 +330,22 @@
             const taskOrderIndex = taskOrder.indexOf(fromIndex);
             if (taskOrderIndex === -1) return;
 
+            console.log(`Moving task ${fromIndex} from position ${taskOrderIndex} to position ${toPosition}`);
+            console.log('Before move:', [...taskOrder]);
+
             // Remove from current position
             taskOrder.splice(taskOrderIndex, 1);
             
+            // Adjust target position if we're moving from before the target
+            let adjustedPosition = toPosition;
+            if (taskOrderIndex < toPosition) {
+                adjustedPosition = toPosition - 1;
+            }
+            
             // Insert at new position
-            taskOrder.splice(toPosition, 0, fromIndex);
+            taskOrder.splice(adjustedPosition, 0, fromIndex);
+            
+            console.log('After move:', [...taskOrder]);
             
             saveToStorage();
             renderTasks();
@@ -380,6 +391,26 @@
                 saveToStorage();
                 renderTasks();
             }
+        }
+
+        // Toggle task completion
+        function toggleCompletion(taskIndex) {
+            completedTasks[taskIndex] = !completedTasks[taskIndex];
+            if (!completedTasks[taskIndex]) {
+                delete completedTasks[taskIndex];
+            }
+            saveToStorage();
+            renderTasks();
+        }
+
+        // Toggle task collapse
+        function toggleCollapse(taskIndex) {
+            collapsedTasks[taskIndex] = !collapsedTasks[taskIndex];
+            if (!collapsedTasks[taskIndex]) {
+                delete collapsedTasks[taskIndex];
+            }
+            saveToStorage();
+            renderTasks();
         }
 
         // Initialize the application
