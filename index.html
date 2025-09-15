@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .task-item {
+            background: white;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            padding: 15px;
+            border-radius: 4px;
+            cursor: move;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover {
+            border-color: #999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .task-item.dragging {
+            opacity: 0.5;
+            transform: rotate(2deg);
+        }
+
+        .task-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .area-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .task-title {
+            font-weight: bold;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .points {
+            background: #e8e8e8;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .task-info {
+            margin: 8px 0;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .requirements {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .requirements img {
+            width: 21px;
+            height: 21px;
+            margin-right: 5px;
+        }
+
+        .drop-zone {
+            min-height: 30px;
+            border: 2px dashed transparent;
+            margin: 2px 0;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .drop-zone.drag-over {
+            border-color: #666;
+            background-color: #f0f0f0;
+        }
+
+        .note-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 13px;
+            background-color: #fff9e6;
+            resize: vertical;
+            min-height: 60px;
+            box-sizing: border-box;
+        }
+
+        .note-display {
+            background-color: #fff9e6;
+            border: 1px solid #e6d700;
+            border-radius: 3px;
+            padding: 8px;
+            margin: 5px 0;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .note-display:hover {
+            background-color: #fff5cc;
+        }
+
+        .add-note-btn {
+            background: #f0f0f0;
+            border: 1px dashed #999;
+            padding: 8px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .add-note-btn:hover {
+            background: #e8e8e8;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .error {
+            text-align: center;
+            padding: 50px;
+            color: #cc0000;
+            background: #ffe6e6;
+            border: 1px solid #ff9999;
+            border-radius: 4px;
+        }
+
+        .delete-note {
+            float: right;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 2px 6px;
+            font-size: 11px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .delete-note:hover {
+            background: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <div id="loading" class="loading">Loading tasks...</div>
+    <div id="error" class="error" style="display: none;"></div>
+    <div id="task-container"></div>
+
+    <script>
+        let tasks = [];
+        let taskOrder = [];
+        let notes = {};
+
+        // Load data from localStorage
+        function loadFromStorage() {
+            const storedOrder = localStorage.getItem('taskOrder');
+            const storedNotes = localStorage.getItem('taskNotes');
+            
+            if (storedOrder) {
+                taskOrder = JSON.parse(storedOrder);
+            }
+            if (storedNotes) {
+                notes = JSON.parse(storedNotes);
+            }
+        }
+
+        // Save data to localStorage
+        function saveToStorage() {
+            localStorage.setItem('taskOrder', JSON.stringify(taskOrder));
+            localStorage.setItem('taskNotes', JSON.stringify(notes));
+        }
+
+        // Load tasks from JSON file
+        async function loadTasks() {
+            try {
+                const response = await fetch('tasks.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                tasks = await response.json();
+                
+                // Initialize task order if not loaded from storage
+                if (taskOrder.length === 0) {
+                    taskOrder = tasks.map((_, index) => index);
+                }
+                
+                renderTasks();
+                document.getElementById('loading').style.display = 'none';
+            } catch (error) {
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('error').style.display = 'block';
+                document.getElementById('error').innerHTML = `Error loading tasks: ${error.message}<br>Make sure tasks.json exists in the same folder.`;
+            }
+        }
+
+        // Create a drop zone element
+        function createDropZone(index) {
+            const dropZone = document.createElement('div');
+            dropZone.className = 'drop-zone';
+            dropZone.dataset.index = index;
+            
+            // Add notes for this position
+            const positionNotes = notes[index] || [];
+            positionNotes.forEach((note, noteIndex) => {
+                const noteDiv = document.createElement('div');
+                noteDiv.className = 'note-display';
+                noteDiv.innerHTML = `${note} <button class="delete-note" onclick="deleteNote(${index}, ${noteIndex})">×</button>`;
+                noteDiv.onclick = (e) => {
+                    if (e.target.className !== 'delete-note') {
+                        editNote(index, noteIndex, note);
+                    }
+                };
+                dropZone.appendChild(noteDiv);
+            });
+
+            // Add note button
+            const addNoteBtn = document.createElement('div');
+            addNoteBtn.className = 'add-note-btn';
+            addNoteBtn.textContent = 'Add note here';
+            addNoteBtn.onclick = () => addNote(index);
+            dropZone.appendChild(addNoteBtn);
+
+            // Drag and drop event handlers
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('drag-over');
+            });
+
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('drag-over');
+            });
+
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                
+                const draggedIndex = parseInt(e.dataTransfer.getData('text/plain'));
+                const targetIndex = parseInt(dropZone.dataset.index);
+                
+                moveTask(draggedIndex, targetIndex);
+            });
+
+            return dropZone;
+        }
+
+        // Create a task element
+        function createTaskElement(task, index) {
+            const taskDiv = document.createElement('div');
+            taskDiv.className = 'task-item';
+            taskDiv.draggable = true;
+            taskDiv.dataset.index = index;
+
+            taskDiv.innerHTML = `
+                <div class="task-header">
+                    <img src="${task.Area}" alt="Area" class="area-icon" onerror="this.style.display='none'">
+                    <div class="task-title">${task.Task}</div>
+                    <div class="points">${task.Pts} pts</div>
+                </div>
+                <div class="task-info">${task.Information}</div>
+                <div class="requirements">
+                    ${task.Requirements.img ? `<img src="${task.Requirements.img}" alt="Requirement">` : ''}
+                    ${task.Requirements.text}
+                </div>
+            `;
+
+            // Drag event handlers
+            taskDiv.addEventListener('dragstart', (e) => {
+                e.dataTransfer.setData('text/plain', index.toString());
+                taskDiv.classList.add('dragging');
+            });
+
+            taskDiv.addEventListener('dragend', () => {
+                taskDiv.classList.remove('dragging');
+            });
+
+            return taskDiv;
+        }
+
+        // Render all tasks in the correct order
+        function renderTasks() {
+            const container = document.getElementById('task-container');
+            container.innerHTML = '';
+
+            // Add initial drop zone
+            container.appendChild(createDropZone(0));
+
+            // Add tasks in the stored order
+            taskOrder.forEach((taskIndex, position) => {
+                if (tasks[taskIndex]) {
+                    container.appendChild(createTaskElement(tasks[taskIndex], taskIndex));
+                    container.appendChild(createDropZone(position + 1));
+                }
+            });
+        }
+
+        // Move a task to a new position
+        function moveTask(fromIndex, toPosition) {
+            const taskOrderIndex = taskOrder.indexOf(fromIndex);
+            if (taskOrderIndex === -1) return;
+
+            // Remove from current position
+            taskOrder.splice(taskOrderIndex, 1);
+            
+            // Insert at new position
+            taskOrder.splice(toPosition, 0, fromIndex);
+            
+            saveToStorage();
+            renderTasks();
+        }
+
+        // Add a note at a specific position
+        function addNote(position) {
+            const noteText = prompt('Enter note:');
+            if (noteText && noteText.trim()) {
+                if (!notes[position]) {
+                    notes[position] = [];
+                }
+                notes[position].push(noteText.trim());
+                saveToStorage();
+                renderTasks();
+            }
+        }
+
+        // Edit a note
+        function editNote(position, noteIndex, currentText) {
+            const newText = prompt('Edit note:', currentText);
+            if (newText !== null) {
+                if (newText.trim()) {
+                    notes[position][noteIndex] = newText.trim();
+                } else {
+                    notes[position].splice(noteIndex, 1);
+                    if (notes[position].length === 0) {
+                        delete notes[position];
+                    }
+                }
+                saveToStorage();
+                renderTasks();
+            }
+        }
+
+        // Delete a note
+        function deleteNote(position, noteIndex) {
+            if (confirm('Delete this note?')) {
+                notes[position].splice(noteIndex, 1);
+                if (notes[position].length === 0) {
+                    delete notes[position];
+                }
+                saveToStorage();
+                renderTasks();
+            }
+        }
+
+        // Initialize the application
+        loadFromStorage();
+        loadTasks();
+    </script>
+</body>
+</html>
