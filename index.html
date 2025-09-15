@@ -772,7 +772,9 @@
                 this.renderCategoryControls();
                 this.renderNotes();
                 this.updatePointsDisplay();
-                setTimeout(() => this.setupDragAndDrop(), 0);
+                
+                // Delay drag setup to avoid interfering with rendering
+                requestAnimationFrame(() => this.setupDragAndDrop());
             }
             
             renderTasks() {
