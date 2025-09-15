@@ -174,14 +174,6 @@
             font-weight: 500;
         }
 
-        .task-points {
-            background: var(--hover-bg);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--border-radius);
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-
         .task-controls {
             display: flex;
             gap: var(--spacing-xs);
@@ -228,10 +220,16 @@
             border-radius: var(--border-radius);
         }
 
-        .category-badge {
+        .task-meta {
             position: absolute;
-            top: var(--spacing-sm);
+            bottom: var(--spacing-sm);
             right: var(--spacing-sm);
+            display: flex;
+            gap: var(--spacing-xs);
+            align-items: center;
+        }
+
+        .task-category {
             background: var(--hover-bg);
             padding: var(--spacing-xs) var(--spacing-sm);
             border-radius: var(--border-radius);
@@ -239,6 +237,15 @@
             text-transform: uppercase;
             color: var(--text-secondary);
             font-weight: 500;
+        }
+
+        .task-points {
+            background: var(--focus-outline);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
         .sidebar-section {
@@ -499,6 +506,7 @@
                 this.noteIdCounter = 0;
                 this.dragPlaceholder = null;
                 this.renderTimeouts = new Set();
+                this.dragState = null;
                 
                 this.init();
             }
@@ -516,16 +524,16 @@
                 };
             }
             
-            // Probeer eerst een gecombineerd bestand, dan individuele bestanden
+            // Try combined file first, then individual files
             async loadTasks() {
                 try {
-                    // Probeer gecombineerd bestand eerst
+                    // Try combined file first
                     const response = await fetch('all-tasks.json');
                     if (response.ok) {
                         const data = await response.json();
                         this.loadFromCombinedFile(data);
                     } else {
-                        // Fallback naar individuele bestanden
+                        // Fallback to individual files
                         await this.loadFromIndividualFiles();
                     }
                 } catch (error) {
@@ -587,7 +595,7 @@
                             id: `${category}::${index}`,
                             category,
                             originalIndex: index,
-                            globalIndex: categoryIndex * 1000 + index, // Voor sortering
+                            globalIndex: categoryIndex * 1000 + index,
                             area: item.Area || '',
                             task: item.Task || 'Untitled Task',
                             information: item.Information || '',
@@ -616,10 +624,10 @@
             }
 
             optimizeTaskOrder() {
-                // Sorteer taken op globalIndex voor consistente volgorde
+                // Sort tasks by globalIndex for consistent order
                 this.tasks.sort((a, b) => a.globalIndex - b.globalIndex);
                 
-                // Update itemOrder met nieuwe taken
+                // Update itemOrder with new tasks
                 const existingIds = new Set(this.state.itemOrder.map(item => item.id));
                 const newTasks = this.tasks.filter(task => !existingIds.has(task.id));
                 
@@ -655,7 +663,7 @@
             }
             
             saveState() {
-                // Debounce saving om performance te verbeteren
+                // Debounce saving for better performance
                 if (this.saveTimeout) clearTimeout(this.saveTimeout);
                 this.saveTimeout = setTimeout(() => {
                     try {
@@ -714,7 +722,7 @@
                 });
                 
                 this.saveState();
-                this.renderTasks(); // Alleen tasks re-renderen, niet alles
+                this.renderTasks();
             }
             
             setupEventListeners() {
@@ -728,7 +736,7 @@
                 document.getElementById('resetBtn').addEventListener('click', () => {
                     if (confirm('Reset all data? This cannot be undone.')) {
                         localStorage.removeItem('rs3TasksState:v2');
-                        localStorage.removeItem('rs3TasksState:v1'); // Ook oude versie
+                        localStorage.removeItem('rs3TasksState:v1');
                         location.reload();
                     }
                 });
@@ -796,7 +804,7 @@
                 this.saveState();
                 this.updatePointsDisplay();
                 
-                // Update alleen de specifieke task element
+                // Update only the specific task element
                 const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
                 if (taskElement) {
                     taskElement.classList.toggle('selected', this.state.selectedTasks.has(taskId));
@@ -813,7 +821,7 @@
                 
                 this.saveState();
                 
-                // Update alleen de specifieke task element
+                // Update only the specific task element
                 const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
                 if (taskElement) {
                     taskElement.classList.toggle('minimized', this.state.minimizedTasks.has(taskId));
@@ -892,53 +900,89 @@
             }
             
             moveItemUp(id, type) {
-                const index = this.state.itemOrder.findIndex(item => item.id === id && item.type === type);
+                const visibleOrder = this.getVisibleItemOrder();
+                const index = visibleOrder.findIndex(item => item.id === id && item.type === type);
                 if (index > 0) {
-                    [this.state.itemOrder[index], this.state.itemOrder[index - 1]] = 
-                    [this.state.itemOrder[index - 1], this.state.itemOrder[index]];
+                    this.swapItemsInGlobalOrder(visibleOrder[index], visibleOrder[index - 1]);
                     this.saveState();
                     this.renderTasks();
                 }
             }
             
             moveItemDown(id, type) {
-                const index = this.state.itemOrder.findIndex(item => item.id === id && item.type === type);
-                if (index >= 0 && index < this.state.itemOrder.length - 1) {
-                    [this.state.itemOrder[index], this.state.itemOrder[index + 1]] = 
-                    [this.state.itemOrder[index + 1], this.state.itemOrder[index]];
+                const visibleOrder = this.getVisibleItemOrder();
+                const index = visibleOrder.findIndex(item => item.id === id && item.type === type);
+                if (index >= 0 && index < visibleOrder.length - 1) {
+                    this.swapItemsInGlobalOrder(visibleOrder[index], visibleOrder[index + 1]);
                     this.saveState();
                     this.renderTasks();
                 }
             }
             
+            getVisibleItemOrder() {
+                const filteredTasks = this.getFilteredTasks();
+                const filteredTaskIds = new Set(filteredTasks.map(t => t.id));
+                
+                return this.state.itemOrder.filter(item => {
+                    if (item.type === 'task') {
+                        return filteredTaskIds.has(item.id);
+                    } else if (item.type === 'note') {
+                        const note = this.notes.find(n => n.id === item.id);
+                        return note && note.location === 'list';
+                    }
+                    return false;
+                });
+            }
+            
+            swapItemsInGlobalOrder(item1, item2) {
+                const index1 = this.state.itemOrder.findIndex(item => 
+                    item.type === item1.type && item.id === item1.id
+                );
+                const index2 = this.state.itemOrder.findIndex(item => 
+                    item.type === item2.type && item.id === item2.id
+                );
+                
+                if (index1 !== -1 && index2 !== -1) {
+                    [this.state.itemOrder[index1], this.state.itemOrder[index2]] = 
+                    [this.state.itemOrder[index2], this.state.itemOrder[index1]];
+                }
+            }
+            
             setupDragAndDrop() {
                 const taskList = document.getElementById('taskList');
-                let draggedElement = null;
-                let draggedData = null;
+                const notesList = document.getElementById('notesList');
                 
+                // Setup drag handlers for task list
+                this.setupTaskListDrag(taskList);
+                
+                // Setup drag handlers for notes sidebar
+                this.setupNotesListDrag(notesList, taskList);
+            }
+            
+            setupTaskListDrag(taskList) {
                 taskList.addEventListener('dragstart', (e) => {
-                    if (e.target.classList.contains('task-item') || e.target.classList.contains('note-item')) {
-                        draggedElement = e.target;
-                        draggedData = {
-                            type: e.target.classList.contains('task-item') ? 'task' : 'note',
-                            id: e.target.dataset.taskId || e.target.dataset.noteId
-                        };
-                        e.target.classList.add('dragging');
-                        e.dataTransfer.effectAllowed = 'move';
-                        e.dataTransfer.setData('text/html', e.target.outerHTML);
-                    }
+                    const item = e.target.closest('.task-item, .note-item');
+                    if (!item) return;
+                    
+                    this.dragState = {
+                        type: item.classList.contains('task-item') ? 'task' : 'note',
+                        id: item.dataset.taskId || item.dataset.noteId,
+                        element: item,
+                        sourceList: 'main'
+                    };
+                    
+                    item.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/html', item.outerHTML);
                 });
                 
                 taskList.addEventListener('dragover', (e) => {
+                    if (!this.dragState) return;
                     e.preventDefault();
-                    if (!draggedElement) return;
                     
+                    this.removeDragPlaceholder();
                     const afterElement = this.getDragAfterElement(taskList, e.clientY);
                     
-                    // Verwijder oude placeholder
-                    this.removeDragPlaceholder();
-                    
-                    // Voeg nieuwe placeholder toe
                     this.dragPlaceholder = document.createElement('div');
                     this.dragPlaceholder.className = 'drag-placeholder';
                     
@@ -950,33 +994,148 @@
                 });
                 
                 taskList.addEventListener('drop', (e) => {
+                    if (!this.dragState || !this.dragPlaceholder) return;
                     e.preventDefault();
-                    if (!draggedElement || !this.dragPlaceholder) return;
                     
-                    // Bepaal nieuwe positie
-                    const placeholderIndex = Array.from(taskList.children).indexOf(this.dragPlaceholder);
-                    
-                    // Update order
-                    this.updateOrderAfterDrop(draggedData, placeholderIndex);
-                    
-                    // Cleanup
-                    this.removeDragPlaceholder();
-                    draggedElement.classList.remove('dragging');
-                    draggedElement = null;
-                    draggedData = null;
-                    
-                    // Re-render
-                    this.renderTasks();
+                    const placeholderIndex = this.getPlaceholderIndex(taskList);
+                    this.handleDrop(placeholderIndex);
                 });
                 
-                taskList.addEventListener('dragend', (e) => {
-                    this.removeDragPlaceholder();
-                    if (draggedElement) {
-                        draggedElement.classList.remove('dragging');
-                        draggedElement = null;
-                        draggedData = null;
+                taskList.addEventListener('dragend', () => {
+                    this.cleanupDrag();
+                });
+                
+                taskList.addEventListener('dragleave', (e) => {
+                    if (!taskList.contains(e.relatedTarget)) {
+                        this.removeDragPlaceholder();
                     }
                 });
+            }
+            
+            setupNotesListDrag(notesList, taskList) {
+                notesList.addEventListener('dragstart', (e) => {
+                    const noteItem = e.target.closest('.note-item');
+                    if (!noteItem) return;
+                    
+                    this.dragState = {
+                        type: 'note',
+                        id: noteItem.dataset.noteId,
+                        element: noteItem,
+                        sourceList: 'sidebar'
+                    };
+                    
+                    noteItem.classList.add('dragging');
+                    e.dataTransfer.effectAllowed = 'move';
+                    e.dataTransfer.setData('text/html', noteItem.outerHTML);
+                });
+                
+                // Allow dropping notes from sidebar to main list
+                taskList.addEventListener('dragenter', (e) => {
+                    if (this.dragState && this.dragState.sourceList === 'sidebar') {
+                        e.preventDefault();
+                        taskList.classList.add('drag-over');
+                    }
+                });
+                
+                taskList.addEventListener('dragleave', (e) => {
+                    if (this.dragState && this.dragState.sourceList === 'sidebar' && 
+                        !taskList.contains(e.relatedTarget)) {
+                        taskList.classList.remove('drag-over');
+                    }
+                });
+                
+                taskList.addEventListener('drop', (e) => {
+                    if (this.dragState && this.dragState.sourceList === 'sidebar') {
+                        e.preventDefault();
+                        taskList.classList.remove('drag-over');
+                        
+                        // Move note from sidebar to main list
+                        const note = this.notes.find(n => n.id === this.dragState.id);
+                        if (note) {
+                            note.location = 'list';
+                            // Add to end of current visible items
+                            const visibleOrder = this.getVisibleItemOrder();
+                            const insertIndex = this.state.itemOrder.findIndex(item => 
+                                item.type === visibleOrder[visibleOrder.length - 1]?.type && 
+                                item.id === visibleOrder[visibleOrder.length - 1]?.id
+                            ) + 1;
+                            
+                            this.state.itemOrder.splice(insertIndex, 0, { type: 'note', id: this.dragState.id });
+                            this.saveState();
+                            this.render();
+                        }
+                    }
+                });
+            }
+            
+            getPlaceholderIndex(container) {
+                const children = Array.from(container.children);
+                return children.indexOf(this.dragPlaceholder);
+            }
+            
+            handleDrop(placeholderIndex) {
+                if (this.dragState.sourceList === 'main') {
+                    // Reordering within main list
+                    const visibleOrder = this.getVisibleItemOrder();
+                    const currentVisibleIndex = visibleOrder.findIndex(item => 
+                        item.type === this.dragState.type && item.id === this.dragState.id
+                    );
+                    
+                    if (currentVisibleIndex !== -1) {
+                        // Remove from current position in visible order
+                        const [movedItem] = visibleOrder.splice(currentVisibleIndex, 1);
+                        
+                        // Insert at new position
+                        const newIndex = currentVisibleIndex < placeholderIndex ? placeholderIndex - 1 : placeholderIndex;
+                        visibleOrder.splice(newIndex, 0, movedItem);
+                        
+                        // Update global order based on new visible order
+                        this.updateGlobalOrderFromVisible(visibleOrder);
+                    }
+                }
+                
+                this.saveState();
+                this.renderTasks();
+                this.cleanupDrag();
+            }
+            
+            updateGlobalOrderFromVisible(visibleOrder) {
+                // Create a map of current positions for visible items
+                const visiblePositions = new Map();
+                visibleOrder.forEach((item, index) => {
+                    visiblePositions.set(`${item.type}::${item.id}`, index);
+                });
+                
+                // Sort global order to match visible order for visible items
+                const filteredTasks = this.getFilteredTasks();
+                const filteredTaskIds = new Set(filteredTasks.map(t => t.id));
+                
+                this.state.itemOrder.sort((a, b) => {
+                    const aVisible = (a.type === 'task' && filteredTaskIds.has(a.id)) || 
+                                   (a.type === 'note' && this.notes.find(n => n.id === a.id)?.location === 'list');
+                    const bVisible = (b.type === 'task' && filteredTaskIds.has(b.id)) || 
+                                   (b.type === 'note' && this.notes.find(n => n.id === b.id)?.location === 'list');
+                    
+                    if (aVisible && bVisible) {
+                        const aPos = visiblePositions.get(`${a.type}::${a.id}`) ?? Infinity;
+                        const bPos = visiblePositions.get(`${b.type}::${b.id}`) ?? Infinity;
+                        return aPos - bPos;
+                    } else if (aVisible) {
+                        return -1;
+                    } else if (bVisible) {
+                        return 1;
+                    }
+                    return 0;
+                });
+            }
+            
+            cleanupDrag() {
+                if (this.dragState?.element) {
+                    this.dragState.element.classList.remove('dragging');
+                }
+                this.dragState = null;
+                this.removeDragPlaceholder();
+                document.getElementById('taskList').classList.remove('drag-over');
             }
             
             removeDragPlaceholder() {
@@ -984,33 +1143,6 @@
                     this.dragPlaceholder.parentNode.removeChild(this.dragPlaceholder);
                 }
                 this.dragPlaceholder = null;
-            }
-            
-            updateOrderAfterDrop(draggedData, newIndex) {
-                // Verwijder item uit huidige positie
-                const currentIndex = this.state.itemOrder.findIndex(item => 
-                    item.type === draggedData.type && item.id === draggedData.id
-                );
-                
-                if (currentIndex === -1) return;
-                
-                const [item] = this.state.itemOrder.splice(currentIndex, 1);
-                
-                // Corrigeer index als we naar boven verplaatsen
-                const insertIndex = currentIndex < newIndex ? newIndex - 1 : newIndex;
-                
-                // Voeg toe op nieuwe positie
-                this.state.itemOrder.splice(insertIndex, 0, item);
-                
-                // Update note locations
-                this.notes.forEach(note => {
-                    const inMainList = this.state.itemOrder.some(orderItem => 
-                        orderItem.type === 'note' && orderItem.id === note.id
-                    );
-                    note.location = inMainList ? 'list' : 'sidebar';
-                });
-                
-                this.saveState();
             }
             
             getDragAfterElement(container, y) {
@@ -1031,12 +1163,12 @@
             getFilteredTasks() {
                 let filteredTasks = this.tasks;
                 
-                // Filter op actieve categorie
+                // Filter by active category
                 if (this.state.activeCategory !== 'all') {
                     filteredTasks = filteredTasks.filter(task => task.category === this.state.activeCategory);
                 }
                 
-                // Filter op collapsed categories (alleen bij 'all' view)
+                // Filter by collapsed categories (only in 'all' view)
                 if (this.state.activeCategory === 'all') {
                     filteredTasks = filteredTasks.filter(task => 
                         !this.state.collapsedCategories.has(task.category)
@@ -1053,20 +1185,20 @@
                 this.updatePointsDisplay();
                 this.updatePerformanceInfo();
                 
-                // Delay drag setup to avoid interfering with rendering
+                // Setup drag and drop after rendering
                 requestAnimationFrame(() => this.setupDragAndDrop());
             }
             
             renderTasks() {
                 const taskList = document.getElementById('taskList');
                 
-                // Gebruik DocumentFragment voor betere performance
+                // Use DocumentFragment for better performance
                 const fragment = document.createDocumentFragment();
                 
                 const filteredTasks = this.getFilteredTasks();
                 const filteredTaskIds = new Set(filteredTasks.map(t => t.id));
                 
-                // Create ordered items list (alleen voor gefilterde taken)
+                // Create ordered items list (only for filtered tasks)
                 const orderedItems = [];
                 
                 this.state.itemOrder.forEach(orderItem => {
@@ -1122,11 +1254,9 @@
                     '?';
                 
                 li.innerHTML = `
-                    <div class="category-badge">${task.category}</div>
                     <div class="task-header">
                         <div class="task-icon">${iconHtml}</div>
                         <div class="task-title">${this.escapeHtml(task.task)}</div>
-                        <div class="task-points">${task.points}</div>
                         <div class="task-controls">
                             <button class="btn minimize-btn" aria-label="Toggle minimize">
                                 ${this.state.minimizedTasks.has(task.id) ? 'Expand' : 'Minimize'}
@@ -1141,6 +1271,10 @@
                         ${task.requirements.img ? 
                             `<img class="requirement-img" src="${task.requirements.img}" alt="" onerror="this.style.display='none'" loading="lazy">` : 
                             ''}
+                    </div>
+                    <div class="task-meta">
+                        <div class="task-category">${task.category}</div>
+                        <div class="task-points">${task.points}</div>
                     </div>
                 `;
                 
@@ -1215,47 +1349,6 @@
                 const sidebarNotes = this.notes.filter(note => note.location === 'sidebar');
                 sidebarNotes.forEach(note => {
                     notesList.appendChild(this.createNoteElement(note));
-                });
-                
-                // Setup drag from sidebar to main list
-                this.setupNoteDragFromSidebar(notesList);
-            }
-            
-            setupNoteDragFromSidebar(notesList) {
-                const taskList = document.getElementById('taskList');
-                
-                // Allow dropping notes into main list
-                taskList.addEventListener('dragenter', (e) => {
-                    if (e.target === taskList || taskList.contains(e.target)) {
-                        const draggedNote = document.querySelector('.note-item.dragging');
-                        if (draggedNote && draggedNote.closest('#notesList')) {
-                            e.preventDefault();
-                            taskList.classList.add('drag-over');
-                        }
-                    }
-                });
-                
-                taskList.addEventListener('dragleave', (e) => {
-                    if (!taskList.contains(e.relatedTarget)) {
-                        taskList.classList.remove('drag-over');
-                    }
-                });
-                
-                taskList.addEventListener('drop', (e) => {
-                    const draggedNote = document.querySelector('.note-item.dragging');
-                    if (draggedNote && draggedNote.closest('#notesList')) {
-                        e.preventDefault();
-                        taskList.classList.remove('drag-over');
-                        
-                        const noteId = draggedNote.dataset.noteId;
-                        const note = this.notes.find(n => n.id === noteId);
-                        if (note) {
-                            note.location = 'list';
-                            this.state.itemOrder.push({ type: 'note', id: noteId });
-                            this.saveState();
-                            this.render();
-                        }
-                    }
                 });
             }
             
