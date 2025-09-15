@@ -3,1404 +3,1092 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RS3 Task Manager</title>
+    <title>RS3 Task Tracker</title>
     <style>
         :root {
-            --bg-primary: #f8f9fa;
-            --bg-secondary: #ffffff;
-            --bg-selected: #d4edda;
-            --border-color: #dee2e6;
-            --text-primary: #212529;
-            --text-secondary: #6c757d;
-            --hover-bg: #e9ecef;
-            --focus-outline: #0066cc;
-            --warning-bg: #fff3cd;
-            --warning-text: #856404;
-            --spacing-xs: 0.25rem;
-            --spacing-sm: 0.5rem;
-            --spacing-md: 1rem;
-            --spacing-lg: 1.5rem;
-            --border-radius: 4px;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --border-color: #ddd;
+            --tab-bg: #e9ecef;
+            --tab-active-bg: #f8f9fa;
+            --card-bg: #fff;
+            --primary-color: #6c757d;
+            --secondary-color: #adb5bd;
+            --completed-color: #d1e7dd;
+            --accent-color: #4a5568;
+            --shadow: 0 2px 4px rgba(0,0,0,0.05);
+            --focus-outline: 2px solid var(--accent-color);
         }
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            margin: 0;
-            padding: var(--spacing-md);
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             line-height: 1.5;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: var(--spacing-lg);
-            max-width: 1400px;
-            margin: 0 auto;
-            min-height: calc(100vh - 2rem);
-        }
-
-        .main-content {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-md);
-        }
-
-        .sidebar {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-md);
-            height: fit-content;
-            position: sticky;
-            top: var(--spacing-md);
-        }
-
-        .category-tabs {
+            padding: 0;
+            margin: 0;
+            min-height: 100vh;
             display: flex;
-            gap: var(--spacing-xs);
-            margin-bottom: var(--spacing-md);
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--card-bg);
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: var(--spacing-sm);
+            padding: 1rem;
+            box-shadow: var(--shadow);
         }
 
-        .category-tab {
-            background: none;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-sm) var(--spacing-md);
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s ease;
-            white-space: nowrap;
-        }
-
-        .category-tab:hover {
-            background: var(--hover-bg);
-        }
-
-        .category-tab.active {
-            background: var(--focus-outline);
-            color: white;
-            border-color: var(--focus-outline);
-        }
-
-        .category-tab.all {
-            font-weight: 600;
-        }
-
-        .loading {
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
             text-align: center;
-            color: var(--text-secondary);
-            padding: var(--spacing-lg);
+            color: var(--accent-color);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            padding: 0.5rem 1rem;
+            background-color: var(--tab-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px 4px 0 0;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            color: var(--text-color);
+        }
+
+        .tab-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .tab-button.active {
+            background-color: var(--tab-active-bg);
+            border-bottom: 1px solid var(--tab-active-bg);
+            position: relative;
+            top: 1px;
+            font-weight: 500;
+        }
+
+        .tab-button:focus {
+            outline: var(--focus-outline);
+        }
+
+        main {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .task-container {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .task-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
         }
 
-        .task-item, .note-item {
-            background: var(--bg-secondary);
+        .task-card {
+            background-color: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            margin-bottom: var(--spacing-sm);
-            padding: var(--spacing-md);
-            cursor: pointer;
-            transition: all 0.1s ease;
-            position: relative;
-            will-change: transform, opacity;
+            border-radius: 4px;
+            padding: 1rem;
+            box-shadow: var(--shadow);
+            transition: all 0.2s;
         }
 
-        .task-item:hover, .note-item:hover {
-            background: var(--hover-bg);
+        .task-card.selected {
+            background-color: var(--completed-color);
         }
 
-        .task-item:focus, .note-item:focus {
-            outline: 2px solid var(--focus-outline);
-            outline-offset: 2px;
-        }
-
-        .task-item.selected {
-            background: var(--bg-selected);
-            border-color: #28a745;
-        }
-
-        .task-item.minimized .task-details,
-        .task-item.minimized .task-requirements {
-            display: none;
-        }
-
-        .task-item.collapsed {
-            display: none;
+        .task-card.dragging {
+            opacity: 0.5;
         }
 
         .task-header {
             display: flex;
             align-items: center;
-            gap: var(--spacing-sm);
-            margin-bottom: var(--spacing-sm);
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            cursor: grab;
         }
 
-        .task-icon {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-            background: var(--hover-bg);
-            border-radius: var(--border-radius);
+        .task-title-container {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            color: var(--text-secondary);
+            gap: 0.5rem;
+            flex: 1;
         }
 
-        .task-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: var(--border-radius);
+        .task-area-icon {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
         }
 
         .task-title {
-            flex: 1;
             font-weight: 500;
+            flex: 1;
+        }
+
+        .task-points {
+            background-color: var(--tab-bg);
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .task-info {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .task-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .task-info img {
+            max-width: 100%;
+            border-radius: 4px;
+            margin-top: 0.5rem;
         }
 
         .task-controls {
             display: flex;
-            gap: var(--spacing-xs);
-            margin-left: auto;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
         }
 
-        .btn {
-            background: none;
+        button {
+            padding: 0.25rem 0.5rem;
+            background-color: var(--tab-bg);
             border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 0.75rem;
-            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            color: var(--text-color);
         }
 
-        .btn:hover {
-            background: var(--hover-bg);
+        button:hover {
+            background-color: var(--secondary-color);
         }
 
-        .btn:focus {
-            outline: 2px solid var(--focus-outline);
-            outline-offset: 2px;
+        button:focus {
+            outline: var(--focus-outline);
         }
 
-        .task-details {
-            margin-bottom: var(--spacing-sm);
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .task-requirements {
+        .sidebar {
+            width: 300px;
+            background-color: var(--card-bg);
+            border-left: 1px solid var(--border-color);
+            padding: 1rem;
             display: flex;
-            gap: var(--spacing-sm);
-            align-items: center;
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-        }
-
-        .requirement-img {
-            width: 20px;
-            height: 20px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-        }
-
-        .task-meta {
-            position: absolute;
-            bottom: var(--spacing-sm);
-            right: var(--spacing-sm);
-            display: flex;
-            gap: var(--spacing-xs);
-            align-items: center;
-        }
-
-        .task-category {
-            background: var(--hover-bg);
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--border-radius);
-            font-size: 0.625rem;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        .task-points {
-            background: var(--focus-outline);
-            color: white;
-            padding: var(--spacing-xs) var(--spacing-sm);
-            border-radius: var(--border-radius);
-            font-size: 0.75rem;
-            font-weight: 600;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
         }
 
         .sidebar-section {
-            margin-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
         }
 
         .sidebar-section:last-child {
-            margin-bottom: 0;
+            border-bottom: none;
         }
 
-        .sidebar-title {
-            font-weight: 600;
-            margin-bottom: var(--spacing-sm);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-secondary);
+        h2 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
         }
 
-        .points-counter {
+        .total-points {
             font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
+            font-weight: 500;
             text-align: center;
-            padding: var(--spacing-md);
-            background: var(--hover-bg);
-            border-radius: var(--border-radius);
-            margin-bottom: var(--spacing-md);
+            padding: 0.5rem;
+            background-color: var(--tab-bg);
+            border-radius: 4px;
         }
 
-        .category-controls {
+        .notes-form {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-xs);
+            gap: 0.5rem;
         }
 
-        .category-btn {
+        textarea {
             width: 100%;
-            text-align: left;
-            justify-content: space-between;
-            display: flex;
-            align-items: center;
-        }
-
-        .note-input-group {
-            display: flex;
-            gap: var(--spacing-xs);
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .note-input {
-            flex: 1;
-            padding: var(--spacing-sm);
+            padding: 0.5rem;
             border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            font-size: 0.875rem;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 60px;
+            font-family: inherit;
         }
 
-        .note-input:focus {
-            outline: 2px solid var(--focus-outline);
-            outline-offset: 2px;
+        textarea:focus {
+            outline: var(--focus-outline);
         }
 
         .notes-list {
             display: flex;
             flex-direction: column;
-            gap: var(--spacing-xs);
+            gap: 0.75rem;
         }
 
-        .note-item {
-            cursor: move;
-            padding: var(--spacing-sm);
+        .note-card {
+            background-color: var(--tab-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 0.75rem;
+            cursor: grab;
+            transition: all 0.2s;
         }
 
-        .note-item.in-main-list {
-            background: #f0f8ff;
-            border-color: #0066cc;
+        .note-card:focus {
+            outline: var(--focus-outline);
         }
 
-        .note-header {
+        .note-content {
+            min-height: 20px;
+            margin-bottom: 0.5rem;
+        }
+
+        .note-controls {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .note-title {
-            font-weight: 500;
-            font-size: 0.875rem;
-        }
-
-        .note-body {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            white-space: pre-wrap;
-        }
-
-        .note-edit {
-            width: 100%;
-            border: none;
-            background: none;
-            resize: vertical;
-            min-height: 40px;
-            font-family: inherit;
-            font-size: 0.75rem;
-        }
-
-        .note-edit:focus {
-            outline: 1px solid var(--focus-outline);
-        }
-
-        .data-status {
-            font-size: 0.75rem;
-            margin-bottom: var(--spacing-sm);
-        }
-
-        .status-item {
-            display: flex;
-            justify-content: space-between;
-            padding: var(--spacing-xs);
-            margin-bottom: var(--spacing-xs);
-            border-radius: var(--border-radius);
-        }
-
-        .status-success {
-            background: #d1e7dd;
-            color: #0f5132;
-        }
-
-        .status-error {
-            background: #f8d7da;
-            color: #721c24;
-        }
-
-        .status-warning {
-            background: var(--warning-bg);
-            color: var(--warning-text);
-        }
-
-        .drag-over {
-            border-color: var(--focus-outline);
-            background: var(--hover-bg);
-        }
-
-        .dragging {
-            opacity: 0.8;
-            transform: rotate(2deg);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            z-index: 1000;
+            justify-content: flex-end;
+            gap: 0.5rem;
         }
 
         .drag-placeholder {
-            border: 2px dashed var(--focus-outline);
-            background: rgba(0, 102, 204, 0.1);
+            border: 2px dashed var(--secondary-color);
+            border-radius: 4px;
             height: 60px;
-            border-radius: var(--border-radius);
-            margin-bottom: var(--spacing-sm);
+            margin: 0.5rem 0;
+            background-color: rgba(0,0,0,0.03);
         }
 
-        .reset-btn {
-            background: #dc3545;
-            color: white;
-            border: none;
-            width: 100%;
-            padding: var(--spacing-sm);
-            margin-top: var(--spacing-md);
-        }
-
-        .reset-btn:hover {
-            background: #c82333;
-        }
-
-        .performance-info {
-            font-size: 0.625rem;
-            color: var(--text-secondary);
+        .loading {
+            padding: 2rem;
             text-align: center;
-            margin-top: var(--spacing-sm);
+            color: var(--secondary-color);
+        }
+
+        .error {
+            padding: 1rem;
+            background-color: #f8d7da;
+            border: 1px solid #f5c2c7;
+            border-radius: 4px;
+            color: #842029;
+            margin-bottom: 1rem;
+        }
+
+        .minimized .task-info,
+        .minimized .task-controls {
+            display: none;
         }
 
         @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-md);
+            main {
+                flex-direction: column;
             }
             
             .sidebar {
-                position: static;
-                order: -1;
-            }
-
-            .category-tabs {
-                flex-wrap: wrap;
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid var(--border-color);
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <main class="main-content">
-            <div class="category-tabs">
-                <button id="allTab" class="category-tab all active" data-category="all">
-                    All (<span id="allCount">0</span>)
-                </button>
+    <header>
+        <h1>RS3 Task Tracker</h1>
+        <div class="tabs" role="tablist">
+            <button class="tab-button active" role="tab" aria-selected="true" data-category="easy">Easy</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-category="medium">Medium</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-category="hard">Hard</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-category="elite">Elite</button>
+            <button class="tab-button" role="tab" aria-selected="false" data-category="master">Master</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="task-container">
+            <div class="tab-content active" data-category="easy">
+                <div class="task-list" data-category="easy"></div>
             </div>
-            <div id="loading" class="loading">Loading tasks...</div>
-            <ul id="taskList" class="task-list" style="display: none;"></ul>
-        </main>
-        
+            <div class="tab-content" data-category="medium">
+                <div class="task-list" data-category="medium"></div>
+            </div>
+            <div class="tab-content" data-category="hard">
+                <div class="task-list" data-category="hard"></div>
+            </div>
+            <div class="tab-content" data-category="elite">
+                <div class="task-list" data-category="elite"></div>
+            </div>
+            <div class="tab-content" data-category="master">
+                <div class="task-list" data-category="master"></div>
+            </div>
+        </div>
+
         <aside class="sidebar">
             <div class="sidebar-section">
-                <div class="sidebar-title">Total Points</div>
-                <div id="pointsCounter" class="points-counter">0</div>
+                <h2>Total Points</h2>
+                <div class="total-points" id="totalPoints">0</div>
             </div>
-            
+
             <div class="sidebar-section">
-                <div class="sidebar-title">Categories</div>
-                <div id="categoryControls" class="category-controls"></div>
+                <h2>Notes</h2>
+                <form class="notes-form" id="noteForm">
+                    <textarea placeholder="Add a new note..." id="noteInput"></textarea>
+                    <button type="submit">Add Note</button>
+                </form>
+                <div class="notes-list" id="notesList"></div>
             </div>
-            
+
             <div class="sidebar-section">
-                <div class="sidebar-title">Add Note</div>
-                <div class="note-input-group">
-                    <input type="text" id="noteInput" class="note-input" placeholder="Note title...">
-                    <button id="addNoteBtn" class="btn">Add</button>
+                <h2>Controls</h2>
+                <div class="controls">
+                    <button id="collapseAll">Collapse All Tasks</button>
+                    <button id="expandAll">Expand All Tasks</button>
+                    <button id="resetData" style="margin-top: 0.5rem; background-color: #f8d7da; color: #842029;">Reset All Data</button>
                 </div>
-                <div id="notesList" class="notes-list"></div>
             </div>
-            
+
             <div class="sidebar-section">
-                <div class="sidebar-title">Data Status</div>
-                <div id="dataStatus" class="data-status"></div>
-            </div>
-            
-            <button id="resetBtn" class="btn reset-btn">Reset All Data</button>
-            
-            <div class="performance-info">
-                <div>Visible tasks: <span id="visibleCount">0</span></div>
-                <div>Total tasks: <span id="totalCount">0</span></div>
+                <h2>Status</h2>
+                <div id="loadStatus"></div>
             </div>
         </aside>
-    </div>
+    </main>
 
     <script>
-        class TaskManager {
-            constructor() {
-                this.tasks = [];
-                this.notes = [];
-                this.state = {
-                    selectedTasks: new Set(),
-                    minimizedTasks: new Set(),
-                    collapsedCategories: new Set(),
-                    itemOrder: [],
-                    totalPoints: 0,
-                    activeCategory: 'all'
-                };
-                this.categories = ['easy', 'medium', 'hard', 'elite', 'master'];
-                this.dataStatus = {};
-                this.noteIdCounter = 0;
-                this.dragPlaceholder = null;
-                this.renderTimeouts = new Set();
-                this.dragState = null;
-                
-                this.init();
-            }
-            
-            async init() {
-                this.loadState();
-                await this.loadTasks();
-                this.setupEventListeners();
-                this.render();
-                
-                // Expose API
-                window.app = {
-                    exportState: () => this.exportState(),
-                    importState: (json) => this.importState(json)
-                };
-            }
-            
-            // Try combined file first, then individual files
-            async loadTasks() {
-                try {
-                    // Try combined file first
-                    const response = await fetch('all-tasks.json');
-                    if (response.ok) {
-                        const data = await response.json();
-                        this.loadFromCombinedFile(data);
-                    } else {
-                        // Fallback to individual files
-                        await this.loadFromIndividualFiles();
-                    }
-                } catch (error) {
-                    console.warn('Failed to load combined file, trying individual files');
-                    await this.loadFromIndividualFiles();
-                }
-                
-                this.optimizeTaskOrder();
-                this.updateDataStatus();
-                this.setupCategoryTabs();
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('taskList').style.display = 'block';
-            }
+        // App state and configuration
+        const APP_STORAGE_KEY = 'rs3TasksTabsState:v1';
+        const CATEGORIES = ['easy', 'medium', 'hard', 'elite', 'master'];
+        
+        // Global state
+        let state = {
+            activeTab: 'easy',
+            tasks: {
+                easy: { items: [], order: [], collapsed: false },
+                medium: { items: [], order: [], collapsed: false },
+                hard: { items: [], order: [], collapsed: false },
+                elite: { items: [], order: [], collapsed: false },
+                master: { items: [], order: [], collapsed: false }
+            },
+            notes: [],
+            totalPoints: 0
+        };
 
-            loadFromCombinedFile(data) {
-                this.tasks = [];
-                let globalIndex = 0;
-                
-                this.categories.forEach(category => {
-                    if (data[category] && Array.isArray(data[category])) {
-                        const categoryTasks = data[category].map((item, index) => ({
-                            id: `${category}::${index}`,
-                            category,
-                            originalIndex: index,
-                            globalIndex: globalIndex++,
-                            area: item.Area || '',
-                            task: item.Task || 'Untitled Task',
-                            information: item.Information || '',
-                            requirements: {
-                                text: item.Requirements?.text || '',
-                                img: item.Requirements?.img || ''
-                            },
-                            points: this.parsePoints(item.Pts)
-                        }));
-                        
-                        this.tasks.push(...categoryTasks);
-                        this.dataStatus[category] = { status: 'success', count: categoryTasks.length };
-                    } else {
-                        this.dataStatus[category] = { status: 'error', error: 'Category not found in combined file' };
-                    }
-                });
-                
-                // Initialize order if first load
-                if (this.state.itemOrder.length === 0) {
-                    this.state.itemOrder = this.tasks.map(task => ({ type: 'task', id: task.id }));
-                }
-            }
-            
-            async loadFromIndividualFiles() {
-                const loadPromises = this.categories.map(async (category, categoryIndex) => {
-                    try {
-                        const response = await fetch(`${category}.json`);
-                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                        const data = await response.json();
-                        
-                        if (!Array.isArray(data)) throw new Error('Invalid JSON format');
-                        
-                        const tasks = data.map((item, index) => ({
-                            id: `${category}::${index}`,
-                            category,
-                            originalIndex: index,
-                            globalIndex: categoryIndex * 1000 + index,
-                            area: item.Area || '',
-                            task: item.Task || 'Untitled Task',
-                            information: item.Information || '',
-                            requirements: {
-                                text: item.Requirements?.text || '',
-                                img: item.Requirements?.img || ''
-                            },
-                            points: this.parsePoints(item.Pts)
-                        }));
-                        
-                        this.dataStatus[category] = { status: 'success', count: tasks.length };
-                        return tasks;
-                    } catch (error) {
-                        this.dataStatus[category] = { status: 'error', error: error.message };
-                        return [];
-                    }
-                });
-                
-                const taskArrays = await Promise.all(loadPromises);
-                this.tasks = taskArrays.flat();
-                
-                // Initialize order if first load
-                if (this.state.itemOrder.length === 0) {
-                    this.state.itemOrder = this.tasks.map(task => ({ type: 'task', id: task.id }));
-                }
-            }
+        // DOM Elements
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        const taskLists = document.querySelectorAll('.task-list');
+        const totalPointsElement = document.getElementById('totalPoints');
+        const noteForm = document.getElementById('noteForm');
+        const noteInput = document.getElementById('noteInput');
+        const notesList = document.getElementById('notesList');
+        const collapseAllButton = document.getElementById('collapseAll');
+        const expandAllButton = document.getElementById('expandAll');
+        const resetDataButton = document.getElementById('resetData');
+        const loadStatusElement = document.getElementById('loadStatus');
 
-            optimizeTaskOrder() {
-                // Sort tasks by globalIndex for consistent order
-                this.tasks.sort((a, b) => a.globalIndex - b.globalIndex);
-                
-                // Update itemOrder with new tasks
-                const existingIds = new Set(this.state.itemOrder.map(item => item.id));
-                const newTasks = this.tasks.filter(task => !existingIds.has(task.id));
-                
-                newTasks.forEach(task => {
-                    this.state.itemOrder.push({ type: 'task', id: task.id });
-                });
-            }
-            
-            parsePoints(pts) {
-                if (typeof pts === 'number') return pts;
-                if (typeof pts === 'string') {
-                    const parsed = parseInt(pts, 10);
-                    return isNaN(parsed) ? 0 : parsed;
-                }
-                return 0;
-            }
-            
-            loadState() {
-                try {
-                    const saved = localStorage.getItem('rs3TasksState:v2');
-                    if (saved) {
-                        const state = JSON.parse(saved);
-                        this.state = { ...this.state, ...state };
-                        this.state.selectedTasks = new Set(state.selectedTasks || []);
-                        this.state.minimizedTasks = new Set(state.minimizedTasks || []);
-                        this.state.collapsedCategories = new Set(state.collapsedCategories || []);
-                        this.notes = state.notes || [];
-                        this.noteIdCounter = Math.max(0, ...this.notes.map(n => parseInt(n.id.split('::')[1]) || 0)) + 1;
-                    }
-                } catch (error) {
-                    console.warn('Failed to load state:', error);
-                }
-            }
-            
-            saveState() {
-                // Debounce saving for better performance
-                if (this.saveTimeout) clearTimeout(this.saveTimeout);
-                this.saveTimeout = setTimeout(() => {
-                    try {
-                        const state = {
-                            ...this.state,
-                            selectedTasks: Array.from(this.state.selectedTasks),
-                            minimizedTasks: Array.from(this.state.minimizedTasks),
-                            collapsedCategories: Array.from(this.state.collapsedCategories),
-                            notes: this.notes
-                        };
-                        localStorage.setItem('rs3TasksState:v2', JSON.stringify(state));
-                    } catch (error) {
-                        console.warn('Failed to save state:', error);
-                    }
-                }, 100);
-            }
+        // Initialize the application
+        function init() {
+            loadStateFromStorage();
+            setupEventListeners();
+            loadJSONFiles();
+            renderUI();
+        }
 
-            setupCategoryTabs() {
-                const tabsContainer = document.querySelector('.category-tabs');
-                const allTab = document.getElementById('allTab');
-                const allCount = document.getElementById('allCount');
-                
-                // Update all count
-                allCount.textContent = this.tasks.length;
-                
-                // Add category tabs
-                this.categories.forEach(category => {
-                    const count = this.tasks.filter(t => t.category === category).length;
-                    if (count === 0) return;
-                    
-                    const tab = document.createElement('button');
-                    tab.className = 'category-tab';
-                    tab.dataset.category = category;
-                    tab.innerHTML = `${category} (${count})`;
-                    
-                    tab.addEventListener('click', () => {
-                        this.setActiveCategory(category);
-                    });
-                    
-                    tabsContainer.appendChild(tab);
-                });
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Tab switching
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => switchTab(button.dataset.category));
+            });
 
-                // All tab event listener
-                allTab.addEventListener('click', () => {
-                    this.setActiveCategory('all');
-                });
-            }
+            // Note form submission
+            noteForm.addEventListener('submit', handleNoteSubmit);
 
-            setActiveCategory(category) {
-                this.state.activeCategory = category;
-                
-                // Update active tab
-                document.querySelectorAll('.category-tab').forEach(tab => {
-                    tab.classList.toggle('active', tab.dataset.category === category || 
-                        (category === 'all' && tab.id === 'allTab'));
-                });
-                
-                this.saveState();
-                this.renderTasks();
-            }
+            // Control buttons
+            collapseAllButton.addEventListener('click', () => toggleAllTasks(true));
+            expandAllButton.addEventListener('click', () => toggleAllTasks(false));
+            resetDataButton.addEventListener('click', confirmResetData);
+
+            // Drag and drop events for task lists
+            taskLists.forEach(list => {
+                list.addEventListener('dragover', handleDragOver);
+                list.addEventListener('drop', handleDrop);
+                list.addEventListener('dragenter', preventDefault);
+                list.addEventListener('dragleave', preventDefault);
+            });
+
+            // Allow drops in the notes list too
+            notesList.addEventListener('dragover', handleDragOver);
+            notesList.addEventListener('drop', handleNoteDrop);
+            notesList.addEventListener('dragenter', preventDefault);
+            notesList.addEventListener('dragleave', preventDefault);
+        }
+
+        // Load JSON files in parallel
+        async function loadJSONFiles() {
+            updateLoadStatus('Loading task data...');
             
-            setupEventListeners() {
-                // Add note
-                document.getElementById('addNoteBtn').addEventListener('click', () => this.addNote());
-                document.getElementById('noteInput').addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') this.addNote();
-                });
-                
-                // Reset button
-                document.getElementById('resetBtn').addEventListener('click', () => {
-                    if (confirm('Reset all data? This cannot be undone.')) {
-                        localStorage.removeItem('rs3TasksState:v2');
-                        localStorage.removeItem('rs3TasksState:v1');
-                        location.reload();
-                    }
-                });
-                
-                // Keyboard navigation
-                document.addEventListener('keydown', (e) => this.handleKeyboard(e));
-            }
-            
-            addNote() {
-                const input = document.getElementById('noteInput');
-                const title = input.value.trim();
-                if (!title) return;
-                
-                const note = {
-                    id: `note::${this.noteIdCounter++}`,
-                    title,
-                    body: '',
-                    location: 'sidebar',
-                    editing: false
-                };
-                
-                this.notes.push(note);
-                input.value = '';
-                this.saveState();
-                this.renderNotes();
-            }
-            
-            deleteNote(noteId) {
-                this.notes = this.notes.filter(n => n.id !== noteId);
-                this.state.itemOrder = this.state.itemOrder.filter(item => 
-                    item.type !== 'note' || item.id !== noteId
-                );
-                this.saveState();
-                this.render();
-            }
-            
-            toggleNoteEdit(noteId) {
-                const note = this.notes.find(n => n.id === noteId);
-                if (note) {
-                    note.editing = !note.editing;
-                    this.renderNotes();
-                }
-            }
-            
-            updateNoteBody(noteId, body) {
-                const note = this.notes.find(n => n.id === noteId);
-                if (note) {
-                    note.body = body;
-                    this.saveState();
-                }
-            }
-            
-            toggleTaskSelection(taskId) {
-                const task = this.tasks.find(t => t.id === taskId);
-                if (!task) return;
-                
-                if (this.state.selectedTasks.has(taskId)) {
-                    this.state.selectedTasks.delete(taskId);
-                    this.state.totalPoints -= task.points;
-                } else {
-                    this.state.selectedTasks.add(taskId);
-                    this.state.totalPoints += task.points;
-                }
-                
-                this.saveState();
-                this.updatePointsDisplay();
-                
-                // Update only the specific task element
-                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
-                if (taskElement) {
-                    taskElement.classList.toggle('selected', this.state.selectedTasks.has(taskId));
-                    taskElement.setAttribute('aria-pressed', this.state.selectedTasks.has(taskId));
-                }
-            }
-            
-            toggleTaskMinimized(taskId) {
-                if (this.state.minimizedTasks.has(taskId)) {
-                    this.state.minimizedTasks.delete(taskId);
-                } else {
-                    this.state.minimizedTasks.add(taskId);
-                }
-                
-                this.saveState();
-                
-                // Update only the specific task element
-                const taskElement = document.querySelector(`[data-task-id="${taskId}"]`);
-                if (taskElement) {
-                    taskElement.classList.toggle('minimized', this.state.minimizedTasks.has(taskId));
-                    const btn = taskElement.querySelector('.minimize-btn');
-                    if (btn) {
-                        btn.textContent = this.state.minimizedTasks.has(taskId) ? 'Expand' : 'Minimize';
-                    }
-                }
-            }
-            
-            toggleCategoryCollapsed(category) {
-                if (this.state.collapsedCategories.has(category)) {
-                    this.state.collapsedCategories.delete(category);
-                } else {
-                    this.state.collapsedCategories.add(category);
-                }
-                
-                this.saveState();
-                this.renderTasks();
-                this.renderCategoryControls();
-            }
-            
-            updatePointsDisplay() {
-                document.getElementById('pointsCounter').textContent = this.state.totalPoints;
-            }
-            
-            updateDataStatus() {
-                const statusEl = document.getElementById('dataStatus');
-                statusEl.innerHTML = '';
-                
-                Object.entries(this.dataStatus).forEach(([category, status]) => {
-                    const item = document.createElement('div');
-                    item.className = 'status-item';
-                    
-                    if (status.status === 'success') {
-                        item.className += ' status-success';
-                        item.innerHTML = `<span>${category}</span><span>${status.count} tasks</span>`;
-                    } else {
-                        item.className += ' status-error';
-                        item.innerHTML = `<span>${category}</span><span>Error</span>`;
-                        item.title = status.error;
-                    }
-                    
-                    statusEl.appendChild(item);
-                });
-                
-                if (this.tasks.length === 0) {
-                    const guidance = document.createElement('div');
-                    guidance.className = 'status-item status-warning';
-                    guidance.innerHTML = `
-                        <span>No data loaded</span>
-                        <small>Place JSON files or all-tasks.json in site root</small>
-                    `;
-                    statusEl.appendChild(guidance);
-                }
-            }
-            
-            handleKeyboard(e) {
-                const focused = document.activeElement;
-                if (!focused || focused.tagName === 'INPUT' || focused.tagName === 'TEXTAREA') return;
-                
-                if (focused.classList.contains('task-item')) {
-                    const taskId = focused.dataset.taskId;
-                    
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.toggleTaskSelection(taskId);
-                    } else if (e.key === 'ArrowUp' && e.altKey) {
-                        e.preventDefault();
-                        this.moveItemUp(taskId, 'task');
-                    } else if (e.key === 'ArrowDown' && e.altKey) {
-                        e.preventDefault();
-                        this.moveItemDown(taskId, 'task');
-                    }
-                }
-            }
-            
-            moveItemUp(id, type) {
-                const visibleOrder = this.getVisibleItemOrder();
-                const index = visibleOrder.findIndex(item => item.id === id && item.type === type);
-                if (index > 0) {
-                    this.swapItemsInGlobalOrder(visibleOrder[index], visibleOrder[index - 1]);
-                    this.saveState();
-                    this.renderTasks();
-                }
-            }
-            
-            moveItemDown(id, type) {
-                const visibleOrder = this.getVisibleItemOrder();
-                const index = visibleOrder.findIndex(item => item.id === id && item.type === type);
-                if (index >= 0 && index < visibleOrder.length - 1) {
-                    this.swapItemsInGlobalOrder(visibleOrder[index], visibleOrder[index + 1]);
-                    this.saveState();
-                    this.renderTasks();
-                }
-            }
-            
-            getVisibleItemOrder() {
-                const filteredTasks = this.getFilteredTasks();
-                const filteredTaskIds = new Set(filteredTasks.map(t => t.id));
-                
-                return this.state.itemOrder.filter(item => {
-                    if (item.type === 'task') {
-                        return filteredTaskIds.has(item.id);
-                    } else if (item.type === 'note') {
-                        const note = this.notes.find(n => n.id === item.id);
-                        return note && note.location === 'list';
-                    }
-                    return false;
-                });
-            }
-            
-            swapItemsInGlobalOrder(item1, item2) {
-                const index1 = this.state.itemOrder.findIndex(item => 
-                    item.type === item1.type && item.id === item1.id
-                );
-                const index2 = this.state.itemOrder.findIndex(item => 
-                    item.type === item2.type && item.id === item2.id
-                );
-                
-                if (index1 !== -1 && index2 !== -1) {
-                    [this.state.itemOrder[index1], this.state.itemOrder[index2]] = 
-                    [this.state.itemOrder[index2], this.state.itemOrder[index1]];
-                }
-            }
-            
-            setupDragAndDrop() {
-                const taskList = document.getElementById('taskList');
-                const notesList = document.getElementById('notesList');
-                
-                // Setup drag handlers for task list
-                this.setupTaskListDrag(taskList);
-                
-                // Setup drag handlers for notes sidebar
-                this.setupNotesListDrag(notesList, taskList);
-            }
-            
-            setupTaskListDrag(taskList) {
-                taskList.addEventListener('dragstart', (e) => {
-                    const item = e.target.closest('.task-item, .note-item');
-                    if (!item) return;
-                    
-                    this.dragState = {
-                        type: item.classList.contains('task-item') ? 'task' : 'note',
-                        id: item.dataset.taskId || item.dataset.noteId,
-                        element: item,
-                        sourceList: 'main'
-                    };
-                    
-                    item.classList.add('dragging');
-                    e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text/html', item.outerHTML);
-                });
-                
-                taskList.addEventListener('dragover', (e) => {
-                    if (!this.dragState) return;
-                    e.preventDefault();
-                    
-                    this.removeDragPlaceholder();
-                    const afterElement = this.getDragAfterElement(taskList, e.clientY);
-                    
-                    this.dragPlaceholder = document.createElement('div');
-                    this.dragPlaceholder.className = 'drag-placeholder';
-                    
-                    if (afterElement == null) {
-                        taskList.appendChild(this.dragPlaceholder);
-                    } else {
-                        taskList.insertBefore(this.dragPlaceholder, afterElement);
-                    }
-                });
-                
-                taskList.addEventListener('drop', (e) => {
-                    if (!this.dragState || !this.dragPlaceholder) return;
-                    e.preventDefault();
-                    
-                    const placeholderIndex = this.getPlaceholderIndex(taskList);
-                    this.handleDrop(placeholderIndex);
-                });
-                
-                taskList.addEventListener('dragend', () => {
-                    this.cleanupDrag();
-                });
-                
-                taskList.addEventListener('dragleave', (e) => {
-                    if (!taskList.contains(e.relatedTarget)) {
-                        this.removeDragPlaceholder();
-                    }
-                });
-            }
-            
-            setupNotesListDrag(notesList, taskList) {
-                notesList.addEventListener('dragstart', (e) => {
-                    const noteItem = e.target.closest('.note-item');
-                    if (!noteItem) return;
-                    
-                    this.dragState = {
-                        type: 'note',
-                        id: noteItem.dataset.noteId,
-                        element: noteItem,
-                        sourceList: 'sidebar'
-                    };
-                    
-                    noteItem.classList.add('dragging');
-                    e.dataTransfer.effectAllowed = 'move';
-                    e.dataTransfer.setData('text/html', noteItem.outerHTML);
-                });
-                
-                // Allow dropping notes from sidebar to main list
-                taskList.addEventListener('dragenter', (e) => {
-                    if (this.dragState && this.dragState.sourceList === 'sidebar') {
-                        e.preventDefault();
-                        taskList.classList.add('drag-over');
-                    }
-                });
-                
-                taskList.addEventListener('dragleave', (e) => {
-                    if (this.dragState && this.dragState.sourceList === 'sidebar' && 
-                        !taskList.contains(e.relatedTarget)) {
-                        taskList.classList.remove('drag-over');
-                    }
-                });
-                
-                taskList.addEventListener('drop', (e) => {
-                    if (this.dragState && this.dragState.sourceList === 'sidebar') {
-                        e.preventDefault();
-                        taskList.classList.remove('drag-over');
-                        
-                        // Move note from sidebar to main list
-                        const note = this.notes.find(n => n.id === this.dragState.id);
-                        if (note) {
-                            note.location = 'list';
-                            // Add to end of current visible items
-                            const visibleOrder = this.getVisibleItemOrder();
-                            const insertIndex = this.state.itemOrder.findIndex(item => 
-                                item.type === visibleOrder[visibleOrder.length - 1]?.type && 
-                                item.id === visibleOrder[visibleOrder.length - 1]?.id
-                            ) + 1;
-                            
-                            this.state.itemOrder.splice(insertIndex, 0, { type: 'note', id: this.dragState.id });
-                            this.saveState();
-                            this.render();
+            const loadPromises = CATEGORIES.map(category => 
+                fetch(`${category}.json`)
+                    .then(response => {
+                        if (!response.ok) throw new Error(`Failed to load ${category}.json`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (!Array.isArray(data)) {
+                            throw new Error(`Invalid data format in ${category}.json`);
                         }
-                    }
-                });
-            }
-            
-            getPlaceholderIndex(container) {
-                const children = Array.from(container.children);
-                return children.indexOf(this.dragPlaceholder);
-            }
-            
-            handleDrop(placeholderIndex) {
-                if (this.dragState.sourceList === 'main') {
-                    // Reordering within main list
-                    const visibleOrder = this.getVisibleItemOrder();
-                    const currentVisibleIndex = visibleOrder.findIndex(item => 
-                        item.type === this.dragState.type && item.id === this.dragState.id
-                    );
-                    
-                    if (currentVisibleIndex !== -1) {
-                        // Remove from current position in visible order
-                        const [movedItem] = visibleOrder.splice(currentVisibleIndex, 1);
                         
-                        // Insert at new position
-                        const newIndex = currentVisibleIndex < placeholderIndex ? placeholderIndex - 1 : placeholderIndex;
-                        visibleOrder.splice(newIndex, 0, movedItem);
+                        // Process tasks and generate stable IDs
+                        const tasksWithIds = data.map((task, index) => {
+                            return {
+                                ...task,
+                                id: `${category}::${index}`,
+                                points: parsePoints(task.Pts),
+                                completed: false,
+                                minimized: false
+                            };
+                        });
                         
-                        // Update global order based on new visible order
-                        this.updateGlobalOrderFromVisible(visibleOrder);
+                        state.tasks[category].items = tasksWithIds;
+                        
+                        // Initialize order if not present in saved state
+                        if (state.tasks[category].order.length === 0) {
+                            state.tasks[category].order = tasksWithIds.map(task => task.id);
+                        }
+                        
+                        updateLoadStatus(`Loaded ${category}.json successfully`);
+                        return category;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        updateLoadStatus(`Error loading ${category}.json: ${error.message}`, 'error');
+                        return null;
+                    })
+            );
+
+            await Promise.all(loadPromises);
+            renderUI();
+        }
+
+        // Parse points value from various formats
+        function parsePoints(pts) {
+            if (pts === undefined || pts === null) return 0;
+            if (typeof pts === 'number') return pts;
+            
+            const parsed = parseInt(pts.toString().replace(/[^\d]/g, ''));
+            return isNaN(parsed) ? 0 : parsed;
+        }
+
+        // Switch between tabs
+        function switchTab(category) {
+            if (!CATEGORIES.includes(category)) return;
+            
+            state.activeTab = category;
+            
+            // Update UI
+            tabButtons.forEach(button => {
+                const isActive = button.dataset.category === category;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-selected', isActive);
+            });
+            
+            tabContents.forEach(content => {
+                content.classList.toggle('active', content.dataset.category === category);
+            });
+            
+            // Update collapse/expand buttons text
+            updateCollapseExpandButtons();
+            
+            saveStateToStorage();
+        }
+
+        // Render the entire UI based on current state
+        function renderUI() {
+            renderAllTaskLists();
+            renderNotes();
+            updateTotalPoints();
+            updateCollapseExpandButtons();
+        }
+
+        // Render all task lists
+        function renderAllTaskLists() {
+            CATEGORIES.forEach(category => {
+                const taskList = document.querySelector(`.task-list[data-category="${category}"]`);
+                if (taskList) {
+                    renderTaskList(category, taskList);
+                }
+            });
+        }
+
+        // Render a single task list
+        function renderTaskList(category, container) {
+            // Clear container but preserve any drag placeholder
+            const placeholder = container.querySelector('.drag-placeholder');
+            container.innerHTML = '';
+            if (placeholder) container.appendChild(placeholder);
+            
+            const { items, order } = state.tasks[category];
+            const itemMap = new Map(items.map(item => [item.id, item]));
+            
+            // Render tasks in the saved order
+            order.forEach(taskId => {
+                const task = itemMap.get(taskId);
+                if (task) {
+                    const taskElement = createTaskElement(task, category);
+                    container.appendChild(taskElement);
+                }
+            });
+            
+            // Apply collapsed state if needed
+            if (state.tasks[category].collapsed) {
+                container.querySelectorAll('.task-card').forEach(card => {
+                    card.classList.add('minimized');
+                });
+            }
+        }
+
+        // Create DOM element for a task
+        function createTaskElement(task, category) {
+            const card = document.createElement('div');
+            card.className = `task-card ${task.completed ? 'selected' : ''} ${task.minimized ? 'minimized' : ''}`;
+            card.dataset.id = task.id;
+            card.draggable = true;
+            
+            // Task header with title and points
+            const header = document.createElement('div');
+            header.className = 'task-header';
+            
+            const titleContainer = document.createElement('div');
+            titleContainer.className = 'task-title-container';
+            
+            if (task.Area) {
+                const icon = document.createElement('img');
+                icon.src = task.Area;
+                icon.alt = '';
+                icon.className = 'task-area-icon';
+                titleContainer.appendChild(icon);
+            }
+            
+            const title = document.createElement('div');
+            title.className = 'task-title';
+            title.textContent = task.Task || 'Untitled Task';
+            titleContainer.appendChild(title);
+            
+            const points = document.createElement('div');
+            points.className = 'task-points';
+            points.textContent = task.points;
+            
+            header.appendChild(titleContainer);
+            header.appendChild(points);
+            
+            // Task information (hidden when minimized)
+            const info = document.createElement('div');
+            info.className = 'task-info';
+            
+            if (task.Information) {
+                const infoPara = document.createElement('p');
+                infoPara.textContent = task.Information;
+                info.appendChild(infoPara);
+            }
+            
+            if (task.Requirements) {
+                if (task.Requirements.text) {
+                    const reqPara = document.createElement('p');
+                    reqPara.textContent = task.Requirements.text;
+                    info.appendChild(reqPara);
+                }
+                
+                if (task.Requirements.img) {
+                    const reqImg = document.createElement('img');
+                    reqImg.src = task.Requirements.img;
+                    reqImg.alt = 'Requirement visual';
+                    info.appendChild(reqImg);
+                }
+            }
+            
+            // Task controls
+            const controls = document.createElement('div');
+            controls.className = 'task-controls';
+            
+            const toggleButton = document.createElement('button');
+            toggleButton.textContent = task.completed ? 'Uncomplete' : 'Complete';
+            toggleButton.addEventListener('click', () => toggleTaskCompletion(task.id, category));
+            
+            const minimizeButton = document.createElement('button');
+            minimizeButton.textContent = task.minimized ? 'Expand' : 'Minimize';
+            minimizeButton.addEventListener('click', () => toggleTaskMinimize(task.id, category));
+            
+            controls.appendChild(toggleButton);
+            controls.appendChild(minimizeButton);
+            
+            // Assemble the card
+            card.appendChild(header);
+            card.appendChild(info);
+            card.appendChild(controls);
+            
+            // Drag events
+            card.addEventListener('dragstart', handleDragStart);
+            card.addEventListener('dragend', handleDragEnd);
+            
+            // Keyboard accessibility
+            card.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleTaskCompletion(task.id, category);
+                }
+            });
+            
+            card.tabIndex = 0;
+            card.setAttribute('role', 'button');
+            card.setAttribute('aria-label', `${task.Task}, ${task.points} points`);
+            
+            return card;
+        }
+
+        // Toggle task completion state
+        function toggleTaskCompletion(taskId, category) {
+            const taskIndex = state.tasks[category].items.findIndex(t => t.id === taskId);
+            if (taskIndex === -1) return;
+            
+            state.tasks[category].items[taskIndex].completed = !state.tasks[category].items[taskIndex].completed;
+            
+            // Update UI and points
+            renderTaskList(category, document.querySelector(`.task-list[data-category="${category}"]`));
+            updateTotalPoints();
+            saveStateToStorage();
+        }
+
+        // Toggle task minimized state
+        function toggleTaskMinimize(taskId, category) {
+            const taskIndex = state.tasks[category].items.findIndex(t => t.id === taskId);
+            if (taskIndex === -1) return;
+            
+            state.tasks[category].items[taskIndex].minimized = !state.tasks[category].items[taskIndex].minimized;
+            
+            // Update UI
+            renderTaskList(category, document.querySelector(`.task-list[data-category="${category}"]`));
+            saveStateToStorage();
+        }
+
+        // Toggle all tasks collapsed/expanded
+        function toggleAllTasks(collapsed) {
+            const category = state.activeTab;
+            state.tasks[category].collapsed = collapsed;
+            
+            // Update all tasks in this category
+            state.tasks[category].items.forEach(task => {
+                task.minimized = collapsed;
+            });
+            
+            // Update UI
+            renderTaskList(category, document.querySelector(`.task-list[data-category="${category}"]`));
+            updateCollapseExpandButtons();
+            saveStateToStorage();
+        }
+
+        // Update collapse/expand buttons text
+        function updateCollapseExpandButtons() {
+            const isCollapsed = state.tasks[state.activeTab].collapsed;
+            collapseAllButton.textContent = isCollapsed ? 'Collapse All Tasks' : 'Collapse All Tasks';
+            expandAllButton.textContent = isCollapsed ? 'Expand All Tasks' : 'Expand All Tasks';
+        }
+
+        // Handle note form submission
+        function handleNoteSubmit(e) {
+            e.preventDefault();
+            
+            const content = noteInput.value.trim();
+            if (!content) return;
+            
+            // Create new note
+            const note = {
+                id: `note_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+                content: content,
+                inSidebar: true
+            };
+            
+            state.notes.push(note);
+            noteInput.value = '';
+            
+            // Update UI
+            renderNotes();
+            saveStateToStorage();
+        }
+
+        // Render all notes
+        function renderNotes() {
+            notesList.innerHTML = '';
+            
+            const sidebarNotes = state.notes.filter(note => note.inSidebar);
+            
+            if (sidebarNotes.length === 0) {
+                const emptyMessage = document.createElement('p');
+                emptyMessage.textContent = 'No notes yet. Add one above!';
+                emptyMessage.style.color = 'var(--secondary-color)';
+                emptyMessage.style.fontStyle = 'italic';
+                notesList.appendChild(emptyMessage);
+                return;
+            }
+            
+            sidebarNotes.forEach(note => {
+                const noteElement = createNoteElement(note);
+                notesList.appendChild(noteElement);
+            });
+        }
+
+        // Create DOM element for a note
+        function createNoteElement(note) {
+            const noteCard = document.createElement('div');
+            noteCard.className = 'note-card';
+            noteCard.dataset.id = note.id;
+            noteCard.draggable = true;
+            noteCard.tabIndex = 0;
+            noteCard.setAttribute('role', 'button');
+            noteCard.setAttribute('aria-label', `Note: ${note.content.substring(0, 30)}...`);
+            
+            const content = document.createElement('div');
+            content.className = 'note-content';
+            content.textContent = note.content;
+            
+            const controls = document.createElement('div');
+            controls.className = 'note-controls';
+            
+            const editButton = document.createElement('button');
+            editButton.textContent = 'Edit';
+            editButton.addEventListener('click', () => editNote(note.id));
+            
+            const deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Delete';
+            deleteButton.addEventListener('click', () => deleteNote(note.id));
+            
+            controls.appendChild(editButton);
+            controls.appendChild(deleteButton);
+            
+            noteCard.appendChild(content);
+            noteCard.appendChild(controls);
+            
+            // Drag events
+            noteCard.addEventListener('dragstart', handleDragStart);
+            noteCard.addEventListener('dragend', handleDragEnd);
+            
+            return noteCard;
+        }
+
+        // Edit a note
+        function editNote(noteId) {
+            const noteIndex = state.notes.findIndex(n => n.id === noteId);
+            if (noteIndex === -1) return;
+            
+            const newContent = prompt('Edit your note:', state.notes[noteIndex].content);
+            if (newContent !== null) {
+                state.notes[noteIndex].content = newContent.trim();
+                renderNotes();
+                saveStateToStorage();
+            }
+        }
+
+        // Delete a note
+        function deleteNote(noteId) {
+            if (!confirm('Are you sure you want to delete this note?')) return;
+            
+            // Remove from all locations
+            state.notes = state.notes.filter(n => n.id !== noteId);
+            
+            CATEGORIES.forEach(category => {
+                state.tasks[category].order = state.tasks[category].order.filter(id => id !== noteId);
+            });
+            
+            renderUI();
+            saveStateToStorage();
+        }
+
+        // Drag and drop handlers
+        function handleDragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.id);
+            e.target.classList.add('dragging');
+            
+            // Set appropriate drag image
+            if (e.dataTransfer.setDragImage) {
+                const dragImage = e.target.cloneNode(true);
+                dragImage.style.width = `${e.target.offsetWidth}px`;
+                dragImage.style.opacity = '0.8';
+                document.body.appendChild(dragImage);
+                e.dataTransfer.setDragImage(dragImage, 0, 0);
+                
+                // Remove the temporary element after a delay
+                setTimeout(() => document.body.removeChild(dragImage), 0);
+            }
+            
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function handleDragOver(e) {
+            preventDefault(e);
+            e.dataTransfer.dropEffect = 'move';
+            
+            // Show visual indicator where drop would occur
+            const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
+            const placeholder = e.currentTarget.querySelector('.drag-placeholder');
+            
+            if (!placeholder) {
+                const dragPlaceholder = document.createElement('div');
+                dragPlaceholder.className = 'drag-placeholder';
+                e.currentTarget.appendChild(dragPlaceholder);
+            }
+            
+            if (afterElement) {
+                e.currentTarget.insertBefore(placeholder, afterElement);
+            } else {
+                e.currentTarget.appendChild(placeholder);
+            }
+        }
+
+        function handleDrop(e) {
+            preventDefault(e);
+            
+            const id = e.dataTransfer.getData('text/plain');
+            if (!id) return;
+            
+            // Remove drag placeholder
+            const placeholder = e.currentTarget.querySelector('.drag-placeholder');
+            if (placeholder) {
+                e.currentTarget.removeChild(placeholder);
+            }
+            
+            // Determine if this is a task or note
+            const isNote = id.startsWith('note_');
+            const category = e.currentTarget.dataset.category || state.activeTab;
+            
+            if (isNote) {
+                // Handle note drop
+                const noteIndex = state.notes.findIndex(n => n.id === id);
+                if (noteIndex === -1) return;
+                
+                // Update note location
+                state.notes[noteIndex].inSidebar = false;
+                
+                // Find where to insert the note
+                const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
+                const order = state.tasks[category].order;
+                
+                if (afterElement) {
+                    const afterIndex = order.indexOf(afterElement.dataset.id);
+                    order.splice(afterIndex, 0, id);
+                } else {
+                    order.push(id);
+                }
+            } else {
+                // Handle task reordering within the same category
+                const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
+                const order = state.tasks[category].order;
+                const currentIndex = order.indexOf(id);
+                
+                // Remove from current position
+                if (currentIndex > -1) {
+                    order.splice(currentIndex, 1);
+                }
+                
+                // Insert at new position
+                if (afterElement) {
+                    const afterIndex = order.indexOf(afterElement.dataset.id);
+                    order.splice(afterIndex, 0, id);
+                } else {
+                    order.push(id);
+                }
+            }
+            
+            renderUI();
+            saveStateToStorage();
+        }
+
+        function handleNoteDrop(e) {
+            preventDefault(e);
+            
+            const id = e.dataTransfer.getData('text/plain');
+            if (!id) return;
+            
+            // Remove drag placeholder
+            const placeholder = e.currentTarget.querySelector('.drag-placeholder');
+            if (placeholder) {
+                e.currentTarget.removeChild(placeholder);
+            }
+            
+            // Only notes can be moved back to sidebar
+            if (!id.startsWith('note_')) return;
+            
+            const noteIndex = state.notes.findIndex(n => n.id === id);
+            if (noteIndex === -1) return;
+            
+            // Update note location
+            state.notes[noteIndex].inSidebar = true;
+            
+            // Remove from any task list order
+            CATEGORIES.forEach(category => {
+                state.tasks[category].order = state.tasks[category].order.filter(itemId => itemId !== id);
+            });
+            
+            renderUI();
+            saveStateToStorage();
+        }
+
+        function handleDragEnd(e) {
+            e.target.classList.remove('dragging');
+            
+            // Remove any drag placeholders
+            document.querySelectorAll('.drag-placeholder').forEach(el => {
+                el.parentNode.removeChild(el);
+            });
+        }
+
+        // Helper to find element after which to insert dragged element
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.task-card:not(.dragging), .note-card:not(.dragging)')];
+            
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    return closest;
+                }
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        // Update total points counter
+        function updateTotalPoints() {
+            let total = 0;
+            
+            CATEGORIES.forEach(category => {
+                state.tasks[category].items.forEach(task => {
+                    if (task.completed) {
+                        total += task.points;
                     }
-                }
-                
-                this.saveState();
-                this.renderTasks();
-                this.cleanupDrag();
-            }
-            
-            updateGlobalOrderFromVisible(visibleOrder) {
-                // Create a map of current positions for visible items
-                const visiblePositions = new Map();
-                visibleOrder.forEach((item, index) => {
-                    visiblePositions.set(`${item.type}::${item.id}`, index);
                 });
-                
-                // Sort global order to match visible order for visible items
-                const filteredTasks = this.getFilteredTasks();
-                const filteredTaskIds = new Set(filteredTasks.map(t => t.id));
-                
-                this.state.itemOrder.sort((a, b) => {
-                    const aVisible = (a.type === 'task' && filteredTaskIds.has(a.id)) || 
-                                   (a.type === 'note' && this.notes.find(n => n.id === a.id)?.location === 'list');
-                    const bVisible = (b.type === 'task' && filteredTaskIds.has(b.id)) || 
-                                   (b.type === 'note' && this.notes.find(n => n.id === b.id)?.location === 'list');
-                    
-                    if (aVisible && bVisible) {
-                        const aPos = visiblePositions.get(`${a.type}::${a.id}`) ?? Infinity;
-                        const bPos = visiblePositions.get(`${b.type}::${b.id}`) ?? Infinity;
-                        return aPos - bPos;
-                    } else if (aVisible) {
-                        return -1;
-                    } else if (bVisible) {
-                        return 1;
-                    }
-                    return 0;
-                });
+            });
+            
+            state.totalPoints = total;
+            totalPointsElement.textContent = total;
+        }
+
+        // Update load status message
+        function updateLoadStatus(message, type = 'info') {
+            const statusDiv = document.createElement('div');
+            statusDiv.textContent = message;
+            
+            if (type === 'error') {
+                statusDiv.className = 'error';
             }
             
-            cleanupDrag() {
-                if (this.dragState?.element) {
-                    this.dragState.element.classList.remove('dragging');
-                }
-                this.dragState = null;
-                this.removeDragPlaceholder();
-                document.getElementById('taskList').classList.remove('drag-over');
-            }
+            loadStatusElement.appendChild(statusDiv);
             
-            removeDragPlaceholder() {
-                if (this.dragPlaceholder && this.dragPlaceholder.parentNode) {
-                    this.dragPlaceholder.parentNode.removeChild(this.dragPlaceholder);
-                }
-                this.dragPlaceholder = null;
-            }
+            // Auto-scroll to show latest status
+            loadStatusElement.scrollTop = loadStatusElement.scrollHeight;
+        }
+
+        // Confirm and reset all data
+        function confirmResetData() {
+            if (!confirm('Are you sure you want to reset all data? This cannot be undone.')) return;
             
-            getDragAfterElement(container, y) {
-                const draggableElements = [...container.querySelectorAll('.task-item:not(.dragging), .note-item:not(.dragging)')];
-                
-                return draggableElements.reduce((closest, child) => {
-                    const box = child.getBoundingClientRect();
-                    const offset = y - box.top - box.height / 2;
-                    
-                    if (offset < 0 && offset > closest.offset) {
-                        return { offset: offset, element: child };
-                    } else {
-                        return closest;
-                    }
-                }, { offset: Number.NEGATIVE_INFINITY }).element;
-            }
-            
-            getFilteredTasks() {
-                let filteredTasks = this.tasks;
-                
-                // Filter by active category
-                if (this.state.activeCategory !== 'all') {
-                    filteredTasks = filteredTasks.filter(task => task.category === this.state.activeCategory);
-                }
-                
-                // Filter by collapsed categories (only in 'all' view)
-                if (this.state.activeCategory === 'all') {
-                    filteredTasks = filteredTasks.filter(task => 
-                        !this.state.collapsedCategories.has(task.category)
-                    );
-                }
-                
-                return filteredTasks;
-            }
-            
-            render() {
-                this.renderTasks();
-                this.renderCategoryControls();
-                this.renderNotes();
-                this.updatePointsDisplay();
-                this.updatePerformanceInfo();
-                
-                // Setup drag and drop after rendering
-                requestAnimationFrame(() => this.setupDragAndDrop());
-            }
-            
-            renderTasks() {
-                const taskList = document.getElementById('taskList');
-                
-                // Use DocumentFragment for better performance
-                const fragment = document.createDocumentFragment();
-                
-                const filteredTasks = this.getFilteredTasks();
-                const filteredTaskIds = new Set(filteredTasks.map(t => t.id));
-                
-                // Create ordered items list (only for filtered tasks)
-                const orderedItems = [];
-                
-                this.state.itemOrder.forEach(orderItem => {
-                    if (orderItem.type === 'task' && filteredTaskIds.has(orderItem.id)) {
-                        const task = filteredTasks.find(t => t.id === orderItem.id);
-                        if (task) orderedItems.push({ type: 'task', data: task });
-                    } else if (orderItem.type === 'note') {
-                        const note = this.notes.find(n => n.id === orderItem.id && n.location === 'list');
-                        if (note) orderedItems.push({ type: 'note', data: note });
-                    }
-                });
-                
-                // Render items
-                orderedItems.forEach(item => {
-                    if (item.type === 'task') {
-                        fragment.appendChild(this.createTaskElement(item.data));
-                    } else {
-                        fragment.appendChild(this.createNoteElement(item.data, true));
-                    }
-                });
-                
-                // Replace all content at once
-                taskList.innerHTML = '';
-                taskList.appendChild(fragment);
-            }
-            
-            updatePerformanceInfo() {
-                const visibleTasks = this.getFilteredTasks().length;
-                const totalTasks = this.tasks.length;
-                
-                document.getElementById('visibleCount').textContent = visibleTasks;
-                document.getElementById('totalCount').textContent = totalTasks;
-            }
-            
-            createTaskElement(task) {
-                const li = document.createElement('li');
-                li.className = 'task-item';
-                li.dataset.taskId = task.id;
-                li.tabIndex = 0;
-                li.draggable = true;
-                li.setAttribute('role', 'listitem');
-                li.setAttribute('aria-pressed', this.state.selectedTasks.has(task.id));
-                
-                if (this.state.selectedTasks.has(task.id)) {
-                    li.classList.add('selected');
-                }
-                if (this.state.minimizedTasks.has(task.id)) {
-                    li.classList.add('minimized');
-                }
-                
-                const iconHtml = task.area ? 
-                    `<img src="${task.area}" alt="" onerror="this.style.display='none'" loading="lazy">` : 
-                    '?';
-                
-                li.innerHTML = `
-                    <div class="task-header">
-                        <div class="task-icon">${iconHtml}</div>
-                        <div class="task-title">${this.escapeHtml(task.task)}</div>
-                        <div class="task-controls">
-                            <button class="btn minimize-btn" aria-label="Toggle minimize">
-                                ${this.state.minimizedTasks.has(task.id) ? 'Expand' : 'Minimize'}
-                            </button>
-                        </div>
-                    </div>
-                    <div class="task-details">
-                        ${task.information ? this.escapeHtml(task.information) : ''}
-                    </div>
-                    <div class="task-requirements">
-                        ${task.requirements.text ? `<span>${this.escapeHtml(task.requirements.text)}</span>` : ''}
-                        ${task.requirements.img ? 
-                            `<img class="requirement-img" src="${task.requirements.img}" alt="" onerror="this.style.display='none'" loading="lazy">` : 
-                            ''}
-                    </div>
-                    <div class="task-meta">
-                        <div class="task-category">${task.category}</div>
-                        <div class="task-points">${task.points}</div>
-                    </div>
-                `;
-                
-                li.addEventListener('click', (e) => {
-                    if (!e.target.classList.contains('btn')) {
-                        this.toggleTaskSelection(task.id);
-                    }
-                });
-                
-                li.querySelector('.minimize-btn').addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    this.toggleTaskMinimized(task.id);
-                });
-                
-                return li;
-            }
-            
-            createNoteElement(note, inMainList = false) {
-                const div = document.createElement('div');
-                div.className = `note-item ${inMainList ? 'in-main-list' : ''}`;
-                div.dataset.noteId = note.id;
-                div.draggable = true;
-                div.setAttribute('role', 'listitem');
-                
-                div.innerHTML = `
-                    <div class="note-header">
-                        <div class="note-title">${this.escapeHtml(note.title)}</div>
-                        <div>
-                            <button class="btn" onclick="taskManager.toggleNoteEdit('${note.id}')">
-                                ${note.editing ? 'Save' : 'Edit'}
-                            </button>
-                            <button class="btn" onclick="taskManager.deleteNote('${note.id}')">Delete</button>
-                        </div>
-                    </div>
-                    <div class="note-content">
-                        ${note.editing ? 
-                            `<textarea class="note-edit" onblur="taskManager.updateNoteBody('${note.id}', this.value)">${this.escapeHtml(note.body)}</textarea>` :
-                            `<div class="note-body">${this.escapeHtml(note.body)}</div>`}
-                    </div>
-                `;
-                
-                return div;
-            }
-            
-            renderCategoryControls() {
-                const controls = document.getElementById('categoryControls');
-                controls.innerHTML = '';
-                
-                this.categories.forEach(category => {
-                    const count = this.tasks.filter(t => t.category === category).length;
-                    if (count === 0) return;
-                    
-                    const button = document.createElement('button');
-                    button.className = 'btn category-btn';
-                    button.innerHTML = `
-                        <span>${category} (${count})</span>
-                        <span>${this.state.collapsedCategories.has(category) ? 'Show' : 'Hide'}</span>
-                    `;
-                    
-                    button.addEventListener('click', () => {
-                        this.toggleCategoryCollapsed(category);
-                    });
-                    
-                    controls.appendChild(button);
-                });
-            }
-            
-            renderNotes() {
-                const notesList = document.getElementById('notesList');
-                notesList.innerHTML = '';
-                
-                const sidebarNotes = this.notes.filter(note => note.location === 'sidebar');
-                sidebarNotes.forEach(note => {
-                    notesList.appendChild(this.createNoteElement(note));
-                });
-            }
-            
-            escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-            
-            exportState() {
-                return JSON.stringify({
-                    ...this.state,
-                    selectedTasks: Array.from(this.state.selectedTasks),
-                    minimizedTasks: Array.from(this.state.minimizedTasks),
-                    collapsedCategories: Array.from(this.state.collapsedCategories),
-                    notes: this.notes,
-                    version: 'v2'
-                }, null, 2);
-            }
-            
-            importState(jsonString) {
+            localStorage.removeItem(APP_STORAGE_KEY);
+            window.location.reload();
+        }
+
+        // Save state to localStorage
+        function saveStateToStorage() {
+            localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(state));
+        }
+
+        // Load state from localStorage
+        function loadStateFromStorage() {
+            const saved = localStorage.getItem(APP_STORAGE_KEY);
+            if (saved) {
                 try {
-                    const imported = JSON.parse(jsonString);
+                    const parsed = JSON.parse(saved);
                     
-                    this.state = {
-                        selectedTasks: new Set(imported.selectedTasks || []),
-                        minimizedTasks: new Set(imported.minimizedTasks || []),
-                        collapsedCategories: new Set(imported.collapsedCategories || []),
-                        itemOrder: imported.itemOrder || [],
-                        totalPoints: imported.totalPoints || 0,
-                        activeCategory: imported.activeCategory || 'all'
+                    // Merge saved state with default state
+                    state = {
+                        ...state,
+                        ...parsed,
+                        tasks: {
+                            ...state.tasks,
+                            ...parsed.tasks
+                        }
                     };
-                    
-                    this.notes = imported.notes || [];
-                    this.noteIdCounter = Math.max(0, ...this.notes.map(n => parseInt(n.id.split('::')[1]) || 0)) + 1;
-                    
-                    this.saveState();
-                    this.render();
-                    
-                    return true;
-                } catch (error) {
-                    console.error('Import failed:', error);
-                    return false;
+                } catch (e) {
+                    console.error('Failed to parse saved state:', e);
                 }
             }
         }
-        
-        // Initialize the app
-        let taskManager;
-        document.addEventListener('DOMContentLoaded', () => {
-            taskManager = new TaskManager();
-        });
+
+        // Utility function to prevent default event behavior
+        function preventDefault(e) {
+            e.preventDefault();
+        }
+
+        // Export/import functions for external access
+        window.app = {
+            exportState: () => JSON.stringify(state),
+            importState: (json) => {
+                try {
+                    const newState = JSON.parse(json);
+                    state = newState;
+                    saveStateToStorage();
+                    renderUI();
+                    return true;
+                } catch (e) {
+                    console.error('Failed to import state:', e);
+                    return false;
+                }
+            }
+        };
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
