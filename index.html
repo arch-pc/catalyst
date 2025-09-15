@@ -1,1094 +1,1314 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RS3 Task Tracker</title>
-    <style>
-        :root {
-            --bg-color: #f8f9fa;
-            --text-color: #333;
-            --border-color: #ddd;
-            --tab-bg: #e9ecef;
-            --tab-active-bg: #f8f9fa;
-            --card-bg: #fff;
-            --primary-color: #6c757d;
-            --secondary-color: #adb5bd;
-            --completed-color: #d1e7dd;
-            --accent-color: #4a5568;
-            --shadow: 0 2px 4px rgba(0,0,0,0.05);
-            --focus-outline: 2px solid var(--accent-color);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.5;
-            padding: 0;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        header {
-            background-color: var(--card-bg);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1rem;
-            box-shadow: var(--shadow);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            text-align: center;
-            color: var(--accent-color);
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
-
-        .tab-button {
-            padding: 0.5rem 1rem;
-            background-color: var(--tab-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px 4px 0 0;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            color: var(--text-color);
-        }
-
-        .tab-button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        .tab-button.active {
-            background-color: var(--tab-active-bg);
-            border-bottom: 1px solid var(--tab-active-bg);
-            position: relative;
-            top: 1px;
-            font-weight: 500;
-        }
-
-        .tab-button:focus {
-            outline: var(--focus-outline);
-        }
-
-        main {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .task-container {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-        }
-
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .task-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .task-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 1rem;
-            box-shadow: var(--shadow);
-            transition: all 0.2s;
-        }
-
-        .task-card.selected {
-            background-color: var(--completed-color);
-        }
-
-        .task-card.dragging {
-            opacity: 0.5;
-        }
-
-        .task-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 0.5rem;
-            cursor: grab;
-        }
-
-        .task-title-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            flex: 1;
-        }
-
-        .task-area-icon {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
-
-        .task-title {
-            font-weight: 500;
-            flex: 1;
-        }
-
-        .task-points {
-            background-color: var(--tab-bg);
-            padding: 0.25rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            min-width: 40px;
-            text-align: center;
-        }
-
-        .task-info {
-            margin-top: 0.75rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .task-info p {
-            margin-bottom: 0.5rem;
-        }
-
-        .task-info img {
-            max-width: 100%;
-            border-radius: 4px;
-            margin-top: 0.5rem;
-        }
-
-        .task-controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.5rem;
-            margin-top: 0.75rem;
-        }
-
-        button {
-            padding: 0.25rem 0.5rem;
-            background-color: var(--tab-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-            color: var(--text-color);
-        }
-
-        button:hover {
-            background-color: var(--secondary-color);
-        }
-
-        button:focus {
-            outline: var(--focus-outline);
-        }
-
-        .sidebar {
-            width: 300px;
-            background-color: var(--card-bg);
-            border-left: 1px solid var(--border-color);
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            overflow-y: auto;
-        }
-
-        .sidebar-section {
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 1.5rem;
-        }
-
-        .sidebar-section:last-child {
-            border-bottom: none;
-        }
-
-        h2 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .total-points {
-            font-size: 1.5rem;
-            font-weight: 500;
-            text-align: center;
-            padding: 0.5rem;
-            background-color: var(--tab-bg);
-            border-radius: 4px;
-        }
-
-        .notes-form {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            resize: vertical;
-            min-height: 60px;
-            font-family: inherit;
-        }
-
-        textarea:focus {
-            outline: var(--focus-outline);
-        }
-
-        .notes-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .note-card {
-            background-color: var(--tab-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            padding: 0.75rem;
-            cursor: grab;
-            transition: all 0.2s;
-        }
-
-        .note-card:focus {
-            outline: var(--focus-outline);
-        }
-
-        .note-content {
-            min-height: 20px;
-            margin-bottom: 0.5rem;
-        }
-
-        .note-controls {
-            display: flex;
-            justify-content: flex-end;
-            gap: 0.5rem;
-        }
-
-        .drag-placeholder {
-            border: 2px dashed var(--secondary-color);
-            border-radius: 4px;
-            height: 60px;
-            margin: 0.5rem 0;
-            background-color: rgba(0,0,0,0.03);
-        }
-
-        .loading {
-            padding: 2rem;
-            text-align: center;
-            color: var(--secondary-color);
-        }
-
-        .error {
-            padding: 1rem;
-            background-color: #f8d7da;
-            border: 1px solid #f5c2c7;
-            border-radius: 4px;
-            color: #842029;
-            margin-bottom: 1rem;
-        }
-
-        .minimized .task-info,
-        .minimized .task-controls {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            main {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                border-left: none;
-                border-top: 1px solid var(--border-color);
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Task Tabs Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+:root {
+  --bg: #1a1c1e;
+  --bg-alt: #232527;
+  --card: #232527;
+  --card-border: #3a3c3e;
+  --sidebar: #17191a;
+  --tab-btn: #2c2e31;
+  --tab-btn-active: #313335;
+  --tab-btn-border: #3f4143;
+  --text: #d4d6d8;
+  --text-muted: #a1a3a6;
+  --selected: #253d29;
+  --selected-border: #314e37;
+  --minimize-hover: #2f3133;
+  --dragged: #394045;
+  --placeholder: #262829;
+  --focus: #5e8d97;
+  --warning: #ad6a4a;
+  --aria-outline: 2px solid var(--focus);
+  --transition: 0.12s cubic-bezier(.19,1,.22,1);
+  --radius: 6px;
+  --shadow: 0 2px 8px rgba(20,23,25,0.08);
+  font-size: 16px;
+}
+body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+}
+#app-main {
+  display: flex; flex-direction: row;
+  min-height: 100vh;
+}
+#main-content {
+  flex: 1 1 0;
+  display: flex; flex-direction: column;
+  min-width: 0;
+}
+#tabs-bar {
+  display: flex;
+  border-bottom: 1px solid var(--tab-btn-border);
+  background: var(--bg-alt);
+  z-index: 2;
+}
+.tab-btn {
+  background: var(--tab-btn);
+  color: var(--text);
+  padding: 0.7em 1.2em;
+  border: none;
+  border-right: 1px solid var(--tab-btn-border);
+  outline: none;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background var(--transition);
+  border-radius: 0 0 var(--radius) var(--radius);
+  position: relative;
+}
+.tab-btn[aria-selected="true"] {
+  background: var(--tab-btn-active);
+  font-weight: 600;
+  z-index: 1;
+}
+.tab-btn:focus-visible {
+  outline: var(--aria-outline);
+  z-index: 2;
+}
+.tab-btn:last-child { border-right: none; }
+#tab-panels {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.tab-panel {
+  display: none;
+  height: 100%;
+  padding: 1.1em 1.1em 1.1em 1.1em;
+  overflow-y: auto;
+  background: var(--bg);
+  min-height: 0;
+}
+.tab-panel[aria-hidden="false"] {
+  display: block;
+}
+#sidebar {
+  width: 340px;
+  background: var(--sidebar);
+  padding: 1.2em 1.1em;
+  border-left: 1px solid var(--card-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1.8em;
+  min-width: 260px;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+@media (max-width: 780px) {
+  #sidebar { display: none; }
+}
+.sidebar-section {
+  margin-bottom: 0.3em;
+}
+.sidebar-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+#points-total {
+  font-size: 2.1em;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+  color: var(--selected-border);
+}
+#add-note-form {
+  display: flex;
+  gap: 0.5em;
+}
+#add-note-input {
+  flex: 1 1 0;
+  padding: 0.5em;
+  border: 1px solid var(--card-border);
+  background: var(--bg-alt);
+  color: var(--text);
+  border-radius: var(--radius);
+  outline: none;
+  transition: border var(--transition);
+}
+#add-note-input:focus-visible {
+  border: 1.5px solid var(--focus);
+}
+#add-note-btn {
+  background: var(--tab-btn);
+  color: var(--text);
+  border: none;
+  padding: 0.5em 1.1em;
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+#add-note-btn:focus-visible {
+  outline: var(--aria-outline);
+}
+#notes-list {
+  margin-top: 0.8em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+.note-card {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 0.6em 0.7em 0.6em 0.7em;
+  font-size: 1em;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+  box-shadow: var(--shadow);
+  min-height: 2.2em;
+  transition: background var(--transition);
+  cursor: grab;
+}
+.note-card.dragged {
+  background: var(--dragged);
+  opacity: 0.85;
+  z-index: 100;
+}
+.note-card .note-title {
+  font-weight: 600;
+  flex: 1 1 0;
+  cursor: pointer;
+  min-width: 0;
+  word-break: break-word;
+}
+.note-card[aria-selected="true"] {
+  background: var(--selected);
+  border-color: var(--selected-border);
+}
+.note-edit-input {
+  font-size: 1em;
+  flex: 1 1 0;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  color: var(--text);
+  padding: 0.2em 0.5em;
+}
+.note-delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.13em;
+  padding: 0.15em 0.3em;
+  border-radius: var(--radius);
+  margin-left: 0.3em;
+}
+.note-delete-btn:focus-visible {
+  outline: var(--aria-outline);
+}
+.note-delete-btn:hover {
+  background: var(--minimize-hover);
+  color: #e28773;
+}
+#sidebar-category-controls {
+  margin-top: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+.cat-btn {
+  background: var(--tab-btn);
+  color: var(--text);
+  border: none;
+  padding: 0.5em 1.1em;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-bottom: 0.3em;
+  font-size: 1em;
+  text-align: left;
+}
+.cat-btn:focus-visible {
+  outline: var(--aria-outline);
+}
+#reset-btn {
+  background: none;
+  color: var(--warning);
+  border: 1.5px solid var(--warning);
+  padding: 0.5em 1.1em;
+  border-radius: var(--radius);
+  cursor: pointer;
+  margin-top: 1.2em;
+  font-size: 1em;
+  transition: background var(--transition), color var(--transition);
+}
+#reset-btn:focus-visible {
+  outline: var(--aria-outline);
+}
+#reset-btn:hover {
+  background: var(--warning);
+  color: var(--sidebar);
+}
+#file-status-list {
+  font-size: 0.97em;
+  margin-top: 1.3em;
+  color: var(--warning);
+  word-break: break-word;
+  line-height: 1.5;
+}
+#file-status-list .ok {
+  color: var(--text-muted);
+}
+#file-status-list .warn {
+  color: var(--warning);
+}
+#file-status-list .loading {
+  color: var(--text-muted);
+  font-style: italic;
+}
+#sidebar hr {
+  border: none;
+  border-top: 1px solid var(--card-border);
+  margin: 1.2em 0 1.2em 0;
+}
+.drag-placeholder {
+  background: var(--placeholder);
+  border: 2px dashed var(--focus);
+  min-height: 2.8em;
+  border-radius: var(--radius);
+  margin: 0.2em 0;
+  transition: background var(--transition);
+}
+#tab-panels {
+  min-height: 0;
+  flex: 1 1 0;
+}
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  min-height: 0;
+}
+.task-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0.9em 1.0em 0.7em 0.9em;
+  margin-bottom: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+  cursor: pointer;
+  transition: background var(--transition), border var(--transition);
+  min-height: 2.8em;
+}
+.task-card.selected {
+  background: var(--selected);
+  border-color: var(--selected-border);
+}
+.task-card.dragged {
+  background: var(--dragged);
+  opacity: 0.85;
+  z-index: 100;
+}
+.task-card.minimized {
+  flex-direction: row;
+  align-items: center;
+  padding: 0.5em 1.0em 0.5em 0.9em;
+  min-height: 2.0em;
+  gap: 0.5em;
+}
+.task-card.minimized .task-title {
+  font-weight: 600;
+  font-size: 1.05em;
+  flex: 1 1 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.task-card.minimized .area-icon {
+  margin-right: 0.7em;
+}
+.area-icon {
+  width: 2.0em;
+  height: 2.0em;
+  vertical-align: middle;
+  border-radius: 4px;
+  object-fit: contain;
+  margin-right: 0.6em;
+  background: var(--bg-alt);
+  border: 1px solid var(--tab-btn-border);
+  display: inline-block;
+}
+.task-title {
+  font-size: 1.12em;
+  font-weight: 600;
+  margin-bottom: 0.15em;
+  word-break: break-word;
+}
+.task-info, .task-req, .task-pts {
+  font-size: 0.97em;
+  color: var(--text-muted);
+  margin-bottom: 0.08em;
+  word-break: break-word;
+}
+.task-pts {
+  color: var(--selected-border);
+  font-weight: bold;
+  font-size: 1.08em;
+  margin-left: 0.2em;
+}
+.task-controls {
+  margin-top: 0.2em;
+  display: flex;
+  gap: 0.4em;
+}
+.minimize-btn {
+  background: var(--tab-btn);
+  color: var(--text-muted);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.15em 0.6em;
+  cursor: pointer;
+  font-size: 1em;
+  margin-right: 0.3em;
+  margin-left: 0.1em;
+  align-self: flex-start;
+  transition: background var(--transition), color var(--transition);
+}
+.minimize-btn:focus-visible {
+  outline: var(--aria-outline);
+}
+.minimize-btn:hover {
+  background: var(--minimize-hover);
+  color: var(--text);
+}
+.task-card .task-req-img {
+  width: 2.2em;
+  height: 2.2em;
+  margin-left: 0.25em;
+  margin-right: 0.7em;
+  vertical-align: middle;
+  border-radius: 3px;
+  object-fit: contain;
+  background: var(--bg-alt);
+  border: 1px solid var(--tab-btn-border);
+}
+.task-card .task-req-img:not([src]) {
+  display: none;
+}
+@media (max-width: 900px) {
+  #sidebar {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    position: fixed;
+    left: 0; top: 0; height: 100vh;
+    z-index: 1000;
+    display: none;
+    background: var(--sidebar);
+  }
+  #sidebar.open {
+    display: flex;
+  }
+  #main-content {
+    min-width: 0;
+  }
+}
+::-webkit-scrollbar {
+  width: 11px;
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--tab-btn-border);
+  border-radius: 7px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--minimize-hover);
+}
+*:focus-visible {
+  outline: var(--aria-outline);
+  outline-offset: 2px;
+}
+.sr-only {
+  position: absolute;
+  left: -10000px; top: auto; width: 1px; height: 1px;
+  overflow: hidden;
+}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>RS3 Task Tracker</h1>
-        <div class="tabs" role="tablist">
-            <button class="tab-button active" role="tab" aria-selected="true" data-category="easy">Easy</button>
-            <button class="tab-button" role="tab" aria-selected="false" data-category="medium">Medium</button>
-            <button class="tab-button" role="tab" aria-selected="false" data-category="hard">Hard</button>
-            <button class="tab-button" role="tab" aria-selected="false" data-category="elite">Elite</button>
-            <button class="tab-button" role="tab" aria-selected="false" data-category="master">Master</button>
-        </div>
-    </header>
+<div id="app-main">
+  <div id="main-content">
+    <nav id="tabs-bar" role="tablist" aria-label="Task categories">
+      <button class="tab-btn" id="tab-btn-easy" role="tab" aria-selected="true" tabindex="0" aria-controls="tab-panel-easy">Easy</button>
+      <button class="tab-btn" id="tab-btn-medium" role="tab" aria-selected="false" tabindex="-1" aria-controls="tab-panel-medium">Medium</button>
+      <button class="tab-btn" id="tab-btn-hard" role="tab" aria-selected="false" tabindex="-1" aria-controls="tab-panel-hard">Hard</button>
+      <button class="tab-btn" id="tab-btn-elite" role="tab" aria-selected="false" tabindex="-1" aria-controls="tab-panel-elite">Elite</button>
+      <button class="tab-btn" id="tab-btn-master" role="tab" aria-selected="false" tabindex="-1" aria-controls="tab-panel-master">Master</button>
+    </nav>
+    <div id="tab-panels">
+      <div class="tab-panel" id="tab-panel-easy" role="tabpanel" aria-labelledby="tab-btn-easy" aria-hidden="false">
+        <div class="task-list" id="task-list-easy" role="list" tabindex="0"></div>
+      </div>
+      <div class="tab-panel" id="tab-panel-medium" role="tabpanel" aria-labelledby="tab-btn-medium" aria-hidden="true">
+        <div class="task-list" id="task-list-medium" role="list" tabindex="0"></div>
+      </div>
+      <div class="tab-panel" id="tab-panel-hard" role="tabpanel" aria-labelledby="tab-btn-hard" aria-hidden="true">
+        <div class="task-list" id="task-list-hard" role="list" tabindex="0"></div>
+      </div>
+      <div class="tab-panel" id="tab-panel-elite" role="tabpanel" aria-labelledby="tab-btn-elite" aria-hidden="true">
+        <div class="task-list" id="task-list-elite" role="list" tabindex="0"></div>
+      </div>
+      <div class="tab-panel" id="tab-panel-master" role="tabpanel" aria-labelledby="tab-btn-master" aria-hidden="true">
+        <div class="task-list" id="task-list-master" role="list" tabindex="0"></div>
+      </div>
+    </div>
+  </div>
+  <aside id="sidebar" aria-label="Sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">Total Points</div>
+      <div id="points-total" aria-live="polite" tabindex="0">0</div>
+    </div>
+    <hr>
+    <div class="sidebar-section">
+      <div class="sidebar-title">Notes</div>
+      <form id="add-note-form" autocomplete="off">
+        <input type="text" id="add-note-input" aria-label="Add note" placeholder="Enter note title..." maxlength="80" />
+        <button id="add-note-btn" type="submit" aria-label="Add note">Add</button>
+      </form>
+      <div id="notes-list" aria-label="Notes list" role="list"></div>
+    </div>
+    <hr>
+    <div class="sidebar-section" id="sidebar-category-controls">
+      <div class="sidebar-title">Category Controls</div>
+      <button class="cat-btn" id="collapse-btn" type="button" aria-label="Collapse all tasks in active tab">Collapse all</button>
+      <button class="cat-btn" id="expand-btn" type="button" aria-label="Expand all tasks in active tab">Expand all</button>
+    </div>
+    <hr>
+    <div class="sidebar-section">
+      <button id="reset-btn" type="button" aria-label="Reset all data">Reset all data</button>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-title">File Load Status</div>
+      <div id="file-status-list"></div>
+    </div>
+  </aside>
+</div>
+<script>
+(function () {
+// --- Constants & Utilities ---
+const CATEGORIES = [
+  { key: "easy",    label: "Easy",    file: "easy.json" },
+  { key: "medium",  label: "Medium",  file: "medium.json" },
+  { key: "hard",    label: "Hard",    file: "hard.json" },
+  { key: "elite",   label: "Elite",   file: "elite.json" },
+  { key: "master",  label: "Master",  file: "master.json" },
+];
+const LOCAL_KEY = "rs3TasksTabsState:v1";
+let g_state = null; // Main state object
+let g_data = {};    // Loaded tasks per category
+let g_notes = [];   // All notes
+let g_fileStatus = {}; // File load status
+let g_activeTab = "easy";
+let g_drag = null;  // Current drag info
 
-    <main>
-        <div class="task-container">
-            <div class="tab-content active" data-category="easy">
-                <div class="task-list" data-category="easy"></div>
-            </div>
-            <div class="tab-content" data-category="medium">
-                <div class="task-list" data-category="medium"></div>
-            </div>
-            <div class="tab-content" data-category="hard">
-                <div class="task-list" data-category="hard"></div>
-            </div>
-            <div class="tab-content" data-category="elite">
-                <div class="task-list" data-category="elite"></div>
-            </div>
-            <div class="tab-content" data-category="master">
-                <div class="task-list" data-category="master"></div>
-            </div>
-        </div>
+function clamp(x, min, max) { return Math.max(min, Math.min(x, max)); }
+function coerceInt(val) {
+  if (typeof val === "number" && !isNaN(val)) return Math.floor(val);
+  if (typeof val === "string") {
+    const n = parseInt(val, 10);
+    return isNaN(n) ? 0 : n;
+  }
+  return 0;
+}
+function getTaskId(cat, idx) { return `${cat}::${idx}`; }
+function isTaskId(id) { return /^[a-z]+::\d+$/.test(id); }
+function isNoteId(id) { return /^note::\w{6,}/.test(id); }
+function genNoteId() {
+  return "note::" + Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+}
+function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
+function focusElem(elem) { try { elem && elem.focus && elem.focus(); } catch {} }
+function ariaAlert(msg) {
+  let el = document.getElementById("aria-live");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "aria-live";
+    el.className = "sr-only";
+    el.setAttribute("aria-live", "polite");
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+}
+function nextFrame(fn) { window.requestAnimationFrame(fn); }
+function saveState() {
+  try {
+    localStorage.setItem(LOCAL_KEY, JSON.stringify(g_state));
+  } catch (e) {}
+}
+function loadState() {
+  try {
+    const val = localStorage.getItem(LOCAL_KEY);
+    if (!val) return null;
+    return JSON.parse(val);
+  } catch (e) { return null; }
+}
+function resetState() {
+  localStorage.removeItem(LOCAL_KEY);
+  window.location.reload();
+}
+// -- Export/import hooks
+window.app = window.app || {};
+window.app.exportState = function () {
+  return deepClone(g_state);
+};
+window.app.importState = function (json) {
+  if (typeof json !== "object" || !json) return false;
+  g_state = deepClone(json);
+  saveState();
+  renderAll();
+  return true;
+};
+// --- State management ---
+function initDefaultState() {
+  const state = { tabs: {}, notes: [], points: 0, version: 1 };
+  for (const cat of CATEGORIES) {
+    state.tabs[cat.key] = {
+      order: [], // array of task/note IDs
+      selected: {}, // id: bool
+      minimized: {}, // id: bool
+      collapsed: false,
+    };
+  }
+  state.notes = [];
+  state.points = 0;
+  return state;
+}
+function buildInitialTabOrder(cat, tasks) {
+  return tasks.map((_, i) => getTaskId(cat, i));
+}
+function updatePoints() {
+  let total = 0;
+  for (const cat of CATEGORIES) {
+    const tab = g_state.tabs[cat.key];
+    for (const id of tab.order) {
+      if (isTaskId(id) && tab.selected[id]) {
+        const idx = parseInt(id.split("::")[1], 10);
+        const task = g_data[cat.key] && g_data[cat.key][idx];
+        total += task ? coerceInt(task.Pts) : 0;
+      }
+    }
+  }
+  document.getElementById("points-total").textContent = total;
+  g_state.points = total;
+  saveState();
+}
+function updateFileStatusUI() {
+  const el = document.getElementById("file-status-list");
+  let html = "";
+  let loaded = 0;
+  for (const cat of CATEGORIES) {
+    const st = g_fileStatus[cat.key];
+    if (!st) {
+      html += `<div class="loading">${cat.label}: Loading...</div>`;
+    } else if (st.ok) {
+      html += `<div class="ok">${cat.label}: Loaded (${st.count} tasks)</div>`;
+      loaded++;
+    } else {
+      html += `<div class="warn">${cat.label}: ${st.error || "Error loading file"}</div>`;
+    }
+  }
+  if (loaded === 0) {
+    html += `<div class="warn" style="margin-top:0.7em;">No tasks loaded. Place JSON files in site root.</div>`;
+  }
+  el.innerHTML = html;
+}
+// --- Data loading ---
+function fetchJsonFile(cat, file) {
+  return fetch(file).then(resp => {
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    return resp.json();
+  }).then(arr => {
+    if (!Array.isArray(arr)) throw new Error("Not an array");
+    arr = arr.map((obj, idx) => {
+      // Coerce common keys
+      return {
+        ...obj,
+        Task: typeof obj.Task === "string" ? obj.Task : ("Task #" + idx),
+        Pts: coerceInt(obj.Pts),
+        Area: typeof obj.Area === "string" ? obj.Area : "",
+        Information: typeof obj.Information === "string" ? obj.Information : "",
+        Requirements: typeof obj.Requirements === "object" && obj.Requirements !== null
+          ? obj.Requirements : {},
+      };
+    });
+    g_fileStatus[cat] = { ok: true, count: arr.length };
+    return arr;
+  }).catch(err => {
+    g_fileStatus[cat] = { ok: false, error: err.message };
+    return [];
+  });
+}
+function loadAllData() {
+  const promises = [];
+  for (const cat of CATEGORIES) {
+    g_fileStatus[cat.key] = null; // loading
+    promises.push(
+      fetchJsonFile(cat.key, cat.file).then(arr => {
+        g_data[cat.key] = arr;
+      })
+    );
+  }
+  updateFileStatusUI();
+  return Promise.all(promises).then(() => {
+    updateFileStatusUI();
+  });
+}
+// --- Rendering ---
+function renderTabPanel(cat) {
+  const tasks = g_data[cat] || [];
+  const tabState = g_state.tabs[cat];
+  const container = document.getElementById(`task-list-${cat}`);
+  // If not loaded
+  if (!g_fileStatus[cat] || !g_fileStatus[cat].ok) {
+    container.innerHTML = `<div style="color:var(--text-muted);font-style:italic;">Loading...</div>`;
+    return;
+  }
+  // Build list of task/note IDs in order
+  const order = tabState.order.length === tasks.length
+    ? tabState.order
+    : buildInitialTabOrder(cat, tasks);
+  // Build DOM
+  container.innerHTML = "";
+  for (let pos = 0; pos < order.length; ++pos) {
+    const id = order[pos];
+    if (isTaskId(id)) {
+      const idx = parseInt(id.split("::")[1], 10);
+      const task = tasks[idx];
+      if (!task) continue;
+      const card = renderTaskCard(cat, idx, task, tabState.selected[id], tabState.minimized[id]);
+      container.appendChild(card);
+    } else if (isNoteId(id)) {
+      const note = g_notes.find(n => n.id === id && n.location && n.location.tab === cat);
+      if (note) {
+        const noteCard = renderNoteCard(note, { inTab: true, tab: cat });
+        container.appendChild(noteCard);
+      }
+    }
+  }
+  // If all tasks minimized/collapsed
+  container.parentElement.setAttribute("aria-hidden", g_activeTab !== cat ? "true" : "false");
+}
 
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <h2>Total Points</h2>
-                <div class="total-points" id="totalPoints">0</div>
-            </div>
+function renderTaskCard(cat, idx, task, selected, minimized) {
+  const id = getTaskId(cat, idx);
+  const div = document.createElement("div");
+  div.className = "task-card" + (selected ? " selected" : "") + (minimized ? " minimized" : "");
+  div.setAttribute("role", "listitem");
+  div.setAttribute("tabindex", "-1");
+  div.setAttribute("data-id", id);
+  div.setAttribute("draggable", "true");
+  if (selected) div.setAttribute("aria-selected", "true");
+  if (minimized) div.setAttribute("aria-expanded", "false");
+  else div.setAttribute("aria-expanded", "true");
+  // Drag events
+  addDndHandlers(div, { id, type: "task", cat });
+  // Card content
+  if (minimized) {
+    if (task.Area) {
+      const img = document.createElement("img");
+      img.className = "area-icon";
+      img.src = task.Area;
+      img.alt = "";
+      img.setAttribute("aria-hidden", "true");
+      div.appendChild(img);
+    }
+    const title = document.createElement("span");
+    title.className = "task-title";
+    title.textContent = task.Task;
+    div.appendChild(title);
+    const pts = document.createElement("span");
+    pts.className = "task-pts";
+    pts.textContent = `+${coerceInt(task.Pts)}`;
+    div.appendChild(pts);
+  } else {
+    const head = document.createElement("div");
+    head.style.display = "flex";
+    head.style.alignItems = "center";
+    if (task.Area) {
+      const img = document.createElement("img");
+      img.className = "area-icon";
+      img.src = task.Area;
+      img.alt = "";
+      img.setAttribute("aria-hidden", "true");
+      head.appendChild(img);
+    }
+    const title = document.createElement("span");
+    title.className = "task-title";
+    title.textContent = task.Task;
+    head.appendChild(title);
+    const pts = document.createElement("span");
+    pts.className = "task-pts";
+    pts.textContent = `+${coerceInt(task.Pts)}`;
+    head.appendChild(pts);
+    div.appendChild(head);
+    if (task.Information) {
+      const info = document.createElement("div");
+      info.className = "task-info";
+      info.textContent = task.Information;
+      div.appendChild(info);
+    }
+    if (task.Requirements && (task.Requirements.text || task.Requirements.img)) {
+      const req = document.createElement("div");
+      req.className = "task-req";
+      if (task.Requirements.img) {
+        const reqImg = document.createElement("img");
+        reqImg.className = "task-req-img";
+        reqImg.src = task.Requirements.img;
+        reqImg.alt = "";
+        req.appendChild(reqImg);
+      }
+      if (task.Requirements.text) {
+        const reqText = document.createElement("span");
+        reqText.textContent = task.Requirements.text;
+        req.appendChild(reqText);
+      }
+      div.appendChild(req);
+    }
+  }
+  // Controls
+  const controls = document.createElement("div");
+  controls.className = "task-controls";
+  const minBtn = document.createElement("button");
+  minBtn.className = "minimize-btn";
+  minBtn.type = "button";
+  minBtn.setAttribute("aria-label", minimized ? "Expand task" : "Minimize task");
+  minBtn.tabIndex = 0;
+  minBtn.textContent = minimized ? "▸" : "▾";
+  minBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMinimized(cat, id);
+  });
+  minBtn.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      toggleMinimized(cat, id);
+    }
+  });
+  controls.appendChild(minBtn);
+  div.appendChild(controls);
 
-            <div class="sidebar-section">
-                <h2>Notes</h2>
-                <form class="notes-form" id="noteForm">
-                    <textarea placeholder="Add a new note..." id="noteInput"></textarea>
-                    <button type="submit">Add Note</button>
-                </form>
-                <div class="notes-list" id="notesList"></div>
-            </div>
+  // Click to select
+  div.addEventListener("click", (e) => {
+    // Ignore click on controls
+    if (e.target.closest(".minimize-btn")) return;
+    toggleSelected(cat, id);
+  });
+  div.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      toggleSelected(cat, id);
+    }
+  });
+  return div;
+}
 
-            <div class="sidebar-section">
-                <h2>Controls</h2>
-                <div class="controls">
-                    <button id="collapseAll">Collapse All Tasks</button>
-                    <button id="expandAll">Expand All Tasks</button>
-                    <button id="resetData" style="margin-top: 0.5rem; background-color: #f8d7da; color: #842029;">Reset All Data</button>
-                </div>
-            </div>
+function renderNoteCard(note, { inTab, tab } = {}) {
+  const div = document.createElement("div");
+  div.className = "note-card";
+  div.setAttribute("role", "listitem");
+  div.setAttribute("tabindex", "-1");
+  div.setAttribute("data-id", note.id);
+  div.setAttribute("draggable", "true");
+  // Drag events
+  addDndHandlers(div, { id: note.id, type: "note", tab: inTab ? tab : null });
+  // Title or edit input
+  if (note.editing) {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = note.title;
+    input.className = "note-edit-input";
+    input.setAttribute("aria-label", "Edit note title");
+    input.addEventListener("blur", () => stopEditNote(note.id, input.value));
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        stopEditNote(note.id, input.value);
+        focusElem(div);
+      } else if (e.key === "Escape") {
+        stopEditNote(note.id, note.title);
+        focusElem(div);
+      }
+    });
+    nextFrame(() => input.select());
+    div.appendChild(input);
+  } else {
+    const title = document.createElement("span");
+    title.className = "note-title";
+    title.tabIndex = 0;
+    title.textContent = note.title || "(Untitled note)";
+    title.setAttribute("aria-label", "Note: " + (note.title || ""));
+    title.addEventListener("dblclick", () => startEditNote(note.id));
+    title.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") startEditNote(note.id);
+    });
+    div.appendChild(title);
+  }
+  // Delete btn
+  const delBtn = document.createElement("button");
+  delBtn.className = "note-delete-btn";
+  delBtn.type = "button";
+  delBtn.setAttribute("aria-label", "Delete note");
+  delBtn.textContent = "✖";
+  delBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    deleteNote(note.id);
+  });
+  div.appendChild(delBtn);
+  return div;
+}
 
-            <div class="sidebar-section">
-                <h2>Status</h2>
-                <div id="loadStatus"></div>
-            </div>
-        </aside>
-    </main>
+function renderNotesSidebar() {
+  const list = document.getElementById("notes-list");
+  list.innerHTML = "";
+  // Only notes in sidebar
+  for (const note of g_notes) {
+    if (!note.location || note.location.place !== "sidebar") continue;
+    const noteCard = renderNoteCard(note, { inTab: false });
+    list.appendChild(noteCard);
+  }
+}
+function renderAllTabs() {
+  for (const cat of CATEGORIES) renderTabPanel(cat.key);
+}
+function renderAll() {
+  renderAllTabs();
+  renderNotesSidebar();
+  updatePoints();
+  updateFileStatusUI();
+  updateCollapseExpandBtns();
+  // Highlight active tab
+  for (const cat of CATEGORIES) {
+    document.getElementById(`tab-btn-${cat.key}`).setAttribute("aria-selected", g_activeTab === cat.key ? "true" : "false");
+    document.getElementById(`tab-btn-${cat.key}`).tabIndex = g_activeTab === cat.key ? "0" : "-1";
+    document.getElementById(`tab-panel-${cat.key}`).setAttribute("aria-hidden", g_activeTab === cat.key ? "false" : "true");
+  }
+}
+function updateCollapseExpandBtns() {
+  const tab = g_state.tabs[g_activeTab];
+  const btnCollapse = document.getElementById("collapse-btn");
+  const btnExpand = document.getElementById("expand-btn");
+  btnCollapse.disabled = tab.collapsed;
+  btnExpand.disabled = !tab.collapsed;
+}
 
-    <script>
-        // App state and configuration
-        const APP_STORAGE_KEY = 'rs3TasksTabsState:v1';
-        const CATEGORIES = ['easy', 'medium', 'hard', 'elite', 'master'];
-        
-        // Global state
-        let state = {
-            activeTab: 'easy',
-            tasks: {
-                easy: { items: [], order: [], collapsed: false },
-                medium: { items: [], order: [], collapsed: false },
-                hard: { items: [], order: [], collapsed: false },
-                elite: { items: [], order: [], collapsed: false },
-                master: { items: [], order: [], collapsed: false }
-            },
-            notes: [],
-            totalPoints: 0
-        };
+// --- DnD ---
+function addDndHandlers(elem, { id, type, cat }) {
+  elem.addEventListener("dragstart", (e) => {
+    g_drag = { id, type, fromTab: cat || null, startElem: elem };
+    elem.classList.add("dragged");
+    e.dataTransfer.effectAllowed = "move";
+    e.dataTransfer.setData("text/plain", id);
+    setTimeout(() => elem.classList.add("dragged"), 0);
+  });
+  elem.addEventListener("dragend", () => {
+    elem.classList.remove("dragged");
+    removeDragPlaceholders();
+    g_drag = null;
+  });
+  // Dragover/drop on task lists is handled elsewhere
+}
 
-        // DOM Elements
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const taskLists = document.querySelectorAll('.task-list');
-        const totalPointsElement = document.getElementById('totalPoints');
-        const noteForm = document.getElementById('noteForm');
-        const noteInput = document.getElementById('noteInput');
-        const notesList = document.getElementById('notesList');
-        const collapseAllButton = document.getElementById('collapseAll');
-        const expandAllButton = document.getElementById('expandAll');
-        const resetDataButton = document.getElementById('resetData');
-        const loadStatusElement = document.getElementById('loadStatus');
+// Placeholders and drop logic
+function removeDragPlaceholders() {
+  document.querySelectorAll(".drag-placeholder").forEach(el => el.remove());
+}
+function insertDragPlaceholder(listElem, idx) {
+  removeDragPlaceholders();
+  const ph = document.createElement("div");
+  ph.className = "drag-placeholder";
+  ph.setAttribute("aria-hidden", "true");
+  if (idx >= listElem.children.length) {
+    listElem.appendChild(ph);
+  } else {
+    listElem.insertBefore(ph, listElem.children[idx]);
+  }
+}
+// Main task list DnD handlers
+function setupTabDnD(cat) {
+  const list = document.getElementById(`task-list-${cat}`);
+  list.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    if (!g_drag) return;
+    // Find index under pointer
+    const children = Array.from(list.children);
+    let idx = children.length;
+    for (let i = 0; i < children.length; ++i) {
+      const rect = children[i].getBoundingClientRect();
+      const y = e.clientY;
+      if (y < rect.top + rect.height / 2) {
+        idx = i; break;
+      }
+    }
+    insertDragPlaceholder(list, idx);
+  });
+  list.addEventListener("dragleave", (e) => {
+    if (!list.contains(e.relatedTarget)) removeDragPlaceholders();
+  });
+  list.addEventListener("drop", (e) => {
+    e.preventDefault();
+    if (!g_drag) return;
+    const children = Array.from(list.children);
+    let idx = children.length;
+    for (let i = 0; i < children.length; ++i) {
+      if (children[i].classList.contains("drag-placeholder")) {
+        idx = i; break;
+      }
+    }
+    handleDrop(cat, idx);
+    removeDragPlaceholders();
+  });
+}
+function handleDrop(cat, idx) {
+  // DnD: move item (task or note) into tab at idx
+  const tab = g_state.tabs[cat];
+  let order = tab.order.slice();
+  const srcCat = g_drag.fromTab || null;
+  const id = g_drag.id;
+  // Remove from previous location
+  for (const c of CATEGORIES) {
+    let t = g_state.tabs[c.key];
+    let i = t.order.indexOf(id);
+    if (i !== -1) t.order.splice(i, 1);
+  }
+  // If note, update location
+  if (isNoteId(id)) {
+    const note = g_notes.find(n => n.id === id);
+    if (note) note.location = { place: "tab", tab: cat, pos: idx };
+  }
+  // Insert at target
+  order.splice(idx, 0, id);
+  tab.order = order;
+  // Recompute notes' positions
+  for (let p = 0; p < tab.order.length; ++p) {
+    const oid = tab.order[p];
+    if (isNoteId(oid)) {
+      const note = g_notes.find(n => n.id === oid);
+      if (note && note.location && note.location.tab === cat) {
+        note.location.pos = p;
+      }
+    }
+  }
+  saveState();
+  renderAll();
+}
 
-        // Initialize the application
-        function init() {
-            loadStateFromStorage();
-            setupEventListeners();
-            loadJSONFiles();
-            renderUI();
+// --- Selection, minimize, collapse ---
+function toggleSelected(cat, id) {
+  const t = g_state.tabs[cat];
+  t.selected[id] = !t.selected[id];
+  saveState();
+  updatePoints();
+  renderTabPanel(cat);
+}
+function toggleMinimized(cat, id) {
+  const t = g_state.tabs[cat];
+  t.minimized[id] = !t.minimized[id];
+  saveState();
+  renderTabPanel(cat);
+}
+function collapseAll(cat) {
+  const t = g_state.tabs[cat];
+  t.collapsed = true;
+  for (const id of t.order) t.minimized[id] = true;
+  saveState();
+  renderTabPanel(cat);
+  updateCollapseExpandBtns();
+}
+function expandAll(cat) {
+  const t = g_state.tabs[cat];
+  t.collapsed = false;
+  for (const id of t.order) t.minimized[id] = false;
+  saveState();
+  renderTabPanel(cat);
+  updateCollapseExpandBtns();
+}
+
+// --- Notes management ---
+function addNote(title) {
+  const note = {
+    id: genNoteId(),
+    title: title.trim() || "(Untitled note)",
+    body: "",
+    editing: false,
+    location: { place: "sidebar" },
+  };
+  g_notes.push(note);
+  g_state.notes = g_notes.map(n => ({
+    id: n.id, title: n.title, body: n.body, location: deepClone(n.location)
+  }));
+  saveState();
+  renderNotesSidebar();
+}
+function startEditNote(id) {
+  for (const note of g_notes) if (note.id === id) note.editing = true;
+  renderNotesSidebar();
+}
+function stopEditNote(id, newTitle) {
+  for (const note of g_notes) if (note.id === id) {
+    note.editing = false;
+    note.title = newTitle.trim() || "(Untitled note)";
+  }
+  g_state.notes = g_notes.map(n => ({
+    id: n.id, title: n.title, body: n.body, location: deepClone(n.location)
+  }));
+  saveState();
+  renderNotesSidebar();
+}
+function deleteNote(id) {
+  const idx = g_notes.findIndex(n => n.id === id);
+  if (idx !== -1) g_notes.splice(idx, 1);
+  // Remove from all tab orders
+  for (const cat of CATEGORIES) {
+    let t = g_state.tabs[cat.key];
+    let i = t.order.indexOf(id);
+    if (i !== -1) t.order.splice(i, 1);
+  }
+  g_state.notes = g_notes.map(n => ({
+    id: n.id, title: n.title, body: n.body, location: deepClone(n.location)
+  }));
+  saveState();
+  renderNotesSidebar();
+  renderAllTabs();
+}
+// --- Tab & sidebar controls ---
+function setupTabControls() {
+  for (const cat of CATEGORIES) {
+    const btn = document.getElementById(`tab-btn-${cat.key}`);
+    btn.addEventListener("click", () => setActiveTab(cat.key));
+    btn.addEventListener("keydown", (e) => {
+      let idx = CATEGORIES.findIndex(c => c.key === g_activeTab);
+      if (e.key === "ArrowRight") {
+        idx = (idx + 1) % CATEGORIES.length;
+        setActiveTab(CATEGORIES[idx].key);
+      } else if (e.key === "ArrowLeft") {
+        idx = (idx - 1 + CATEGORIES.length) % CATEGORIES.length;
+        setActiveTab(CATEGORIES[idx].key);
+      } else if (e.key === "Home") {
+        setActiveTab(CATEGORIES[0].key);
+      } else if (e.key === "End") {
+        setActiveTab(CATEGORIES[CATEGORIES.length - 1].key);
+      }
+    });
+  }
+}
+function setActiveTab(cat) {
+  if (!CATEGORIES.some(c => c.key === cat)) return;
+  g_activeTab = cat;
+  renderAll();
+  // Focus tab btn for accessibility
+  focusElem(document.getElementById(`tab-btn-${cat}`));
+}
+function setupSidebarControls() {
+  // Collapse/expand
+  document.getElementById("collapse-btn").addEventListener("click", () => {
+    collapseAll(g_activeTab);
+    ariaAlert("All tasks collapsed");
+  });
+  document.getElementById("expand-btn").addEventListener("click", () => {
+    expandAll(g_activeTab);
+    ariaAlert("All tasks expanded");
+  });
+  // Reset
+  document.getElementById("reset-btn").addEventListener("click", () => {
+    if (confirm("Are you sure you want to reset all data? This cannot be undone.")) {
+      resetState();
+    }
+  });
+  // Add note
+  const addForm = document.getElementById("add-note-form");
+  addForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val = document.getElementById("add-note-input").value;
+    if (val.trim()) {
+      addNote(val);
+      document.getElementById("add-note-input").value = "";
+    }
+  });
+  document.getElementById("add-note-input").addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      document.getElementById("add-note-input").value = "";
+      focusElem(document.getElementById("add-note-input"));
+    }
+  });
+}
+
+// Sidebar notes DnD
+function setupNotesSidebarDnD() {
+  const list = document.getElementById("notes-list");
+  list.addEventListener("dragover", (e) => {
+    e.preventDefault();
+    if (!g_drag || g_drag.type !== "note") return;
+    // Find index under pointer
+    const children = Array.from(list.children);
+    let idx = children.length;
+    for (let i = 0; i < children.length; ++i) {
+      const rect = children[i].getBoundingClientRect();
+      const y = e.clientY;
+      if (y < rect.top + rect.height / 2) {
+        idx = i; break;
+      }
+    }
+    insertDragPlaceholder(list, idx);
+  });
+  list.addEventListener("dragleave", (e) => {
+    if (!list.contains(e.relatedTarget)) removeDragPlaceholders();
+  });
+  list.addEventListener("drop", (e) => {
+    e.preventDefault();
+    if (!g_drag || g_drag.type !== "note") return;
+    const children = Array.from(list.children);
+    let idx = children.length;
+    for (let i = 0; i < children.length; ++i) {
+      if (children[i].classList.contains("drag-placeholder")) {
+        idx = i; break;
+      }
+    }
+    // Remove note from all tabs
+    for (const cat of CATEGORIES) {
+      const tab = g_state.tabs[cat.key];
+      const i = tab.order.indexOf(g_drag.id);
+      if (i !== -1) tab.order.splice(i, 1);
+    }
+    // Set location to sidebar
+    const note = g_notes.find(n => n.id === g_drag.id);
+    if (note) note.location = { place: "sidebar", pos: idx };
+    // Insert at idx
+    const notesSidebar = g_notes.filter(n => n.location && n.location.place === "sidebar");
+    notesSidebar.splice(idx, 0, notesSidebar.splice(notesSidebar.findIndex(n => n.id === g_drag.id), 1)[0]);
+    // Recompute positions
+    notesSidebar.forEach((n, i) => n.location.pos = i);
+    saveState();
+    renderNotesSidebar();
+    renderAllTabs();
+    removeDragPlaceholders();
+  });
+}
+
+// --- Keyboard navigation ---
+function setupKeyboardShortcuts() {
+  document.body.addEventListener("keydown", (e) => {
+    if (e.altKey || e.metaKey || e.ctrlKey) return;
+    // Tab navigation
+    if (e.target.classList.contains("tab-btn")) {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight" || e.key === "Home" || e.key === "End") {
+        e.preventDefault();
+      }
+    }
+    // Add note quick focus
+    if (e.key === "n" && document.activeElement !== document.getElementById("add-note-input")) {
+      document.getElementById("add-note-input").focus();
+    }
+  });
+}
+
+// --- Persistence helpers ---
+function syncStateFromNotes() {
+  // Update g_state.notes from g_notes
+  g_state.notes = g_notes.map(n => ({
+    id: n.id, title: n.title, body: n.body, location: deepClone(n.location)
+  }));
+  saveState();
+}
+
+// --- Initialization ---
+function restoreStateAfterLoad() {
+  // Restore tab order, notes, minimized/selected/collapsed
+  for (const cat of CATEGORIES) {
+    const tabState = g_state.tabs[cat.key];
+    const tasks = g_data[cat.key] || [];
+    // If no saved order or mismatch, use JSON order
+    if (!tabState.order || tabState.order.length !== tasks.length) {
+      tabState.order = buildInitialTabOrder(cat.key, tasks);
+      tabState.selected = {};
+      tabState.minimized = {};
+      tabState.collapsed = false;
+    }
+    // Remove missing notes/tasks from order
+    tabState.order = tabState.order.filter(id => {
+      if (isTaskId(id)) {
+        const idx = parseInt(id.split("::")[1], 10);
+        return !!tasks[idx];
+      } else if (isNoteId(id)) {
+        return g_state.notes.some(n => n.id === id);
+      }
+      return false;
+    });
+    // Ensure all tasks are present in order
+    const idsSet = new Set(tabState.order);
+    for (let i = 0; i < tasks.length; ++i) {
+      const tid = getTaskId(cat.key, i);
+      if (!idsSet.has(tid)) tabState.order.push(tid);
+    }
+  }
+  // Restore notes
+  g_notes = (g_state.notes || []).map(n => ({ ...n, editing: false }));
+  // Ensure note positions are valid
+  const notesSidebar = g_notes.filter(n => n.location && n.location.place === "sidebar");
+  notesSidebar.forEach((n, i) => n.location.pos = i);
+  for (const cat of CATEGORIES) {
+    const tab = g_state.tabs[cat.key];
+    for (let p = 0; p < tab.order.length; ++p) {
+      const id = tab.order[p];
+      if (isNoteId(id)) {
+        const note = g_notes.find(n => n.id === id);
+        if (note && note.location && note.location.tab === cat.key) {
+          note.location.pos = p;
         }
+      }
+    }
+  }
+  saveState();
+}
 
-        // Set up all event listeners
-        function setupEventListeners() {
-            // Tab switching
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => switchTab(button.dataset.category));
-            });
+// --- App startup ---
+function main() {
+  // Init file status
+  updateFileStatusUI();
+  // Load all data
+  loadAllData().then(() => {
+    // Load state from storage or init
+    g_state = loadState() || initDefaultState();
+    // Set up initial tab orders if missing
+    for (const cat of CATEGORIES) {
+      if (!g_state.tabs[cat.key].order || g_state.tabs[cat.key].order.length !== (g_data[cat.key] || []).length) {
+        g_state.tabs[cat.key].order = buildInitialTabOrder(cat.key, g_data[cat.key] || []);
+      }
+    }
+    // Restore notes
+    g_notes = (g_state.notes || []).map(n => ({ ...n, editing: false }));
+    restoreStateAfterLoad();
+    // Render UI
+    renderAll();
+    // Setup DnD for all tabs
+    for (const cat of CATEGORIES) setupTabDnD(cat.key);
+    // Setup DnD for sidebar notes
+    setupNotesSidebarDnD();
+    // Controls
+    setupTabControls();
+    setupSidebarControls();
+    setupKeyboardShortcuts();
+    // Accessibility focus
+    document.getElementById(`tab-btn-${g_activeTab}`).focus();
+  });
+}
 
-            // Note form submission
-            noteForm.addEventListener('submit', handleNoteSubmit);
+// --- Entry point ---
+main();
 
-            // Control buttons
-            collapseAllButton.addEventListener('click', () => toggleAllTasks(true));
-            expandAllButton.addEventListener('click', () => toggleAllTasks(false));
-            resetDataButton.addEventListener('click', confirmResetData);
-
-            // Drag and drop events for task lists
-            taskLists.forEach(list => {
-                list.addEventListener('dragover', handleDragOver);
-                list.addEventListener('drop', handleDrop);
-                list.addEventListener('dragenter', preventDefault);
-                list.addEventListener('dragleave', preventDefault);
-            });
-
-            // Allow drops in the notes list too
-            notesList.addEventListener('dragover', handleDragOver);
-            notesList.addEventListener('drop', handleNoteDrop);
-            notesList.addEventListener('dragenter', preventDefault);
-            notesList.addEventListener('dragleave', preventDefault);
-        }
-
-        // Load JSON files in parallel
-        async function loadJSONFiles() {
-            updateLoadStatus('Loading task data...');
-            
-            const loadPromises = CATEGORIES.map(category => 
-                fetch(`${category}.json`)
-                    .then(response => {
-                        if (!response.ok) throw new Error(`Failed to load ${category}.json`);
-                        return response.json();
-                    })
-                    .then(data => {
-                        if (!Array.isArray(data)) {
-                            throw new Error(`Invalid data format in ${category}.json`);
-                        }
-                        
-                        // Process tasks and generate stable IDs
-                        const tasksWithIds = data.map((task, index) => {
-                            return {
-                                ...task,
-                                id: `${category}::${index}`,
-                                points: parsePoints(task.Pts),
-                                completed: false,
-                                minimized: false
-                            };
-                        });
-                        
-                        state.tasks[category].items = tasksWithIds;
-                        
-                        // Initialize order if not present in saved state
-                        if (state.tasks[category].order.length === 0) {
-                            state.tasks[category].order = tasksWithIds.map(task => task.id);
-                        }
-                        
-                        updateLoadStatus(`Loaded ${category}.json successfully`);
-                        return category;
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        updateLoadStatus(`Error loading ${category}.json: ${error.message}`, 'error');
-                        return null;
-                    })
-            );
-
-            await Promise.all(loadPromises);
-            renderUI();
-        }
-
-        // Parse points value from various formats
-        function parsePoints(pts) {
-            if (pts === undefined || pts === null) return 0;
-            if (typeof pts === 'number') return pts;
-            
-            const parsed = parseInt(pts.toString().replace(/[^\d]/g, ''));
-            return isNaN(parsed) ? 0 : parsed;
-        }
-
-        // Switch between tabs
-        function switchTab(category) {
-            if (!CATEGORIES.includes(category)) return;
-            
-            state.activeTab = category;
-            
-            // Update UI
-            tabButtons.forEach(button => {
-                const isActive = button.dataset.category === category;
-                button.classList.toggle('active', isActive);
-                button.setAttribute('aria-selected', isActive);
-            });
-            
-            tabContents.forEach(content => {
-                content.classList.toggle('active', content.dataset.category === category);
-            });
-            
-            // Update collapse/expand buttons text
-            updateCollapseExpandButtons();
-            
-            saveStateToStorage();
-        }
-
-        // Render the entire UI based on current state
-        function renderUI() {
-            renderAllTaskLists();
-            renderNotes();
-            updateTotalPoints();
-            updateCollapseExpandButtons();
-        }
-
-        // Render all task lists
-        function renderAllTaskLists() {
-            CATEGORIES.forEach(category => {
-                const taskList = document.querySelector(`.task-list[data-category="${category}"]`);
-                if (taskList) {
-                    renderTaskList(category, taskList);
-                }
-            });
-        }
-
-        // Render a single task list
-        function renderTaskList(category, container) {
-            // Clear container but preserve any drag placeholder
-            const placeholder = container.querySelector('.drag-placeholder');
-            container.innerHTML = '';
-            if (placeholder) container.appendChild(placeholder);
-            
-            const { items, order } = state.tasks[category];
-            const itemMap = new Map(items.map(item => [item.id, item]));
-            
-            // Render tasks in the saved order
-            order.forEach(taskId => {
-                const task = itemMap.get(taskId);
-                if (task) {
-                    const taskElement = createTaskElement(task, category);
-                    container.appendChild(taskElement);
-                }
-            });
-            
-            // Apply collapsed state if needed
-            if (state.tasks[category].collapsed) {
-                container.querySelectorAll('.task-card').forEach(card => {
-                    card.classList.add('minimized');
-                });
-            }
-        }
-
-        // Create DOM element for a task
-        function createTaskElement(task, category) {
-            const card = document.createElement('div');
-            card.className = `task-card ${task.completed ? 'selected' : ''} ${task.minimized ? 'minimized' : ''}`;
-            card.dataset.id = task.id;
-            card.draggable = true;
-            
-            // Task header with title and points
-            const header = document.createElement('div');
-            header.className = 'task-header';
-            
-            const titleContainer = document.createElement('div');
-            titleContainer.className = 'task-title-container';
-            
-            if (task.Area) {
-                const icon = document.createElement('img');
-                icon.src = task.Area;
-                icon.alt = '';
-                icon.className = 'task-area-icon';
-                titleContainer.appendChild(icon);
-            }
-            
-            const title = document.createElement('div');
-            title.className = 'task-title';
-            title.textContent = task.Task || 'Untitled Task';
-            titleContainer.appendChild(title);
-            
-            const points = document.createElement('div');
-            points.className = 'task-points';
-            points.textContent = task.points;
-            
-            header.appendChild(titleContainer);
-            header.appendChild(points);
-            
-            // Task information (hidden when minimized)
-            const info = document.createElement('div');
-            info.className = 'task-info';
-            
-            if (task.Information) {
-                const infoPara = document.createElement('p');
-                infoPara.textContent = task.Information;
-                info.appendChild(infoPara);
-            }
-            
-            if (task.Requirements) {
-                if (task.Requirements.text) {
-                    const reqPara = document.createElement('p');
-                    reqPara.textContent = task.Requirements.text;
-                    info.appendChild(reqPara);
-                }
-                
-                if (task.Requirements.img) {
-                    const reqImg = document.createElement('img');
-                    reqImg.src = task.Requirements.img;
-                    reqImg.alt = 'Requirement visual';
-                    info.appendChild(reqImg);
-                }
-            }
-            
-            // Task controls
-            const controls = document.createElement('div');
-            controls.className = 'task-controls';
-            
-            const toggleButton = document.createElement('button');
-            toggleButton.textContent = task.completed ? 'Uncomplete' : 'Complete';
-            toggleButton.addEventListener('click', () => toggleTaskCompletion(task.id, category));
-            
-            const minimizeButton = document.createElement('button');
-            minimizeButton.textContent = task.minimized ? 'Expand' : 'Minimize';
-            minimizeButton.addEventListener('click', () => toggleTaskMinimize(task.id, category));
-            
-            controls.appendChild(toggleButton);
-            controls.appendChild(minimizeButton);
-            
-            // Assemble the card
-            card.appendChild(header);
-            card.appendChild(info);
-            card.appendChild(controls);
-            
-            // Drag events
-            card.addEventListener('dragstart', handleDragStart);
-            card.addEventListener('dragend', handleDragEnd);
-            
-            // Keyboard accessibility
-            card.addEventListener('keydown', e => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggleTaskCompletion(task.id, category);
-                }
-            });
-            
-            card.tabIndex = 0;
-            card.setAttribute('role', 'button');
-            card.setAttribute('aria-label', `${task.Task}, ${task.points} points`);
-            
-            return card;
-        }
-
-        // Toggle task completion state
-        function toggleTaskCompletion(taskId, category) {
-            const taskIndex = state.tasks[category].items.findIndex(t => t.id === taskId);
-            if (taskIndex === -1) return;
-            
-            state.tasks[category].items[taskIndex].completed = !state.tasks[category].items[taskIndex].completed;
-            
-            // Update UI and points
-            renderTaskList(category, document.querySelector(`.task-list[data-category="${category}"]`));
-            updateTotalPoints();
-            saveStateToStorage();
-        }
-
-        // Toggle task minimized state
-        function toggleTaskMinimize(taskId, category) {
-            const taskIndex = state.tasks[category].items.findIndex(t => t.id === taskId);
-            if (taskIndex === -1) return;
-            
-            state.tasks[category].items[taskIndex].minimized = !state.tasks[category].items[taskIndex].minimized;
-            
-            // Update UI
-            renderTaskList(category, document.querySelector(`.task-list[data-category="${category}"]`));
-            saveStateToStorage();
-        }
-
-        // Toggle all tasks collapsed/expanded
-        function toggleAllTasks(collapsed) {
-            const category = state.activeTab;
-            state.tasks[category].collapsed = collapsed;
-            
-            // Update all tasks in this category
-            state.tasks[category].items.forEach(task => {
-                task.minimized = collapsed;
-            });
-            
-            // Update UI
-            renderTaskList(category, document.querySelector(`.task-list[data-category="${category}"]`));
-            updateCollapseExpandButtons();
-            saveStateToStorage();
-        }
-
-        // Update collapse/expand buttons text
-        function updateCollapseExpandButtons() {
-            const isCollapsed = state.tasks[state.activeTab].collapsed;
-            collapseAllButton.textContent = isCollapsed ? 'Collapse All Tasks' : 'Collapse All Tasks';
-            expandAllButton.textContent = isCollapsed ? 'Expand All Tasks' : 'Expand All Tasks';
-        }
-
-        // Handle note form submission
-        function handleNoteSubmit(e) {
-            e.preventDefault();
-            
-            const content = noteInput.value.trim();
-            if (!content) return;
-            
-            // Create new note
-            const note = {
-                id: `note_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-                content: content,
-                inSidebar: true
-            };
-            
-            state.notes.push(note);
-            noteInput.value = '';
-            
-            // Update UI
-            renderNotes();
-            saveStateToStorage();
-        }
-
-        // Render all notes
-        function renderNotes() {
-            notesList.innerHTML = '';
-            
-            const sidebarNotes = state.notes.filter(note => note.inSidebar);
-            
-            if (sidebarNotes.length === 0) {
-                const emptyMessage = document.createElement('p');
-                emptyMessage.textContent = 'No notes yet. Add one above!';
-                emptyMessage.style.color = 'var(--secondary-color)';
-                emptyMessage.style.fontStyle = 'italic';
-                notesList.appendChild(emptyMessage);
-                return;
-            }
-            
-            sidebarNotes.forEach(note => {
-                const noteElement = createNoteElement(note);
-                notesList.appendChild(noteElement);
-            });
-        }
-
-        // Create DOM element for a note
-        function createNoteElement(note) {
-            const noteCard = document.createElement('div');
-            noteCard.className = 'note-card';
-            noteCard.dataset.id = note.id;
-            noteCard.draggable = true;
-            noteCard.tabIndex = 0;
-            noteCard.setAttribute('role', 'button');
-            noteCard.setAttribute('aria-label', `Note: ${note.content.substring(0, 30)}...`);
-            
-            const content = document.createElement('div');
-            content.className = 'note-content';
-            content.textContent = note.content;
-            
-            const controls = document.createElement('div');
-            controls.className = 'note-controls';
-            
-            const editButton = document.createElement('button');
-            editButton.textContent = 'Edit';
-            editButton.addEventListener('click', () => editNote(note.id));
-            
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Delete';
-            deleteButton.addEventListener('click', () => deleteNote(note.id));
-            
-            controls.appendChild(editButton);
-            controls.appendChild(deleteButton);
-            
-            noteCard.appendChild(content);
-            noteCard.appendChild(controls);
-            
-            // Drag events
-            noteCard.addEventListener('dragstart', handleDragStart);
-            noteCard.addEventListener('dragend', handleDragEnd);
-            
-            return noteCard;
-        }
-
-        // Edit a note
-        function editNote(noteId) {
-            const noteIndex = state.notes.findIndex(n => n.id === noteId);
-            if (noteIndex === -1) return;
-            
-            const newContent = prompt('Edit your note:', state.notes[noteIndex].content);
-            if (newContent !== null) {
-                state.notes[noteIndex].content = newContent.trim();
-                renderNotes();
-                saveStateToStorage();
-            }
-        }
-
-        // Delete a note
-        function deleteNote(noteId) {
-            if (!confirm('Are you sure you want to delete this note?')) return;
-            
-            // Remove from all locations
-            state.notes = state.notes.filter(n => n.id !== noteId);
-            
-            CATEGORIES.forEach(category => {
-                state.tasks[category].order = state.tasks[category].order.filter(id => id !== noteId);
-            });
-            
-            renderUI();
-            saveStateToStorage();
-        }
-
-        // Drag and drop handlers
-        function handleDragStart(e) {
-            e.dataTransfer.setData('text/plain', e.target.dataset.id);
-            e.target.classList.add('dragging');
-            
-            // Set appropriate drag image
-            if (e.dataTransfer.setDragImage) {
-                const dragImage = e.target.cloneNode(true);
-                dragImage.style.width = `${e.target.offsetWidth}px`;
-                dragImage.style.opacity = '0.8';
-                document.body.appendChild(dragImage);
-                e.dataTransfer.setDragImage(dragImage, 0, 0);
-                
-                // Remove the temporary element after a delay
-                setTimeout(() => document.body.removeChild(dragImage), 0);
-            }
-            
-            e.dataTransfer.effectAllowed = 'move';
-        }
-
-        function handleDragOver(e) {
-            preventDefault(e);
-            e.dataTransfer.dropEffect = 'move';
-            
-            // Show visual indicator where drop would occur
-            const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
-            const placeholder = e.currentTarget.querySelector('.drag-placeholder');
-            
-            if (!placeholder) {
-                const dragPlaceholder = document.createElement('div');
-                dragPlaceholder.className = 'drag-placeholder';
-                e.currentTarget.appendChild(dragPlaceholder);
-            }
-            
-            if (afterElement) {
-                e.currentTarget.insertBefore(placeholder, afterElement);
-            } else {
-                e.currentTarget.appendChild(placeholder);
-            }
-        }
-
-        function handleDrop(e) {
-            preventDefault(e);
-            
-            const id = e.dataTransfer.getData('text/plain');
-            if (!id) return;
-            
-            // Remove drag placeholder
-            const placeholder = e.currentTarget.querySelector('.drag-placeholder');
-            if (placeholder) {
-                e.currentTarget.removeChild(placeholder);
-            }
-            
-            // Determine if this is a task or note
-            const isNote = id.startsWith('note_');
-            const category = e.currentTarget.dataset.category || state.activeTab;
-            
-            if (isNote) {
-                // Handle note drop
-                const noteIndex = state.notes.findIndex(n => n.id === id);
-                if (noteIndex === -1) return;
-                
-                // Update note location
-                state.notes[noteIndex].inSidebar = false;
-                
-                // Find where to insert the note
-                const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
-                const order = state.tasks[category].order;
-                
-                if (afterElement) {
-                    const afterIndex = order.indexOf(afterElement.dataset.id);
-                    order.splice(afterIndex, 0, id);
-                } else {
-                    order.push(id);
-                }
-            } else {
-                // Handle task reordering within the same category
-                const afterElement = getDragAfterElement(e.currentTarget, e.clientY);
-                const order = state.tasks[category].order;
-                const currentIndex = order.indexOf(id);
-                
-                // Remove from current position
-                if (currentIndex > -1) {
-                    order.splice(currentIndex, 1);
-                }
-                
-                // Insert at new position
-                if (afterElement) {
-                    const afterIndex = order.indexOf(afterElement.dataset.id);
-                    order.splice(afterIndex, 0, id);
-                } else {
-                    order.push(id);
-                }
-            }
-            
-            renderUI();
-            saveStateToStorage();
-        }
-
-        function handleNoteDrop(e) {
-            preventDefault(e);
-            
-            const id = e.dataTransfer.getData('text/plain');
-            if (!id) return;
-            
-            // Remove drag placeholder
-            const placeholder = e.currentTarget.querySelector('.drag-placeholder');
-            if (placeholder) {
-                e.currentTarget.removeChild(placeholder);
-            }
-            
-            // Only notes can be moved back to sidebar
-            if (!id.startsWith('note_')) return;
-            
-            const noteIndex = state.notes.findIndex(n => n.id === id);
-            if (noteIndex === -1) return;
-            
-            // Update note location
-            state.notes[noteIndex].inSidebar = true;
-            
-            // Remove from any task list order
-            CATEGORIES.forEach(category => {
-                state.tasks[category].order = state.tasks[category].order.filter(itemId => itemId !== id);
-            });
-            
-            renderUI();
-            saveStateToStorage();
-        }
-
-        function handleDragEnd(e) {
-            e.target.classList.remove('dragging');
-            
-            // Remove any drag placeholders
-            document.querySelectorAll('.drag-placeholder').forEach(el => {
-                el.parentNode.removeChild(el);
-            });
-        }
-
-        // Helper to find element after which to insert dragged element
-        function getDragAfterElement(container, y) {
-            const draggableElements = [...container.querySelectorAll('.task-card:not(.dragging), .note-card:not(.dragging)')];
-            
-            return draggableElements.reduce((closest, child) => {
-                const box = child.getBoundingClientRect();
-                const offset = y - box.top - box.height / 2;
-                
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
-                } else {
-                    return closest;
-                }
-            }, { offset: Number.NEGATIVE_INFINITY }).element;
-        }
-
-        // Update total points counter
-        function updateTotalPoints() {
-            let total = 0;
-            
-            CATEGORIES.forEach(category => {
-                state.tasks[category].items.forEach(task => {
-                    if (task.completed) {
-                        total += task.points;
-                    }
-                });
-            });
-            
-            state.totalPoints = total;
-            totalPointsElement.textContent = total;
-        }
-
-        // Update load status message
-        function updateLoadStatus(message, type = 'info') {
-            const statusDiv = document.createElement('div');
-            statusDiv.textContent = message;
-            
-            if (type === 'error') {
-                statusDiv.className = 'error';
-            }
-            
-            loadStatusElement.appendChild(statusDiv);
-            
-            // Auto-scroll to show latest status
-            loadStatusElement.scrollTop = loadStatusElement.scrollHeight;
-        }
-
-        // Confirm and reset all data
-        function confirmResetData() {
-            if (!confirm('Are you sure you want to reset all data? This cannot be undone.')) return;
-            
-            localStorage.removeItem(APP_STORAGE_KEY);
-            window.location.reload();
-        }
-
-        // Save state to localStorage
-        function saveStateToStorage() {
-            localStorage.setItem(APP_STORAGE_KEY, JSON.stringify(state));
-        }
-
-        // Load state from localStorage
-        function loadStateFromStorage() {
-            const saved = localStorage.getItem(APP_STORAGE_KEY);
-            if (saved) {
-                try {
-                    const parsed = JSON.parse(saved);
-                    
-                    // Merge saved state with default state
-                    state = {
-                        ...state,
-                        ...parsed,
-                        tasks: {
-                            ...state.tasks,
-                            ...parsed.tasks
-                        }
-                    };
-                } catch (e) {
-                    console.error('Failed to parse saved state:', e);
-                }
-            }
-        }
-
-        // Utility function to prevent default event behavior
-        function preventDefault(e) {
-            e.preventDefault();
-        }
-
-        // Export/import functions for external access
-        window.app = {
-            exportState: () => JSON.stringify(state),
-            importState: (json) => {
-                try {
-                    const newState = JSON.parse(json);
-                    state = newState;
-                    saveStateToStorage();
-                    renderUI();
-                    return true;
-                } catch (e) {
-                    console.error('Failed to import state:', e);
-                    return false;
-                }
-            }
-        };
-
-        // Initialize the app when DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
-    </script>
+})();
+</script>
 </body>
 </html>
