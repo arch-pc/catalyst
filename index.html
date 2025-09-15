@@ -636,11 +636,11 @@ function fetchJsonFile(cat, file) {
   }).then(arr => {
     if (!Array.isArray(arr)) throw new Error("Not an array");
     arr = arr.map((obj, idx) => {
-      // Coerce common keys
+      // Zorg ervoor dat Pts een number wordt, niet een string
       return {
         ...obj,
         Task: typeof obj.Task === "string" ? obj.Task : ("Task #" + idx),
-        Pts: coerceInt(obj.Pts),
+        Pts: coerceInt(obj.Pts),  // Dit converteert string "10" naar number 10
         Area: typeof obj.Area === "string" ? obj.Area : "",
         Information: typeof obj.Information === "string" ? obj.Information : "",
         Requirements: typeof obj.Requirements === "object" && obj.Requirements !== null
