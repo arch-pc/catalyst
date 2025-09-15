@@ -281,14 +281,14 @@
 
             taskDiv.innerHTML = `
                 <div class="task-header">
-                    <img src="${task.Area}" alt="Area" class="area-icon" onerror="this.style.display='none'">
-                    <div class="task-title">${task.Task}</div>
-                    <div class="points">${task.Pts} pts</div>
+                    <img src="${task.Area || ''}" alt="Area" class="area-icon" onerror="this.style.display='none'">
+                    <div class="task-title">${task.Task || ''}</div>
+                    <div class="points">${task.Pts || '0'} pts</div>
                 </div>
-                <div class="task-info">${task.Information}</div>
+                <div class="task-info">${task.Information || ''}</div>
                 <div class="requirements">
-                    ${task.Requirements.img ? `<img src="${task.Requirements.img}" alt="Requirement">` : ''}
-                    ${task.Requirements.text}
+                    ${(task.Requirements && task.Requirements.img) ? `<img src="${task.Requirements.img}" alt="Requirement">` : ''}
+                    ${(task.Requirements && task.Requirements.text) ? task.Requirements.text : ''}
                 </div>
             `;
 
